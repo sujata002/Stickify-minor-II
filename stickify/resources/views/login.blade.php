@@ -28,19 +28,30 @@
                     <div class="text-part">
                         <h2 class="welcome-back">Welcome 👋</h2>
                         <p class="login-description">Today is a new day. It's your day. You shape it.<br>Sign in to start managing your notes.</p>
+<!-- jaba login form ko submission chai yo account.aunthenticate vanni route ma jancha-->
+                        <form action="{{ route('account.authenticate')}}" method="post" onsubmit="return Login()">            <!-- yo onsubmit le it tells the browser “before submitting this form, run the Login() function ani if it returns false, don’t submit.-->
+                            @csrf
 
-                        <form onsubmit="return Login()">            <!-- yo onsubmit le it tells the browser “before submitting this form, run the Login() function ani if it returns false, don’t submit.-->
                             <div class="form-input">
                                 <label class="input-label">Email</label>
-                                <input type="email" id="email" placeholder="example@email.com">
+                                <input type="text" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror " id="email" name="email" placeholder="example@email.com">          <!-- email ko value clear na hos if error aayera reload huda bhanera tya value ma old email haru lekhya cha -->
+                                @error('email')            <!-- to display error if form is submitted with empty fields -->
+                                    <p class="invalid-feedback" style="color:red;">{{$message}}</p>
+                                @enderror
                             </div>
+
                             <div class="form-input">
                                 <label class="input-label">Password</label>
-                                <input type="password" id="pass" placeholder="At least 8 characters">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="pass" name="password" placeholder="At least 8 characters">
+                                 @error('password')            <!-- to display error. the 'password' is from LoginController method authenticate-->
+                                    <p class="invalid-feedback" style="color:red;">{{$message}}</p>       
+                                @enderror
                             </div>
+
                             <div class="forgot-password">
                                 <a href="#">Forgot Password?</a>
                             </div>
+
                             <button type="submit" class="btn-primary">Sign In</button>
                         </form>
 

@@ -7,4 +7,7 @@ Route::get('/', function () {
 });
 
 //giving route for login.blade.php page ani teslai name deko euta account.login bhanera
-Route::get('/login',[LoginController::class,'index'])->name('account.login');
+
+Route::get('account/login',[LoginController::class,'index'])->name('account.login');
+Route::post('account/authenticate',[LoginController::class,'authenticate'])->name('account.authenticate');
+
