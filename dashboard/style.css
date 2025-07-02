@@ -1,3 +1,4 @@
+/* Reset default browser styles and set base font */
 * {
       margin: 0;
       padding: 0;
@@ -5,27 +6,31 @@
       font-family: 'Inter', sans-serif;
     }
 
-    body {
+/* Set up flex layout for the whole page and background color */
+body {
       display: flex;
       height: 100vh;
       background-color: #f4f4f4;
     }
 
-    .sidebar {
+/* Style the sidebar: width, color, padding, and layout */
+.sidebar {
       width: 250px;
       background-color: #6c63ff;
       color: white;
       padding: 20px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: space-between; /* Space between logo/nav and projects */
     }
 
-    .sidebar h2, .sidebar nav, .sidebar .projects {
+/* Add spacing below sidebar sections */
+.sidebar h2, .sidebar nav, .sidebar .projects {
       margin-bottom: 30px;
     }
 
-    .sidebar nav a, .sidebar .projects a {
+/* Style sidebar links for nav and projects: spacing, color, and font */
+.sidebar nav a, .sidebar .projects a {
       display: block;
       color: white;
       text-decoration: none;
@@ -33,46 +38,53 @@
       font-weight: 500;
     }
 
-    .main {
+/* Main content area: take remaining space, padding, and scroll if needed */
+.main {
       flex: 1;
       padding: 20px;
       overflow-y: auto;
     }
 
-    .topbar {
+/* Topbar: horizontal layout, space between search and user info */
+.topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
     }
   
-    .search {
+/* Search bar container: flex for icon/input alignment, spacing */
+.search {
       flex: 1;
       margin-right: 20px;
-      position: relative;
+      position: relative; /* For positioning the icon */
       display: flex;
       align-items: center;
     }
 
-    .search input {
+/* Style the search input: full width, padding, border, rounded corners */
+.search input {
       width: 100%;
       padding: 10px;
       border-radius: 6px;
       border: 1px solid #ccc;
     }
 
-    .search i {
+/* Position the search icon inside the input */
+.search i {
       position: absolute;
       left: 12px;
       color: #888;
       font-size: 1rem;
     }
 
-    .search input {
+/* Add left padding to input so text doesn't overlap icon */
+.search input {
        padding-left: 32px; /* Make space for the icon */
     }
 
-    .user-info i {
+/* User icon: background, color, rounded, padding, shadow for effect */
+.user-info i {
         background: #6c63ff;
         color: #fff;
         border-radius: 50%;
@@ -81,17 +93,20 @@
         box-shadow: 0 2px 8px rgba(108, 99, 255, 0.15);
     }
 
-    .user-info i:hover {
+/* User icon hover effect: darker background */
+.user-info i:hover {
         background: #574fd6;
     }
 
-    .tabs {
+/* Tabs container: horizontal layout, spacing between buttons */
+.tabs {
       display: flex;
       gap: 10px;
       margin-bottom: 20px;
     }
 
-    .tabs button {
+/* Tab buttons: padding, rounded, background, pointer cursor */
+.tabs button {
       padding: 8px 16px;
       border: none;
       border-radius: 6px;
@@ -99,12 +114,14 @@
       cursor: pointer;
     }
 
-    .tabs button.active {
+/* Active tab: highlight with main color and white text */
+.tabs button.active {
       background-color: #6c63ff;
       color: white;
     }
 
-    .tabs .add-note-btn{
+/* Add note button: flex for icon/text, main color, spacing, pointer */
+.tabs .add-note-btn{
         display: flex;
         align-items: center;
         gap: 8px;
@@ -119,17 +136,18 @@
         
     }
 
-    .add-note-btn:hover {
+/* Add note button hover: darker background */
+.add-note-btn:hover {
         background-color: #574fd6;
     }
 
-    .notes-grid {
+/* Notes grid: responsive columns, spacing between notes */
+.notes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
 
 
-    
 
-   
+
