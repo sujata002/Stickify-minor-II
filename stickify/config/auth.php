@@ -36,7 +36,7 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'web' => [                   // yo guard is for users. we dont need to add other guards for other roles since yesma aru role chaina except users
             'driver' => 'session',
             'provider' => 'users',
         ],
