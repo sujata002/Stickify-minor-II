@@ -1,0 +1,156 @@
+         body {  
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background-color: #f8f9fa;
+            }
+        header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 32px 7vw 0 7vw;
+          background: var(--bg);
+          flex-wrap: wrap;
+        }
+         .logo {
+          font-weight: 700;
+          font-size: 2rem;
+          letter-spacing: 1px;
+        }
+        nav {
+          display: flex;
+          flex-wrap: wrap;
+         margin-top: 8px;
+        }
+        nav a {
+          color: var(--text);
+          text-decoration: none;
+          margin-left: 32px;
+          font-weight: 500;
+          font-size: 1rem;
+          transition: color 0.2s;
+          position: relative;
+        }
+        nav a:first-child { margin-left: 0; }
+        nav a.active, nav a:hover { color: var(--primary); }
+    
+        main { padding: 0px 20px 0px 120px; }
+        .subtitle {
+         color: var(--primary);
+          font-weight: 700;
+          font-size: 1rem;
+          letter-spacing: 1px;
+          margin-bottom: 10px;
+          text-transform: uppercase;
+        }
+
+        
+        .contact-container {
+            margin-top: 50px;
+        }
+        .contact-info {
+            padding: 30px;
+        }
+        .contact-info h2 {
+            font-size: 2.5rem;
+            color: #212529;
+            margin-bottom: 20px;
+        }
+        .contact-info p {
+            color: #6c757d;
+        }
+        .contact-form {
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+        .form-control {
+            border-radius: 25px;
+            padding: 12px 20px;
+            font-size: 1rem;
+        }
+        textarea.form-control {
+            border-radius: 15px;
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #28a745, #198754); 
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(to right, #198754, #28a745); 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .contact-icon {
+            font-size: 2rem;
+            color: #28a745; 
+            margin-right: 15px;
+        }
+        .contact-details {
+            margin-bottom: 20px;
+        }
+        .contact-details i {
+            color: #28a745; 
+            margin-right: 10px;
+        }
+        .contact-image {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .contact-image img {
+            width: 100%;
+            height: auto;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+        .contact-image:hover img {
+            opacity: 0.8;
+        }
+
+        /* Left Side */
+        .contact-info-left {
+            padding: 30px;
+        }
+        .contact-info-left .say-hello {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+        .contact-info-left h1 {
+            font-size: 3rem;
+            color: #212529;
+            margin-bottom: 30px;
+        }
+        .contact-info-left .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .contact-info-left .contact-item .icon-container {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e8f5e9; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+        .contact-info-left .contact-item i {
+            font-size: 1.5rem;
+            color: #28a745; 
+        }
+        .contact-info-left .contact-item .contact-text {
+            font-size: 1rem;
+            color: #212529;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .contact-info-left h1 {
+                font-size: 2.5rem;
+            }
+        }

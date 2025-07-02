@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stickify - Effortless Note Management</title>
+  <link href="howitworks.css" rel="stylesheet"/>
+  
+</head>
+<body>
+  <header>
+    <div class="logo">STICKIFY</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">How It Works</a>
+      <a href="#">Login</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <div class="subtitle">Effortless Note Management</div>
+    <h1>Create, edit, and access notes with ease.</h1>
+    
+    <!-- First row: Feature 1 and 2 -->
+    <div class="features-row">
+      <!-- Feature 1 -->
+      <div class="feature-card">
+        <img src="image/image1.jpeg" alt="User authentication" />
+        <div class="feature-content">
+          <h3>User authentication</h3>
+          <p>Secure your notes with user authentication for peace of mind.</p>
+          <button class="learn-more-btn" data-title="User authentication"
+            data-desc="Our authentication system supports multi-factor authentication and ensures your data is encrypted end-to-end for maximum security. You can trust that your notes are safe and accessible only by you.">
+            Learn more
+          </button>
+        </div>
+      </div>
+      <!-- Feature 2 -->
+      <div class="feature-card">
+        <img src="image/image2.jpg" alt="Dashboard management" />
+        <div class="feature-content">
+          <h3>Dashboard management</h3>
+          <p>Manage your notes effortlessly from a user-friendly dashboard.</p>
+          <button class="learn-more-btn" data-title="Dashboard management"
+            data-desc="The dashboard offers intuitive controls to organize, search, and categorize your notes. Customize your workspace and stay productive with easy access to all your important information.">
+            Learn more
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Second row: Feature 3 and 4 -->
+    <div class="features-row">
+      <!-- Feature 3 -->
+      <div class="feature-card">
+        <img src="image/image3.avif" alt="Easy Installation" />
+        <div class="feature-content">
+          <h3>Easy Installation</h3>
+          <p>Collaborate seamlessly with others on your notes and projects.</p>
+          <button class="learn-more-btn" data-title="Easy Installation"
+            data-desc="Work together with your team in real time, leave comments, tag collaborators, and track changes. Perfect for group projects and shared brainstorming sessions.">
+            Learn more
+          </button>
+        </div>
+      </div>
+      <!-- Feature 4 -->
+      <div class="feature-card">
+        <img src="image/image4.jpeg" alt="Create and organize notes" />
+        <div class="feature-content">
+          <h3>Create and Organize notes</h3>
+          <p>Access your notes on any device, anytime, anywhere.</p>
+          <button class="learn-more-btn" data-title="Create and Organize notes"
+            data-desc="Our app is available on web, desktop, and mobile platforms, ensuring seamless access and synchronization across Windows, macOS, Android, and iOS devices.">
+            Learn more
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <p class="modal-desc" id="modalDesc"></p>
+    </div>
+  </div>
+  <script>
+    // Modal logic
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const closeModal = () => modal.classList.remove('open');
+
+    document.querySelectorAll('.learn-more-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        modalTitle.textContent = btn.getAttribute('data-title');
+        modalDesc.textContent = btn.getAttribute('data-desc');
+        modal.classList.add('open');
+      });
+    });
+    document.getElementById('modalClose').onclick = closeModal;
+    modal.onclick = function(e) {
+      if (e.target === modal) closeModal();
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
