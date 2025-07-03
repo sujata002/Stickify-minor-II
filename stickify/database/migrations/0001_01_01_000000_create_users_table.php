@@ -12,11 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
+          $table->id(); // primary key which is auto incremented withi
           $table->string('name');
-          $table->id(); // primary key which is auto incremented within
           $table->string('email')->unique();
           $table->string('password');
           $table->timestamps();
+          $table->rememberToken();
         });
     }
 
