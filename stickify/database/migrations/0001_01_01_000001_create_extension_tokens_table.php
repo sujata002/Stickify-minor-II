@@ -22,7 +22,7 @@ return new class extends Migration
          $table->boolean('is_used')->default(false);
          // to track if the token has been used or not.
          // default false haleko which means not yet used 
-         $table->timestamps();
+         $table->timestamps(); // created at updated at dubai huncha 
          // kaele create vako and kaele update vako 2 ota column created_at and updated_at halchaa
          // laravel handles yo automatically
 
