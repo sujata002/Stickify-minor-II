@@ -28,9 +28,10 @@ return new class extends Migration
 
          // Foreign Key Constraint
         $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        // foreign key relationship set up garcha
-       // ondelete(cascade) ley chai if user is deleted all their tokens will also be deleted 
-    });
+         // foreign key relationship set up garcha
+        // ondelete(cascade) ley chai if user is deleted all their tokens will also be deleted 
+        });
+       
     }
 
     /**
