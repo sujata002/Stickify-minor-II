@@ -17,7 +17,7 @@ return new class extends Migration
         $table->text('note_text');
         $table->string('url'); // where note was created
         $table->timestamps();
-               
+
         // Foreign Key Constraint
         $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
