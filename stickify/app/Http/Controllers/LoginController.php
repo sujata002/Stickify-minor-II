@@ -41,9 +41,6 @@ class LoginController extends Controller
 
     // if email and password is correct and matches with database it needs to be redirected to dashboard. so, creating a method for dashboard
 
-    public function dashboard(){
-        
-    }
-
+   
 
 }
