@@ -18,7 +18,7 @@
       <nav>
         <a href="#"><i class="fa-solid fa-bars"></i> Dashboard</a>
         <a href="#"><i class="fa-solid fa-note-sticky"></i> My Notes</a>
-        <a href="bookmark.html"><i class="fa-solid fa-bookmark"></i> Bookmarks</a>
+        <a href="#"><i class="fa-solid fa-bookmark"></i> Bookmarks</a>
         <a href="#"><i class="fa-solid fa-folder-plus"></i> New Category</a>
       </nav>
     </div>
@@ -44,31 +44,39 @@
     </div>
 
     <div class="tabs">
-      <a href="index.html" class="tab-link"><button>All</button></a>
-      <a href="bookmark.html" class="tab-link tabs-button">Bookmarked</a>
+      <button class="active">All</button>
+      <button> Bookmarked</button>
+
       <button class="add-note-btn"> <!--for adding a new note -->
         <i class="fa-solid fa-plus"></i> New Note
       </button>
     </div>
 
-    <!--note area-->
+    <!--bookmarked note area-->
     <div class="notes-grid">
-      <div class="note-card">
+      <div class="note-card bookmarked">
         <div class="note-header">
           <span class="note-date">5 July, 2025</span>
           <div class="note-actions">
-            <button class="bookmark-btn" title="Bookmark"><i class="fa-regular fa-bookmark"></i></button>
-            <button class="edit-btn" title="Edit"><i class="fa-regular fa-pen-to-square"></i></button>
-            <button class="delete-btn" title="Delete"><i class="fa-regular fa-trash-can"></i></button>
+            <button class="bookmark-btn" title="Bookmark">
+              <i class="fa-solid fa-bookmark"></i>
+            </button>
+            <button class="edit-btn" title="Edit">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <button class="delete-btn" title="Delete">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
           </div>
         </div>
-        <h3 class="note-title" contenteditable="true">Note Title</h3>
-        <div class="note-content" contenteditable="true">
-          Write your note here...
+        <h3 class="note-title" contenteditable="false">Bookmarked Note</h3>
+        <div class="note-content" contenteditable="false">
+          This is a bookmarked note. Only bookmarked notes appear here.
         </div>
       </div>
+      <!-- Add more .note-card.bookmarked as needed -->
     </div>
-
+    <!-- ...existing code... -->
   </main>
 
   <script src="script.js"></script>
