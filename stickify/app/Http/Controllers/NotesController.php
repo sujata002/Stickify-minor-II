@@ -7,22 +7,59 @@ use App\Models\Note;
 
 class NotesController extends Controller
 {
+    // List all notes for the authenticated user
+    public function index(Request $request)
+    {
+        $notes = $request->user()->notes()->get();
+        return response()->json($notes);
+    }
+
+    // Create a new note
     public function store(Request $request)
     {
-        // incoming data lai validate garcha 
         $request->validate([
             'note_text' => 'required|string',
             'url' => 'nullable|string',
         ]);
 
-        // notes() ley chai relationship model call garcha which is defined in user model 
-        //create ley chai naya note create garcha automatically user_id ko through database ma connect vayera 
         $note = $request->user()->notes()->create([
             'note_text' => $request->note_text,
             'url' => $request->url,
         ]);
 
-        // 201 status code vaneko "created" ho 
         return response()->json($note, 201);
+    }
+
+    // Show a single note by ID
+    public function show(Request $request, $id)
+    {
+        $note = $request->user()->notes()->findOrFail($id);
+        return response()->json($note);
+    }
+
+    // Update a note by ID
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'note_text' => 'required|string',
+            'url' => 'nullable|string',
+        ]);
+
+        $note = $request->user()->notes()->findOrFail($id);
+        $note->update([
+            'note_text' => $request->note_text,
+            'url' => $request->url,
+        ]);
+
+        return response()->json($note);
+    }
+
+    // Delete a note by ID
+    public function destroy(Request $request, $id)
+    {
+        $note = $request->user()->notes()->findOrFail($id);
+        $note->delete();
+
+        return response()->json(['message' => 'Note deleted successfully']);
     }
 }
