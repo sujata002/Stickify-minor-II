@@ -7,7 +7,16 @@ use App\Models\User;
 
 class Note extends Model
 {
-    public function user(){
-        return $this->belogsTo(User::class);
+    // fields that can be safely filled automatically when creating or updating afno record or notes
+    protected $fillable = [
+        'note_text',
+        'url',
+        'user_id',
+    ];
+
+    // note ra user ko realtionship
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

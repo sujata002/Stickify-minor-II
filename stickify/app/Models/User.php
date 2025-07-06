@@ -5,22 +5,30 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Note;
+use App\Models\ExtensionToken;
 
 class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
 
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-    //euta user ko dherai note huncha 
+    // user can have multiple notes so 
     public function notes()
     {
         return $this->hasMany(Note::class);
     }
 
-   // euta user ko differen interval ma different token huncha 
+    // user can have many token so 
     public function extensionTokens()
     {
         return $this->hasMany(ExtensionToken::class);
