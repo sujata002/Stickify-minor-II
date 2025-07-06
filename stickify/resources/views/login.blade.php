@@ -29,12 +29,12 @@
                         <h2 class="welcome-back">Welcome 👋</h2>
                         <p class="login-description">Today is a new day. It's your day. You shape it.<br>Sign in to start managing your notes.</p>
 <!-- jaba login form ko submission chai yo account.aunthenticate vanni route ma jancha-->
-                        <form action="{{ route('account.authenticate')}}" method="post" onsubmit="return Login()">            <!-- yo onsubmit le it tells the browser “before submitting this form, run the Login() function ani if it returns false, don’t submit.-->
+                        <form action="{{ route('authenticate')}}" method="post" onsubmit="return Login()">            <!-- yo onsubmit le it tells the browser “before submitting this form, run the Login() function ani if it returns false, don’t submit.-->
                             @csrf
 
                             <div class="form-input">
                                 <label class="input-label">Email</label>
-                                <input type="text" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror " id="email" name="email" placeholder="example@email.com">          <!-- email ko value clear na hos if error aayera reload huda bhanera tya value ma old email haru lekhya cha -->
+                                <input type="text" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror " id="email" name="email" placeholder="name@email.com">          <!-- email ko value clear na hos if error aayera reload huda bhanera tya value ma old email haru lekhya cha -->
                                 @error('email')            <!-- to display error if form is submitted with empty fields -->
                                     <p class="invalid-feedback" style="color:red;">{{$message}}</p>
                                 @enderror
@@ -64,7 +64,7 @@
                         </div> -->
 
                         <div class="no-account">
-                            Don't you have an account? <a href="signup.html">Sign up here</a>
+                            Don't you have an account? <a href="{{asset('register.blade.php')}}">Sign up here</a>
                         </div>
 
                     </div>

@@ -38,7 +38,7 @@
 <body>
     <div class="dashboard-container">
         <h1>Welcome to Stickify!</h1>
-        <p>This is your temporary dashboard view.</p>
+        <p>This is a temporary dashboard view.</p>
         <p>More features like notes and token generation will appear here later.</p>
     </div>
 </body>

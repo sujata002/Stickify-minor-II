@@ -39,8 +39,34 @@ class LoginController extends Controller
         }
     }
 
-    // if email and password is correct and matches with database it needs to be redirected to dashboard. so, creating a method for dashboard
+    // this method will show regsitration page 
 
-   
+    public function register(){    // injecting request
 
+        return view('register');      
+
+    }
+
+    public function processRegister(Request $request){
+
+        $validator = Validator::make($request->all(),[        // validating form
+            'email' => 'required|email|unique:users',             // yo users chai DB table ho user ko lagi. esma confusion cha k garni ho bhanera
+            'password' => 'required|confirmed'
+        ]);
+
+            if ($validator->passes()){
+
+                if (Auth::attempt(['email' => $request->email,'password' => $request->password])){
+
+                
+            } else {
+                return redirect()->route('account.register')
+                ->withInput()                          // withInput kina deko bhani email ko value clear na hos if error aayera reload garda bhanera
+                ->withErrors($validator);              // yo chai form ma error lai pani display garnu parcha tesaile lekheko
+            }
+        
+        }
+
+
+    }
 }
