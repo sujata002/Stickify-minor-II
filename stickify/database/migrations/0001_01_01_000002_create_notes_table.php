@@ -15,9 +15,8 @@ return new class extends Migration
         $table->id(); // note_id
         $table->unsignedBigInteger('user_id'); // FK to users table
         $table->text('note_text');
-        $table->string('url'); // where note was created
+        $table->string('url')->nullable(); // where note was created
         $table->timestamps();
-
         // Foreign Key Constraint
         $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
