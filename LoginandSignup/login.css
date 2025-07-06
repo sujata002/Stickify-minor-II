@@ -101,7 +101,7 @@ body {
     height: 480px;
     width: 400px;
     border-radius: 15px;
-    object-fit: cover;         /*eslechaiithelpskeepimageproportionate*/
+    object-fit: cover;         /*esle chai it helps keep image proportionate*/
 }
 
 .welcome-back {
