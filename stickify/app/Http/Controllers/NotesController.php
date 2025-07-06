@@ -10,6 +10,7 @@ class NotesController extends Controller
     // harek user ko overall notes haru lai list garne 
     public function index(Request $request)
     {
+        // gets all notes that belongs to the logged in user and sends back to JSON response 
         $notes = $request->user()->notes()->get();
         return response()->json($notes);
     }
@@ -21,7 +22,7 @@ class NotesController extends Controller
             'note_text' => 'required|string',
             'url' => 'nullable|string',
         ]);
-
+        // creates a new note for currently logged in user using note text and url 
         $note = $request->user()->notes()->create([
             'note_text' => $request->note_text,
             'url' => $request->url,
