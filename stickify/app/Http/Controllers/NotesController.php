@@ -3,22 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Note;
 
 class NotesController extends Controller
 {
     public function store(Request $request)
     {
+        // incoming data lai validate garcha 
         $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+            'note_text' => 'required|string',
+            'url' => 'nullable|string',
         ]);
 
-        // Create a note for the authenticated user
+        // notes() ley chai relationship model call garcha which is defined in user model 
+        //create ley chai naya note create garcha automatically user_id ko through database ma connect vayera 
         $note = $request->user()->notes()->create([
-            'title' => $request->title,
-            'content' => $request->content,
+            'note_text' => $request->note_text,
+            'url' => $request->url,
         ]);
 
+        // 201 status code vaneko "created" ho 
         return response()->json($note, 201);
     }
 }
