@@ -29,11 +29,11 @@ class LoginController extends Controller
             if (Auth::attempt(['email' => $request->email,'password' => $request->password])){
 
             } else {
-                return redirect()->route('account.login')->with('Either email or password is incorrect.');     // if error in password occurs, it redirects to login page displaying the message
+                return redirect()->route('login')->with('Either email or password is incorrect.');     // if error in password occurs, it redirects to login page displaying the message
             }
 
         } else {
-            return redirect()->route('account.login')
+            return redirect()->route('login')
             ->withInput()                          // withInput kina deko bhani email ko value clear na hos if error aayera reload garda bhanera
             ->withErrors($validator);              // yo chai form ma error lai pani display garnu parcha tesaile lekheko
         }
@@ -50,23 +50,33 @@ class LoginController extends Controller
     public function processRegister(Request $request){
 
         $validator = Validator::make($request->all(),[        // validating form
-            'email' => 'required|email|unique:users',             // yo users chai DB table ho user ko lagi. esma confusion cha k garni ho bhanera
-            'password' => 'required|confirmed'
+            'email' => 'required|email|unique:users',       // yo users chai DB table ho user ko lagi. Email is required, must be in valid format, and not already in the users table.
+            'user' => 'required|string|max:255',          // for user input field in sign up page
+            'password' => 'required|confirmed'           // Password is required, must match password_confirmation field, and be at least 8 characters long.
         ]);
 
-            if ($validator->passes()){
+            if ($validator->passes()){         // checks if the form data is valid. if yes, user is created. if no, shows error in the else block
 
-                if (Auth::attempt(['email' => $request->email,'password' => $request->password])){
+                // creating and saving the user
+                $user = new \App\Models\User();                   // creates a new instance of User model.
+                $user->name = $request->user;                    // gets the 'user' field from the form and stores it in the `name` column of the database
+                $user->email = $request->email;                  // takes the email from the form and assigns it to the user
+                $user->password = bcrypt($request->password);       // hashes (encrypts) the password using 'bcrypt' before saving
+                $user->save();                                      // saves the new user to the users table in the database.
+
+            // redirecting to login page with success message
+
+                return redirect()->route('login')->with('success', 'Registration successful! Please log in.');
+
+                // if (Auth::attempt(['email' => $request->email,'password' => $request->password])){
 
                 
             } else {
-                return redirect()->route('account.register')
+                return redirect()->route('register')
                 ->withInput()                          // withInput kina deko bhani email ko value clear na hos if error aayera reload garda bhanera
                 ->withErrors($validator);              // yo chai form ma error lai pani display garnu parcha tesaile lekheko
             }
         
-        }
-
-
     }
+
 }

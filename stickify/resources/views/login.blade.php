@@ -28,7 +28,12 @@
                     <div class="text-part">
                         <h2 class="welcome-back">Welcome 👋</h2>
                         <p class="login-description">Today is a new day. It's your day. You shape it.<br>Sign in to start managing your notes.</p>
-<!-- jaba login form ko submission chai yo account.aunthenticate vanni route ma jancha-->
+
+                        @if (session('success'))          <!-- after saving user from register page it redirects the user to the login page. -->    
+                            <p style="color: green;">{{ session('success') }}</p>
+                        @endif
+
+                        <!-- jaba login form ko submission chai yo aunthenticate vanni route ma jancha-->
                         <form action="{{ route('authenticate')}}" method="post" onsubmit="return Login()">            <!-- yo onsubmit le it tells the browser “before submitting this form, run the Login() function ani if it returns false, don’t submit.-->
                             @csrf
 

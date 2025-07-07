@@ -34,7 +34,7 @@
 
                             <div class="form-input">
                                 <label class="input">Email</label>
-                                <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="name@email.com">
+                                <input type="text" value ="{{ old('email')}}" id="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="name@email.com">
 
                                 @error('email')
                                     <p class="invalid-feedback" style="color:red;">{{$message}}</p>  
@@ -44,7 +44,11 @@
 
                             <div class="form-input">
                                 <label class="input">Username</label>
-                                <input type="text" id="user" name="user" placeholder="Jane Doe">
+                                <input type="text" id="user" class="form-control @error('user') is-invalid @enderror" name="user" placeholder="Jane Doe">
+
+                                @error('user')
+                                    <p class="invalid-feedback" style="color:red;">{{$message}}</p>  
+                                @enderror
                             </div>
 
                             <div class="form-input">
@@ -77,7 +81,7 @@
                         </div> -->
 
                         <div class="no-account">
-                            Already have an account? <a href="login.blade.php" >Sign in here</a>
+                            Already have an account? <a href="{{ route('login') }}" >Sign in here</a>
                         </div>
 
                     </div>
