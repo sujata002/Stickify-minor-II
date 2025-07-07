@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+
 
 class LoginController extends Controller
 {
@@ -15,7 +18,7 @@ class LoginController extends Controller
     }
 
     // aba login page ma bhako user lai authenticate garnu parcha. so for authentication we r making this new method called authenticate. 
-    //login form submission huda account.authenticate bhanni route ma jancha ra yo authenticate bhanni method run huncha
+    //login form submission huda authenticate bhanni route ma jancha ra yo authenticate bhanni method run huncha
 
     public function authenticate(Request $request){
 
@@ -61,7 +64,7 @@ class LoginController extends Controller
                 $user = new \App\Models\User();                   // creates a new instance of User model.
                 $user->name = $request->user;                    // gets the 'user' field from the form and stores it in the `name` column of the database
                 $user->email = $request->email;                  // takes the email from the form and assigns it to the user
-                $user->password = bcrypt($request->password);       // hashes (encrypts) the password using 'bcrypt' before saving
+                $user->password = Hash::make($request->password);       // hashes (encrypts) the password before saving to db
                 $user->save();                                      // saves the new user to the users table in the database.
 
             // redirecting to login page with success message
@@ -80,3 +83,16 @@ class LoginController extends Controller
     }
 
 }
+
+
+
+
+
+
+// about auth::attempt
+
+// it finds the user by email
+
+// then it automatically uses Hash::check() internally to compare & verify the plain password with the hashed one in the DB
+
+// if the credentials match, Laravel logs in the user and sets the session. 
