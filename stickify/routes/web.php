@@ -19,4 +19,3 @@ Route::post('/account/authenticate',[LoginController::class,'authenticate'])->na
 
 Route::get('/account/dashboard',[DashboardController::class,'dashboard'])->middleware('auth')->name('user.dashboard');        
 // 'dashboard' bhaneko chai uta controller ma method ko naam dashboard cha dont get confused
-
