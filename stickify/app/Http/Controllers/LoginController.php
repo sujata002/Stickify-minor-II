@@ -52,7 +52,7 @@ class LoginController extends Controller
 
     public function processRegister(Request $request){
 
-        $validator = Validator::make($request->all(),[        // validating form 
+        $validator = Validator::make($request->all(),[        // validating form    
             'email' => 'required|email|unique:users',       // yo users chai DB table ho user ko lagi. Email is required, must be in valid format, and not already in the users table.
             'user' => 'required|string|max:255',          // for user input field in sign up page
             'password' => 'required|confirmed'           // Password is required, must match password_confirmation field, and be at least 8 characters long.
