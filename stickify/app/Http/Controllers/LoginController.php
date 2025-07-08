@@ -52,28 +52,31 @@ class LoginController extends Controller
 
     public function processRegister(Request $request){
 
-        $validator = Validator::make($request->all(),[        // validating form
+        $validator = Validator::make($request->all(),[        // validating form 
             'email' => 'required|email|unique:users',       // yo users chai DB table ho user ko lagi. Email is required, must be in valid format, and not already in the users table.
             'user' => 'required|string|max:255',          // for user input field in sign up page
             'password' => 'required|confirmed'           // Password is required, must match password_confirmation field, and be at least 8 characters long.
         ]);
 
             if ($validator->passes()){         // checks if the form data is valid. if yes, user is created. if no, shows error in the else block
-
+ 
                 // creating and saving the user
                 $user = new \App\Models\User();                   // creates a new instance of User model.
+
                 $user->name = $request->user;                    // gets the 'user' field from the form and stores it in the `name` column of the database
+                
                 $user->email = $request->email;                  // takes the email from the form and assigns it to the user
+                
                 $user->password = Hash::make($request->password);       // hashes (encrypts) the password before saving to db
+                
+                $user->role = 'user';                           // every time someone registers, assigning them the role 'user' no matter what since there is no other role in this app
+
                 $user->save();                                      // saves the new user to the users table in the database.
 
             // redirecting to login page with success message
 
                 return redirect()->route('login')->with('success', 'Registration successful! Please log in.');
-
-                // if (Auth::attempt(['email' => $request->email,'password' => $request->password])){
-
-                
+ 
             } else {
                 return redirect()->route('register')
                 ->withInput()                          // withInput kina deko bhani email ko value clear na hos if error aayera reload garda bhanera

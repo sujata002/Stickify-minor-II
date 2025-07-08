@@ -69,7 +69,7 @@
                         </div> -->
 
                         <div class="no-account">
-                            Don't you have an account? <a href="{{asset('register.blade.php')}}">Sign up here</a>
+                            Don't you have an account? <a href="{{ route('register') }}">Sign up here</a>
                         </div>
 
                     </div>
