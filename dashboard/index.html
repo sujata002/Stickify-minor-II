@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -10,52 +10,49 @@
 </head>
 
 <body>
+  <div class="container">
   <aside class="sidebar" id="sidebar">
     <div class="logo">
-      <img src="" alt="Stickify Logo" />
-    <div>
-      <h2>Stickify</h2>
+      <img src="stikifylogo.png" alt="Stickify Logo" /> 
       <nav>
-        <a href="#"><i class="fa-solid fa-bars"></i> Dashboard</a>
-        <a href="#"><i class="fa-solid fa-note-sticky"></i> My Notes</a>
-        <a href="bookmark.html"><i class="fa-solid fa-bookmark"></i> Bookmarks</a>
-        <a href="#"><i class="fa-solid fa-folder-plus"></i> New Category</a>
+        <a href="#"><i class="fa-solid fa-bars"></i> Dashboard</a><!--dashboard ko page link garne i.e this home page only -->
+        <a href="#"><i class="fa-solid fa-note-sticky"></i> My Notes</a><!--stoted page backendwork-->
+        <a href="#"><i class="fa-solid fa-bookmark"></i> Bookmarks</a><!--optional-->
+        <a href="#"><i class="fa-solid fa-folder-plus"></i> Categories</a><!--optional-->
       </nav>
-    </div>
-  </div>
+
 
   <div class="projects">
-    <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
-    <a href="#"><i class="fa-solid fa-circle-question"></i> Help & Feedback</a>
-    <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    <a href="#"><i class="fa-solid fa-gear"></i> Settings</a> 
+    <a href="#"><i class="fa-solid fa-circle-question"></i> Help & Feedback</a> <!--contact us ko page link garne -->
+    <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a> <!--logout ko page link garne -->
   </div>
 </aside>
 
   <main class="main">
     <div class="topbar">
-      <div class="search">
+      <div class="search"><!-- Search bar for notes -->
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" placeholder="Search your notes...">
       </div>
 
-      <div class="user-info">
+      <div class="user-info" id="profileBtn" title="Profile" style="cursor:pointer;">
         <i class="fa-solid fa-user"></i>
       </div>
     </div>
 
     <div class="tabs">
-      <a href="index.html" class="tab-link"><button>All</button></a>
-      <a href="bookmark.html" class="tab-link tabs-button">Bookmarked</a>
+      <button>All</button><!--for all notes -->
+      <button>Bookmarked</button><!--optional-->
       <button class="add-note-btn"> <!--for adding a new note -->
-        <i class="fa-solid fa-plus"></i> New Note
-      </button>
+        <i class="fa-solid fa-plus"></i> New Note </button>
     </div>
 
-    <!--note area-->
+    <!--Note area-->
     <div class="notes-grid">
       <div class="note-card">
         <div class="note-header">
-          <span class="note-date">5 July, 2025</span>
+          <span class="note-date"> </span>
           <div class="note-actions">
             <button class="bookmark-btn" title="Bookmark"><i class="fa-regular fa-bookmark"></i></button>
             <button class="edit-btn" title="Edit"><i class="fa-regular fa-pen-to-square"></i></button>
@@ -69,7 +66,19 @@
       </div>
     </div>
 
+    <!-- Profile section after you click it-->
+    <div class="profile-container" id="profileSection">
+      <div class="profile-header"><i class="fa-solid fa-user"></i></div>
+      <div class="profile-name" contenteditable="true">Your Name</div>
+      <div class="profile-email" contenteditable="true"><i class="fa-solid fa-envelope"></i> your.email@example.com</div>
+      <div class="profile-location" contenteditable="true"><i class="fa-solid fa-location-dot"></i> Your Location</div>
+      <div class="profile-actions">
+        <button id="saveProfileBtn">Save Changes</button>
+        <buttom id="cancelProfileBtn">Cancel</button>
+      </div>
+    </div>
   </main>
+  </div>
 
   <script src="script.js"></script>
 </body>

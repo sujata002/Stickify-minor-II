@@ -10,9 +10,17 @@
 /* LAYOUT  */
 /* Set up flex layout for the whole page and background color */
 body {
-  display: flex;
+  
   height: 100vh;
   background-color: #f4f4f4;
+  
+}
+
+/* CONTAINER  */
+.container {
+  display: flex;
+  flex: 1;
+  overflow: hidden; /* Prevents overflow from sidebar/main content */
 }
 
 /*  SIDEBAR  */
@@ -27,13 +35,27 @@ body {
   justify-content: space-between; /* Space between logo/nav and projects */
 }
 
+/* Make the logo fit nicely in the sidebar */
+.sidebar .logo img {
+  display: block;
+  max-width: 120px;
+  max-height: 120px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 12px 2px;
+  object-fit: contain;
+}
+
 /* Add spacing below sidebar sections */
-.sidebar h2, .sidebar nav, .sidebar .projects {
+.sidebar h2,
+.sidebar nav,
+.sidebar .projects {
   margin-bottom: 30px;
 }
 
 /* Sidebar links: block display, color, spacing, and font */
-.sidebar nav a, .sidebar .projects a {
+.sidebar nav a,
+.sidebar .projects a {
   display: block;
   color: white;
   text-decoration: none;
@@ -44,9 +66,14 @@ body {
 /* MAIN CONTENT  */
 /* Main content area: flexible, padded, scrollable */
 .main {
-  flex: 1;
   padding: 20px;
   overflow-y: auto;
+  flex: 1; 
+  background-color: #fff; 
+  flex-direction: column;
+  flex-wrap: wrap;
+  display: flex;
+
 }
 
 /* TOPBAR */
@@ -63,7 +90,8 @@ body {
 .search {
   flex: 1;
   margin-right: 20px;
-  position: relative; /* For positioning the icon */
+  position: relative;
+  /* For positioning the icon */
   display: flex;
   align-items: center;
 }
@@ -74,7 +102,8 @@ body {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
-  padding-left: 32px; /* Make space for the icon */
+  padding-left: 32px;
+  /* Make space for the icon */
 }
 
 /* Position the search icon inside the input */
@@ -170,7 +199,7 @@ body {
 .note-card {
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   padding: 1.2rem 1rem;
   margin: 1rem;
   width: 280px;
@@ -217,5 +246,146 @@ body {
 /* Highlight bookmarked notes with border and shadow */
 .note-card.bookmarked {
   border: 2px solid #6c63ff;
-  box-shadow: 0 4px 16px rgba(108,99,255,0.08);
+  box-shadow: 0 4px 16px rgba(108, 99, 255, 0.08);
+}
+
+/*  SAVED NOTE  */
+/* Highlight saved notes with border and shadow */
+.note-card.saved {
+  border: 2px solid #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Profile container styling */
+.profile-container {
+  max-width: 400px;
+  width: 350px;
+  height: 420px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.10);
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Profile avatar styling */
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1rem auto;
+  border: 3px solid #6c63ff;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #6c63ff;
+  line-height: 100px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Profile */
+#profileSection {
+  display: none;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-header {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border: 2px;
+  border-radius: 50%;
+  background: #6c63ff;
+  border-radius: 50%;
+
+}
+
+/* Profile name*/
+.profile-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Profile email */
+.profile-email {
+  color: #666;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Profile location */
+.profile-location {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+
+}
+
+.profile-name:before {
+  content: "Name: ";
+}
+
+.profile-email:before {
+  content: "Email: ";
+}
+
+.profile-location:before {
+  content: "Location: ";
+}
+
+/* Profile action buttons */
+.profile-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.profile-actions button {
+  background: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 24px;
+  margin: 0 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.profile-actions button:hover {
+  background: #574fd6;
+}
+
+#cancelProfileBtn {
+  background-color: #6c63ff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#cancelProfileBtn:hover {
+  background-color: #555293;
 }
