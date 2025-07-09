@@ -29,10 +29,16 @@ class LoginController extends Controller
 
         if ($validator->passes()){
 
+            // checks email and password in DB if user exists or not. If exists and is valid, user is authenticated, 
+            // and logs the user in by creating a session and then redirected to dashboard. 
+
             if (Auth::attempt(['email' => $request->email,'password' => $request->password])){
+                return redirect()->route('user.dashboard');       
 
             } else {
-                return redirect()->route('login')->with('Either email or password is incorrect.');     // if error in password occurs, it redirects to login page displaying the message
+                return redirect()->route('login')
+                ->withInput()
+                ->with('error','Either email or password is incorrect.');     // if error in password occurs, it redirects to login page displaying the message
             }
 
         } else {
@@ -53,7 +59,7 @@ class LoginController extends Controller
     public function processRegister(Request $request){
 
         $validator = Validator::make($request->all(),[        // validating form    
-            'email' => 'required|email|unique:users',       // yo users chai DB table ho user ko lagi. Email is required, must be in valid format, and not already in the users table.
+            'email' => 'required|email|unique:users',       // yo users chai DB table ho user ko lagi. Email is required, must be in unique and in valid format, and not already in the users table.
             'user' => 'required|string|max:255',          // for user input field in sign up page
             'password' => 'required|confirmed'           // Password is required, must match password_confirmation field, and be at least 8 characters long.
         ]);

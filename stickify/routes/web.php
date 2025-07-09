@@ -17,5 +17,7 @@ Route::post('/account/process-register',[LoginController::class,'processRegister
 
 Route::post('/account/authenticate',[LoginController::class,'authenticate'])->name('authenticate');
 
-Route::get('/account/dashboard',[DashboardController::class,'dashboard'])->middleware('auth')->name('user.dashboard');        
-// 'dashboard' bhaneko chai uta controller ma method ko naam dashboard cha dont get confused
+Route::get('/account/dashboard',[DashboardController::class,'dashboard'])->middleware('auth')->name('user.dashboard');    
+
+// laravel’s built-in Auth system and middleware do all of this when Auth::attempt() is called and protect routes with auth middleware.
+
