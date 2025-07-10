@@ -14,19 +14,24 @@
   <aside class="sidebar" id="sidebar">
     <div class="logo">
       <img src="stikifylogo.png" alt="Stickify Logo" /> 
+    </div>
+
       <nav>
         <a href="#"><i class="fa-solid fa-bars"></i> Dashboard</a><!--dashboard ko page link garne i.e this home page only -->
         <a href="#"><i class="fa-solid fa-note-sticky"></i> My Notes</a><!--stoted page backendwork-->
         <a href="#"><i class="fa-solid fa-bookmark"></i> Bookmarks</a><!--optional-->
         <a href="#"><i class="fa-solid fa-folder-plus"></i> Categories</a><!--optional-->
+        <a href="#"><i class="fa-solid fa-trash"></i> Trash</a>
+
       </nav>
 
 
   <div class="projects">
-    <a href="#"><i class="fa-solid fa-gear"></i> Settings</a> 
+    <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a> 
     <a href="#"><i class="fa-solid fa-circle-question"></i> Help & Feedback</a> <!--contact us ko page link garne -->
     <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a> <!--logout ko page link garne -->
   </div>
+
 </aside>
 
   <main class="main">
@@ -36,7 +41,12 @@
         <input type="text" placeholder="Search your notes...">
       </div>
 
-      <div class="user-info" id="profileBtn" title="Profile" style="cursor:pointer;">
+      <!-- <a href="profile.html" id="profileBtn" title="Profile">
+      <i class="fa-solid fa-user"></i>
+      </a> -->
+
+
+      <div class="user-info"  id="profileBtn" title="Profile" >
         <i class="fa-solid fa-user"></i>
       </div>
     </div>
@@ -52,21 +62,23 @@
     <div class="notes-grid">
       <div class="note-card">
         <div class="note-header">
-          <span class="note-date"> </span>
+          
+          <span class="note-date"> </span> <!-- Date of the note but idk how you put that so it's like this for now-->
+          
           <div class="note-actions">
             <button class="bookmark-btn" title="Bookmark"><i class="fa-regular fa-bookmark"></i></button>
             <button class="edit-btn" title="Edit"><i class="fa-regular fa-pen-to-square"></i></button>
             <button class="delete-btn" title="Delete"><i class="fa-regular fa-trash-can"></i></button>
           </div>
         </div>
-        <h3 class="note-title" contenteditable="true">Note Title</h3>
-        <div class="note-content" contenteditable="true">
-          Write your note here...
-        </div>
+
+        <h3 class="note-title" contenteditable="true">Note Title</h3><!-- containtable="true" means its editable field -->
+        <div class="note-content" contenteditable="true">Write your note here...</div>
+      
       </div>
     </div>
 
-    <!-- Profile section after you click it-->
+    <!-- Profile section after you click it
     <div class="profile-container" id="profileSection">
       <div class="profile-header"><i class="fa-solid fa-user"></i></div>
       <div class="profile-name" contenteditable="true">Your Name</div>
@@ -78,9 +90,13 @@
       </div>
     </div>
   </main>
-  </div>
+  </div> -->
 
   <script src="script.js"></script>
+  <!-- Our dashboard's theme colors 
+   #388E3C (deep green)
+   #4f7a51 (deeper green for hover effect)
+   -->
 </body>
 </html>
 
