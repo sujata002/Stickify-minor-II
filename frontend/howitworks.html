@@ -3,25 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stickify - Effortless Note Management</title>
+  <title>Stickify - How it works</title>
   <link href="howitworks.css" rel="stylesheet"/>
   
 </head>
 <body>
   <header>
-    <div class="logo">STICKIFY</div>
+    <div class="logo"><img src="" alt=""/>STICKIFY</div>
     <nav>
       <a href="#">Home</a>
       <a href="#">About</a>
       <a href="#">How It Works</a>
-      <a href="#">Login</a>
+      <a href="login.html">Login</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <main>
+  <top>
     <div class="subtitle">Effortless Note Management</div>
     <h1>Create, edit, and access notes with ease.</h1>
-    
+  </top>
+    <main>
     <!-- First row: Feature 1 and 2 -->
     <div class="features-row">
       <!-- Feature 1 -->
@@ -77,7 +78,7 @@
       </div>
     </div>
   </main>
-  <!-- Modal -->
+  <!-- Modal (for the pop-up feature)-->
   <div class="modal" id="modal">
     <div class="modal-content">
       <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
@@ -86,7 +87,7 @@
     </div>
   </div>
   <script>
-    // Modal logic
+    // Modal js (for the pop-up feature)
     const modal = document.getElementById('modal');
     const modalTitle = document.getElementById('modalTitle');
     const modalDesc = document.getElementById('modalDesc');
