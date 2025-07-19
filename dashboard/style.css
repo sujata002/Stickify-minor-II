@@ -11,7 +11,6 @@
 /* Set up flex layout for the whole page and background color */
 body {
   width: 100vw;
-  height: 100px;
   display: flex;
   flex-direction: column;
   background-color: #f4f4f4;
@@ -21,60 +20,67 @@ body {
 /* CONTAINER  */
 .container {
   display: flex;
-  width: 100vw; /* Full view width */
-  height: 100vh; /* Full view height */
-  flex: 1;
-  overflow: hidden; /* Prevents overflow from sidebar/main content */
+  width: 100vw;
+  height: 100vh;
 }
 
 /*  SIDEBAR  */
 /* Sidebar styles: width, color, padding, and vertical layout */
 .sidebar {
-  width: 250px;
+  width: 195px;
   background-color: #81C784;
-  color: white;
-  padding: 9px;
+  color: #ffffff;
+  padding: 20px 5px 0 4px; /* top, right, bottom, left */
   display: flex;
   flex-direction: column;
+  font-size: larger;
 
 }
 
-/* Make the logo fit nicely in the sidebar */
+/* Make the logo fit in the sidebar */
 .sidebar .logo img {
   display: block;
   max-width: 120px;
-  max-height: 120px;
-  width: 100%;
-  height: auto;
-  margin: 0 auto 12px 2px;
+  margin:25px auto 20px 10PX ; /* top, right, bottom, left */
   object-fit: contain;
-  
 }
 
-/* Sidebar nav & projects */
+.sidebar .logo img:hover{
+  cursor: pointer;
+  transform: scale(1.05); /*agadi aaucha*/
+}
+
+/* nav & projects */
 .sidebar nav a,
 .sidebar .projects a {
   display: block;
   color: white;
   text-decoration: none;
   padding: 10px;
+  transition: background 0.2s ease;
+}
+
+/* sidebar nav & projects hover effect */
+.sidebar nav a:hover,
+.sidebar .projects a:hover {
+  transform: scale(1.05); /* makes the link grow slightly on hover and i removes the backgroundcolor wala */
 }
 
 /* Sidebar projects section: margin for spacing */
 .projects{
   margin-top: auto;
+
 }
 
 
 /* MAIN CONTENT  */
 /* Main content area: flexible, padded, scrollable */
 .main {
-  padding: 20px;
+  padding: 24px;
   overflow-y: auto;
   flex: 1; 
   background-color: #fff; 
   flex-direction: column;
-  flex-wrap: wrap;
   display: flex;
 
 }
@@ -92,7 +98,6 @@ body {
 /* Search bar container: flex for icon/input alignment, spacing */
 .search {
   flex: 1;
-  margin-right: 20px;
   position: relative;
   /* For positioning the icon */
   display: flex;
@@ -101,12 +106,10 @@ body {
 
 /* Style the search input: full width, padding, border, rounded corners */
 .search input {
-  width: 100%;
-  padding: 10px;
+  width: 98%;
+  padding: 10px 10px 10px 32px;  /* with padding-left make space for the icon its: top, right, bottom, left */
   border-radius: 6px;
   border: 1px solid #ccc;
-  padding-left: 32px;
-  /* Make space for the icon */
 }
 
 /* Position the search icon inside the input */
@@ -114,23 +117,23 @@ body {
   position: absolute;
   left: 12px;
   color: #888;
-  font-size: 1rem;
 }
 
 /*  USER ICON  */
 /* User icon: background, color, rounded, padding, shadow for effect */
 .user-info i {
-  background-color: #81C784;
+  background-color: green;
   color: white;
   border-radius: 50%;
   padding: 12px;
   font-size: 1.5rem;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 /* User icon hover effect: darker background */
 .user-info i:hover {
-  background: #4f7a51;
+  background-color: #4f7a51;
 }
 
 /*  TABS  */
@@ -161,13 +164,12 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: #63ffb1;
+  background-color: green;
   color: #fff;
   border: none;
   border-radius: 6px;
   padding: 10px 20px;
   margin-left: auto;
-  margin-bottom: 20px;
   cursor: pointer;
 }
 
@@ -176,7 +178,7 @@ body {
   background-color: #4f7a51;
 }
 
-/* Add this to style.css for tab-link styling */
+/* for tab-link styling
 .tab-link.tabs-button {
   padding: 8px 16px;
   border: none;
@@ -189,6 +191,7 @@ body {
   text-align: center;
   line-height: normal;
 }
+*/
 
 /*  NOTES GRID & NOTE CARDS  */
 /* Notes grid: responsive columns, spacing between notes */
@@ -209,7 +212,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
-  position: relative;
 }
 
 /* Note header: space between date and actions */
@@ -219,13 +221,13 @@ body {
   align-items: center;
 }
 
-/* Note action buttons: icon-only, no border, spacing */
+/* Note action buttons: bookmark,edit,delete,save */
 .note-actions button {
   background: none;
   border: none;
   cursor: pointer;
   margin-left: 0.3rem;
-  color: #888;
+  color: black;
   font-size: 1rem;
 }
 
@@ -245,79 +247,179 @@ body {
   min-height: 40px;
 }
 
-
-/* For settings page */
-.settings {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20rem;
-  background-color: #f9f9f9;
-  
-  
-}
-
-.settings .main {
-  background: #fff;
-  padding: 2rem 3rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(225, 71, 71, 0.05);
-  max-width: 600px;
+/* Modal styles for settings */
+/* Modal background: full screen, fixed position, semi-transparent */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
   width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-.settings .main h1 {
-  font-size: 2rem;
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 24px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.closeSettingsBtn,
+.closeProfileBtn {
+  color: #aaa;
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.closeSettingsBtn:hover,
+.closeProfileBtn:hover {
+  color: #000;
+} 
+
+/* Settings options: flex layout, spacing, hover effects */
+.settingsContent .settings {
+  padding: 1rem 0;
+}
+
+.settings h1 {
+  font-size: 1.75rem;
+  color: #388E3C;
   margin-bottom: 1.5rem;
-  color: #4c955d;
 }
 
 .settings-option {
-  margin-bottom: 1rem;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-bottom: 1rem;
-  justify-content: flex-start;
-  align-items: baseline;
 }
 
 .settings-option label {
-  margin-bottom: 0.5rem;
   font-weight: bold;
-  margin-right: 10px;
   color: #388E3C;
 }
 
-.settings-option select {
-  padding: 0.5rem;
-  border-radius: 8px;
+.settings-option select,
+.settings-option button {
+  padding: 8px 12px;
+  border-radius: 6px;
   border: 1px solid #ccc;
   background-color: #fff;
   font-size: 1rem;
-  color: green;
+  color: #388E3C;
+  cursor: pointer;
 }
 
-.settings-option button {
-  padding: 3px 3px;
-  margin-top: 0.5rem;
-  margin-right: 10px;
+.settings-option button:hover {
+  background-color: #e1f3e2;
+}
+
+/*profile modal*/
+.profileContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profileContent label {
+  font-weight: bold;
+  color: #333;
+}
+
+.profileContent input[type="text"],
+.profileContent input[type="email"] {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-size: 14px;
+  width: 100%;
+}
+
+.profileContent input:focus {
+  border-color: #388E3C;
+  outline: none;
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.profile-actions button {
+  flex: 1;
+  padding: 10px;
+  background-color: #388E3C;
   border: none;
   border-radius: 6px;
+  color: white;
+  font-size: 14px;
   cursor: pointer;
-  color: #388E3C;
-  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
- /* .settings-option button:hover {
-  background-color: #4f7a51;
+#cancelProfileBtn {
+  background-color: #f44336; /*changeable*/
 }
 
-#deleteAccountBtn:hover {
-  background-color: #4f7a51;
+.profile-actions button:hover {
+  opacity: 0.9;
 }
-#saveSettingsBtn:hover {
-  background-color: #4f7a51;
+
+/* Note Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
 }
-#cancelSettingsBtn:hover {
-  background-color: #4f7a51;
-}  */
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 24px;
+  
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.closeNoteBtn {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.closeNoteBtn:hover {
+  color: #000;
+}
+
+
+
+
+
+
+
+
+
+

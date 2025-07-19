@@ -1,20 +1,21 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stickify</title>
-  <!--Bootstrap for icons-->
+  <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <div class="container">
-  <aside class="sidebar" id="sidebar">
-    <div class="logo">
-      <img src="stikifylogo.png" alt="Stickify Logo" /> 
-    </div>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <img src="stikifylogo.png" alt="Stickify Logo" />
+      </div>
 
       <nav>
         <a href="#"><i class="fa-solid fa-bars"></i> Dashboard</a><!--dashboard ko page link garne i.e this home page only -->
@@ -22,81 +23,173 @@
         <a href="#"><i class="fa-solid fa-bookmark"></i> Bookmarks</a><!--optional-->
         <a href="#"><i class="fa-solid fa-folder-plus"></i> Categories</a><!--optional-->
         <a href="#"><i class="fa-solid fa-trash"></i> Trash</a>
-
       </nav>
 
-
-  <div class="projects">
-    <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a> 
-    <a href="#"><i class="fa-solid fa-circle-question"></i> Help & Feedback</a> <!--contact us ko page link garne -->
-    <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a> <!--logout ko page link garne -->
-  </div>
-
-</aside>
-
-  <main class="main">
-    <div class="topbar">
-      <div class="search"><!-- Search bar for notes -->
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" placeholder="Search your notes...">
+      <div class="projects">
+        <a href="#" id="settingsLink"><i class="fa-solid fa-gear"></i> Settings</a><!--pop up-->
+        <a href="#"><i class="fa-solid fa-circle-question"></i> Help & Feedback</a><!--contacts sanga link garne-->
+        <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a><!--login snaga link garne-->
       </div>
+    </aside>
 
-      <!-- <a href="profile.html" id="profileBtn" title="Profile">
-      <i class="fa-solid fa-user"></i>
-      </a> -->
-
-
-      <div class="user-info"  id="profileBtn" title="Profile" >
-        <i class="fa-solid fa-user"></i>
-      </div>
-    </div>
-
-    <div class="tabs">
-      <button>All</button><!--for all notes -->
-      <button>Bookmarked</button><!--optional-->
-      <button class="add-note-btn"> <!--for adding a new note -->
-        <i class="fa-solid fa-plus"></i> New Note </button>
-    </div>
-
-    <!--Note area-->
-    <div class="notes-grid">
-      <div class="note-card">
-        <div class="note-header">
-          
-          <span class="note-date"> </span> <!-- Date of the note but idk how you put that so it's like this for now-->
-          
-          <div class="note-actions">
-            <button class="bookmark-btn" title="Bookmark"><i class="fa-regular fa-bookmark"></i></button>
-            <button class="edit-btn" title="Edit"><i class="fa-regular fa-pen-to-square"></i></button>
-            <button class="delete-btn" title="Delete"><i class="fa-regular fa-trash-can"></i></button>
-          </div>
+    <!-- Main -->
+    <main class="main">
+      <div class="topbar">
+        <div class="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search your notes..." />
         </div>
 
-        <h3 class="note-title" contenteditable="true">Note Title</h3><!-- containtable="true" means its editable field -->
-        <div class="note-content" contenteditable="true">Write your note here...</div>
-      
+        <div class="user-info" id="profileBtn" title="Profile"><!--pop up-->
+          <i class="fa-solid fa-user"></i>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button>All</button>
+        <button>Bookmarked</button>
+        <button class="add-note-btn">
+          <i class="fa-solid fa-plus"></i> New Note
+        </button><!--database sanga link gaarne ig-->
+      </div>
+
+      <!-- Notes-->
+      <div class="notes-grid">
+        <div class="note-card">
+          <div class="note-header">
+            <span class="note-date"></span><!-- Date of the note but idk how you put that so it's like this for now-->
+            <div class="note-actions">
+              <button title="Bookmark"><i class="fa-regular fa-bookmark"></i></button> <!--optional-->
+              <button title="Edit"><i class="fa-regular fa-pen-to-square"></i></button><!--edit button-->
+              <button title="Delete"><i class="fa-regular fa-trash-can"></i></button><!--delete button-->
+              <button title="Save Note"><i class="fa-solid fa-floppy-disk"></i></button><!--save button-->
+            </div>
+          </div>
+          <h3 class="note-title" contenteditable="true">Note Title</h3><!-- containtable="true" means its editable field -->
+          <div class="note-content" contenteditable="true">Write your note here...</div>
+          <div class="note-link" containtable="true"> <!--url should be saved here-->
+            <a href="#" contenteditable="true">Add a link</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!--for notes pop up-->
+  <!-- Note Modal -->
+<div id="noteModal" class="modal">
+  <div class="modal-content">
+    <span class="closeNoteBtn">&times;</span>
+    <div class="note-card">
+      <div class="note-header">
+        <div class="note-actions">
+          <button title="Bookmark"><i class="fa-regular fa-bookmark"></i></button>
+          <button title="Delete"><i class="fa-regular fa-trash-can"></i></button>
+          <button title="Save Note"><i class="fa-solid fa-floppy-disk"></i></button>
+        </div>
+      </div>
+      <h3 class="note-title" contenteditable="true" placeholder="Note Title"> </h3>
+      <div class="note-content" contenteditable="true" placeholder="Write your note here..."></div>
+      <div class="note-link">
+        <a href="#" contenteditable="true">Add a link</a>
       </div>
     </div>
+  </div>
+</div>
 
-    <!-- Profile section after you click it
-    <div class="profile-container" id="profileSection">
-      <div class="profile-header"><i class="fa-solid fa-user"></i></div>
-      <div class="profile-name" contenteditable="true">Your Name</div>
-      <div class="profile-email" contenteditable="true"><i class="fa-solid fa-envelope"></i> your.email@example.com</div>
-      <div class="profile-location" contenteditable="true"><i class="fa-solid fa-location-dot"></i> Your Location</div>
-      <div class="profile-actions">
-        <button id="saveProfileBtn">Save Changes</button>
-        <buttom id="cancelProfileBtn">Cancel</button>
+  
+
+  <!--div class="modal-overlay" id="noteModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">New Note</h3>
+                <button class="close-btn" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="noteTitle" placeholder="Note title..." class="note-title-input">
+                <textarea id="noteContent" placeholder="Start writing your thoughts..." class="note-content-input"></textarea>
+                
+                <div class="note-options">
+                    <select id="noteCategory" class="category-select">
+                        <option value="personal">Personal</option>
+                        <option value="work">Work</option>
+                        <option value="ideas">Ideas</option>
+                    </select>
+                    
+                    <input type="text" id="noteTags" placeholder="Tags (comma separated)" class="tags-input">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-btn" id="cancelNote">Cancel</button>
+                <button class="save-btn" id="saveNote">Save Note</button>
+            </div>
+        </div>
+    </div-->
+
+  
+  
+
+  <!-- for settings pop up garchha-->
+  <div id="modalSettings" class="modal">
+    <div class="modal-content">
+      <span class="closeSettingsBtn">&times;</span>
+      <div class="settingsContent">
+        <div class="settings">
+          <h1>Settings</h1>
+
+          <div class="settings-option">
+            <label for="theme">Theme:</label><!--optional-->
+            <select id="theme">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+
+          <div class="settings-option">
+            <button
+            <button id="passwordBtn">Reset Password</button>
+            <button id="deleteAccountBtn">Delete Account</button>
+            <button id="installExtensionBtn">Install Browser Extension</button>
+            <button id="upgradePlanBtn">Upgrade Plan</button>
+          </div>
+
+          <div class="settings-option">
+            <button id="saveSettingsBtn">Save Settings</button>
+            <button id="cancelSettingsBtn">Cancel</button>
+          </div>
+        </div>
       </div>
     </div>
-  </main>
-  </div> -->
+  </div>
 
+  <!-- for profile pop up -->
+  <div id="modalProfile" class="modal">
+    <div class="modal-content">
+      <span class="closeProfileBtn">&times;</span>
+      <div class="profileContent">
+        <label for="profileName">Name:</label>
+        <input type="text" id="profileName" placeholder="Your Name" value="">
+
+        <label for="profileEmail">Email:</label>
+        <input type="email" id="profileEmail" placeholder="Email" value="">
+
+        <label for="profileLocation">Location:</label>
+        <input type="text" id="profileLocation" placeholder="Your Location" value="">
+
+        <div class="profile-actions">
+          <button id="saveProfileBtn">Save Changes</button>
+          <button id="cancelProfileBtn">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="script.js"></script>
-  <!-- Our dashboard's theme colors 
-   #388E3C (deep green)
-   #4f7a51 (deeper green for hover effect)
-   -->
 </body>
 </html>
 
+
+      
