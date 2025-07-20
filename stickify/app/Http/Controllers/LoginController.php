@@ -33,7 +33,17 @@ class LoginController extends Controller
             // and logs the user in by creating a session and then redirected to dashboard. 
 
             if (Auth::attempt(['email' => $request->email,'password' => $request->password])){
-                return redirect()->route('user.dashboard');       
+                // return redirect()->route('user.dashboard');      
+                
+                $user = Auth::user();
+
+                if ($user->role === 'admin') {
+                    // redirect admin to admin dashboard
+                    return redirect()->route('admin.dashboard');
+                } else {
+                    // redirect regular user to user dashboard
+                    return redirect()->route('user.dashboard');
+                }
 
             } else {
                 return redirect()->route('login')
@@ -88,6 +98,12 @@ class LoginController extends Controller
                 ->withInput()                          // withInput kina deko bhani email ko value clear na hos if error aayera reload garda bhanera
                 ->withErrors($validator);              // yo chai form ma error lai pani display garnu parcha tesaile lekheko
             }
+        
+    }
+
+    public function logout(){
+
+        // esko baki cha logout ko functionality halna lai. 39:00 minute dekhi herne youtube video ko for logout functionlity
         
     }
 

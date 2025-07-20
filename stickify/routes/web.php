@@ -1,23 +1,40 @@
 <?php
 
+use App\Http\Controllers\admin\LoginController as AdminLoginController;     // created alias of admin/logincontroller since arko pani logincontroller cha
 use App\Http\Controllers\LoginController;            // importing this since we have used LoginController tala route ma
 use App\Http\Controllers\DashboardController;  
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-//giving route for login.blade.php page ani teslai name deko euta account.login bhanera
+// this is grouped for users, like what pages they can access. Users cant access dashboard without logging in
 
-Route::get('/account/login',[LoginController::class,'index'])->name('login');
+Route::group(['prefix' => 'account'],function(){             // prefix example: /account/login, /account/register, etc.
 
-Route::get('/account/register',[LoginController::class,'register'])->name('register');
+    // this is guest middleware for users who are not logged in
+    Route::group(['middleware' => 'guest'], function(){            // middleware named guest and call back function 
 
-Route::post('/account/process-register',[LoginController::class,'processRegister'])->name('processRegister');
+        Route::get('login',[LoginController::class,'index'])->name('login');
+        Route::get('register',[LoginController::class,'register'])->name('register');
+        Route::post('process-register',[LoginController::class,'processRegister'])->name('processRegister');
+        Route::post('authenticate',[LoginController::class,'authenticate'])->name('authenticate');
 
-Route::post('/account/authenticate',[LoginController::class,'authenticate'])->name('authenticate');
+    });
 
-Route::get('/account/dashboard',[DashboardController::class,'dashboard'])->middleware('auth')->name('user.dashboard');    
+    // this is Authenticated middleware for people who are logged in
+    Route::group(['middleware' => 'auth'], function(){          
+
+        // Route::get('logout',[LoginController::class,'logout'])->name('logout');          this route is for logout. uncomment it after logout functionality is done
+        Route::get('dashboard',[DashboardController::class,'dashboard'])->middleware('auth')->name('user.dashboard');    
+
+
+    });
+
+});
 
 // laravel’s built-in Auth system and middleware do all of this when Auth::attempt() is called and protect routes with auth middleware.
+
+Route::get('admin/login',[AdminLoginController::class,'index'])->name('admin.login');
 
