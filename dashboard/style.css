@@ -38,14 +38,16 @@ body {
 }
 
 /* Make the logo fit in the sidebar */
-.sidebar .logo img {
+.sidebar .logo {
   display: block;
-  max-width: 120px;
-  margin:25px auto 20px 10PX ; /* top, right, bottom, left */
+  width: 100px;
+  margin:5px auto 20px 25PX ; /* top, right, bottom, left */
   object-fit: contain;
+  text-align: center;
+  font-weight: bold;
 }
 
-.sidebar .logo img:hover{
+.sidebar .logo:hover{
   cursor: pointer;
   transform: scale(1.05); /*agadi aaucha*/
 }
