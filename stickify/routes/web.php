@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\LoginController as AdminLoginController;     // created alias of admin/logincontroller since arko pani logincontroller cha
+use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\LoginController;            // importing this since we have used LoginController tala route ma
 use App\Http\Controllers\DashboardController;  
 use Illuminate\Support\Facades\Route;
@@ -36,5 +37,16 @@ Route::group(['prefix' => 'account'],function(){             // prefix example: 
 
 // laravel’s built-in Auth system and middleware do all of this when Auth::attempt() is called and protect routes with auth middleware.
 
+
+// for admin
+
 Route::get('admin/login',[AdminLoginController::class,'index'])->name('admin.login');
+// Route::get('admin/dashboard',[AdminDashboardController::class,'dashboard'])->middleware('auth:admin')->name('admin.dashboard');    
+Route::post('admin/authenticate',[AdminLoginController::class,'authenticate'])->name('admin.authenticate');
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('admin.dashboard');
+
+});
+Route::get('admin/logout',[AdminLoginController::class,'logout'])->name('admin.logout');    // this needs to be called in admin's dashboard blade file logout ko option ma
+
 
