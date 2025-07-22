@@ -27,8 +27,8 @@ body {
 /*  SIDEBAR  */
 /* Sidebar styles: width, color, padding, and vertical layout */
 .sidebar {
-  width: 195px;
-  background-color: #81C784;
+  width: 210px;
+  background-color: #95C596AB;
   color: #ffffff;
   padding: 20px 5px 0 4px; /* top, right, bottom, left */
   display: flex;
@@ -40,11 +40,12 @@ body {
 /* Make the logo fit in the sidebar */
 .sidebar .logo {
   display: block;
-  width: 100px;
+  font-size: 2rem;
   margin:5px auto 20px 25PX ; /* top, right, bottom, left */
   object-fit: contain;
   text-align: center;
   font-weight: bold;
+  color: #000;
 }
 
 .sidebar .logo:hover{
@@ -56,10 +57,13 @@ body {
 .sidebar nav a,
 .sidebar .projects a {
   display: block;
-  color: white;
+  margin: 10px 0;
+  font-size: 1.1rem;
+  color: black;
   text-decoration: none;
-  padding: 10px;
+  padding: 8px;
   transition: background 0.2s ease;
+  
 }
 
 /* sidebar nav & projects hover effect */
@@ -71,9 +75,9 @@ body {
 /* Sidebar projects section: margin for spacing */
 .projects{
   margin-top: auto;
+  margin-bottom: 50px;
 
 }
-
 
 /* MAIN CONTENT  */
 /* Main content area: flexible, padded, scrollable */
@@ -144,6 +148,7 @@ body {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  
 }
 
 /* Tab buttons: padding, rounded, background, pointer cursor */
@@ -180,20 +185,17 @@ body {
   background-color: #4f7a51;
 }
 
-/* for tab-link styling
-.tab-link.tabs-button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  background-color: #eee;
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  line-height: normal;
+.tabs .add-token-btn {
+  font-size: 0.85rem;
+  color: #fff;
+  background-color: green;
+  padding: 10px 20px;
+  
 }
-*/
+/* Add token button hover: darker background */
+.add-token-btn:hover {
+  background-color: #4f7a51;
+}
 
 /*  NOTES GRID & NOTE CARDS  */
 /* Notes grid: responsive columns, spacing between notes */
@@ -255,11 +257,9 @@ body {
   display: none; /* Hidden by default */
   position: fixed;
   z-index: 1000;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow: fixed;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -306,6 +306,8 @@ body {
   flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .settings-option label {
@@ -354,33 +356,6 @@ body {
   outline: none;
 }
 
-.profile-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 10px;
-}
-
-.profile-actions button {
-  flex: 1;
-  padding: 10px;
-  background-color: #388E3C;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#cancelProfileBtn {
-  background-color: #f44336; /*changeable*/
-}
-
-.profile-actions button:hover {
-  opacity: 0.9;
-}
-
 /* Note Modal */
 .modal {
   display: none;
@@ -394,8 +369,7 @@ body {
 .modal-content {
   background-color: #fff;
   margin: 10% auto;
-  padding: 24px;
-  
+  padding: 33px;
   width: 90%;
   max-width: 500px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -416,12 +390,90 @@ body {
   color: #000;
 }
 
+/* new note wala ko styling */
+.note-modalcard{
+  background:whitesmoke;
+  padding: 0.5rem 0.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.note-modalactions {
+  display: flex;
+  gap: 10px;
+  margin-left: auto; /* Aligns actions to the right */
+}
+
+.closeNoteBtn {
+  color: #aaa;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.note-modalcontent {
+  height: 200px;           /* fixed height */
+  overflow-y: auto;        /* scrolls internally */
+  resize: none;            /* optional: prevents resizing */
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
 
 
+/*For token modal*/
+.token-display {
+  font-family: monospace;
+  background: #eef;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  word-break: break-word;
+}
 
+.token-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
 
+/* Token actions: flex layout, spacing, button styles */
+.token-actions button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: #388E3C;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+/*Caution wala*/
+.token-note {
+  font-size: 0.85em;
+  color: #666;
+  margin-top: 12px;
+}
 
+.modal-tokencontent{
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 24px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  border-radius: 10px;
+}
 
-
-
+/* Token modal close button */
+.closeTokenBtn {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+}

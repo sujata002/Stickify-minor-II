@@ -55,3 +55,36 @@ window.addEventListener('click', event => {
   }
 });
 
+//for token
+const tokenModal = document.getElementById("modalToken");
+const generateBtn = document.getElementById("generateExtensionTokenBtn");
+const copyBtn = document.getElementById("copyTokenBtn");
+const tokenDisplay = document.getElementById("tokenDisplay");
+const closeTokenBtn = document.querySelector(".closeTokenBtn");
+const triggerTokenBtn = document.querySelector(".add-token-btn");
+
+// Show modal when button is clicked
+triggerTokenBtn.addEventListener("click", () => {
+  tokenModal.style.display = "block";
+});
+
+// Close modal
+closeTokenBtn.addEventListener("click", () => {
+  tokenModal.style.display = "none";
+});
+
+// Copy token
+copyBtn.addEventListener("click", () => {
+  navigator.clipboard.writeText(tokenDisplay.textContent).then(() => {
+    copyBtn.textContent = "Copied!";
+    setTimeout(() => (copyBtn.textContent = "Copy to Clipboard"), 1500);
+  });
+});
+
+// Optional: click outside to close
+window.addEventListener("click", (e) => {
+  if (e.target === tokenModal) tokenModal.style.display = "none";
+});
+
+
+
