@@ -1,10 +1,9 @@
-<?php
-
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TokenController;
 
-// Show token generation form
-Route::get('/generate-token', [TokenController::class, 'showForm'])->name('token.form');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard')->middleware('auth'); // ensure user is logged in
 
-// Handle token generation request
-Route::post('/generate-token', [TokenController::class, 'generateToken'])->name('generate.token');
+Route::post('/generate-token', [TokenController::class, 'generateToken'])
+    ->name('generate.token')
+    ->middleware('auth');
