@@ -6,7 +6,8 @@
   <title>Stickify</title>
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+
 </head>
 
 <body>
@@ -163,7 +164,7 @@
 </div>
   
   <!-- Scripts -->
-  <script src="script.js"></script>
+ <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>
 
