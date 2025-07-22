@@ -248,7 +248,11 @@ body {
   font-size: 1rem;
   color: #333;
   outline: none;
-  min-height: 40px;
+  min-height: 150px; /* minimum height for content area */
+  padding: 0.5rem;
+  height: 10px;           /* fixed height */
+  overflow-y: auto;        /* scrolls internally */
+  resize: none;            /* optional: prevents resizing */
 }
 
 /* Modal styles for settings */
