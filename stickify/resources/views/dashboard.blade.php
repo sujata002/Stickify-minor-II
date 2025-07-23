@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Stickify</title>
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -165,70 +166,8 @@
   
   <!-- Scripts -->
 <!-- Scripts -->
-<script src="script.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const tokenModal = document.getElementById("modalToken");
-  const generateBtn = document.getElementById("generateExtensionTokenBtn");
-  const copyBtn = document.getElementById("copyTokenBtn");
-  const tokenDisplay = document.getElementById("tokenDisplay");
-  const closeTokenBtn = document.querySelector(".closeTokenBtn");
-  const triggerTokenBtn = document.querySelector(".add-token-btn");
+<script src="{{ asset('js/script.js') }}"></script>
 
-  // Show modal on button click
-  triggerTokenBtn.addEventListener("click", () => {
-    tokenModal.style.display = "block";
-  });
-
-  // Close modal
-  closeTokenBtn.addEventListener("click", () => {
-    tokenModal.style.display = "none";
-  });
-
-  // Copy token to clipboard
-  copyBtn.addEventListener("click", () => {
-    if(tokenDisplay.textContent.trim() && tokenDisplay.textContent !== 'Click below to generate'){
-      navigator.clipboard.writeText(tokenDisplay.textContent).then(() => {
-        copyBtn.textContent = "Copied!";
-        setTimeout(() => (copyBtn.textContent = "Copy to Clipboard"), 1500);
-      });
-    }
-  });
-
-  // Generate token using fetch AJAX
-  generateBtn.addEventListener("click", async () => {
-    generateBtn.disabled = true;
-    generateBtn.textContent = "Generating...";
-    try {
-      const response = await fetch("{{ route('generate.token') }}", {
-        method: "POST",
-        headers: {
-          'X-CSRF-TOKEN': '{{ csrf_token() }}',
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({})
-      });
-
-      if (!response.ok) throw new Error('Network response was not ok');
-
-      const data = await response.json();
-      tokenDisplay.textContent = data.token || 'Error generating token';
-    } catch (error) {
-      tokenDisplay.textContent = 'Failed to generate token';
-      console.error('Error:', error);
-    } finally {
-      generateBtn.disabled = false;
-      generateBtn.textContent = "Generate Token";
-    }
-  });
-
-  // Optional: close modal by clicking outside
-  window.addEventListener("click", (e) => {
-    if (e.target === tokenModal) tokenModal.style.display = "none";
-  });
-});
-</script>
 </body>
 </html>
 

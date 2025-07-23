@@ -26,20 +26,10 @@ closeProfileBtn.addEventListener('click', () => {
   profileModal.style.display = 'none';
 });
 
-// CLOSE MODALS ON OUTSIDE CLICK
-window.addEventListener('click', event => {
-  if (event.target === settingsModal) {
-    settingsModal.style.display = 'none';
-  }
-  if (event.target === profileModal) {
-    profileModal.style.display = 'none';
-  }
-});
-
 // FOR NOTE MODAL
 const noteModal = document.getElementById('noteModal');
 const closeNoteBtn = document.querySelector('.closeNoteBtn');
-const newNoteTrigger = document.querySelector('.add-note-btn'); // or any trigger
+const newNoteTrigger = document.querySelector('.add-note-btn');
 
 newNoteTrigger.addEventListener('click', () => {
   noteModal.style.display = 'block';
@@ -49,13 +39,7 @@ closeNoteBtn.addEventListener('click', () => {
   noteModal.style.display = 'none';
 });
 
-window.addEventListener('click', event => {
-  if (event.target === noteModal) {
-    noteModal.style.display = 'none';
-  }
-});
-
-//for token
+// FOR TOKEN MODAL
 const tokenModal = document.getElementById("modalToken");
 const generateBtn = document.getElementById("generateExtensionTokenBtn");
 const copyBtn = document.getElementById("copyTokenBtn");
@@ -63,7 +47,7 @@ const tokenDisplay = document.getElementById("tokenDisplay");
 const closeTokenBtn = document.querySelector(".closeTokenBtn");
 const triggerTokenBtn = document.querySelector(".add-token-btn");
 
-// Show modal when button is clicked
+// Show modal on button click
 triggerTokenBtn.addEventListener("click", () => {
   tokenModal.style.display = "block";
 });
@@ -73,18 +57,48 @@ closeTokenBtn.addEventListener("click", () => {
   tokenModal.style.display = "none";
 });
 
-// Copy token
+// Copy token to clipboard
 copyBtn.addEventListener("click", () => {
-  navigator.clipboard.writeText(tokenDisplay.textContent).then(() => {
-    copyBtn.textContent = "Copied!";
-    setTimeout(() => (copyBtn.textContent = "Copy to Clipboard"), 1500);
-  });
+  if(tokenDisplay.textContent.trim() && tokenDisplay.textContent !== 'Click below to generate'){
+    navigator.clipboard.writeText(tokenDisplay.textContent).then(() => {
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => (copyBtn.textContent = "Copy to Clipboard"), 1500);
+    });
+  }
 });
 
-// Optional: click outside to close
-window.addEventListener("click", (e) => {
-  if (e.target === tokenModal) tokenModal.style.display = "none";
+// Generate token using fetch API (AJAX)
+generateBtn.addEventListener("click", async () => {
+  generateBtn.disabled = true;
+  generateBtn.textContent = "Generating...";
+  try {
+    const response = await fetch("/generate-token", {  // make sure this route matches your backend route
+      method: "POST",
+      headers: {
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({})
+    });
+
+    if (!response.ok) throw new Error('Network response was not ok');
+
+    const data = await response.json();
+    tokenDisplay.textContent = data.token || 'Error generating token';
+  } catch (error) {
+    tokenDisplay.textContent = 'Failed to generate token';
+    console.error('Error:', error);
+  } finally {
+    generateBtn.disabled = false;
+    generateBtn.textContent = "Generate Token";
+  }
 });
 
-
-
+// Close any modal when clicking outside of it
+window.addEventListener("click", (event) => {
+  if (event.target === settingsModal) settingsModal.style.display = "none";
+  if (event.target === profileModal) profileModal.style.display = "none";
+  if (event.target === noteModal) noteModal.style.display = "none";
+  if (event.target === tokenModal) tokenModal.style.display = "none";
+});
