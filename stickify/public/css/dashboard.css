@@ -480,3 +480,21 @@ body {
   color: #aaa;
   cursor: pointer;
 }
+
+#generateTokenTab {
+  background-color: #008000; /* solid green */
+  color: white;
+  font-weight: normal;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: none;
+  font-size: 1rem;
+}
+
+#generateTokenTab:hover {
+  background-color: #006400; /* darker green on hover */
+  transform: scale(1.05);
+}

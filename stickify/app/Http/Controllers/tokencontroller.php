@@ -10,13 +10,15 @@ class TokenController extends Controller
 {
     public function generateToken(Request $request)
     {
-        $user = User::first();
+        // $user = User::first();
+
+        $user = auth()->user();
 
         if (!$user) {
             if ($request->expectsJson()) {
                 return response()->json(['error' => 'No users exist. Create one first.'], 404);
             }
-            return redirect()->back()->with('error', 'No users exist. Create one first.');
+            return redirect()->back()->with('error', 'Please log in first to generate a token.');
         }
 
         $existingToken = ExtensionToken::where('user_id', $user->id)->first();

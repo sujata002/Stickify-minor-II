@@ -1,0 +1,245 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family:Arial, Helvetica, sans-serif;
+  
+}
+.navbar {
+  width: 100%;
+  background: #fff;
+  border: 4px solid #f2eeee;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  height: 70px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+.logo {
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  color: #000; 
+  
+}
+.navbar nav {
+  display: flex;
+  gap: 32px;
+}
+.navbar nav a {
+  text-decoration: none;
+  color: #555;
+  font-size: 1.15rem;
+  font-weight: 400;
+  transition: color 0.2s;
+  letter-spacing: 1px;
+}
+.navbar nav a:hover {
+  color: #000;
+}
+@media (max-width: 800px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 20px;
+    height: auto;
+  }
+  .navbar nav {
+    gap: 18px;
+    margin-top: 8px;
+  }
+}
+
+/* login section */
+
+.outer-container {
+    background-color: #95c596ab; /* Black background */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-container {
+    background-color: #fff; /* White background */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    max-width: 1100px;
+    width: 100%;
+    max-height: 1500px;
+    margin: 30px;
+    color: #0D1117; /* Change text color to black */
+}
+
+.login-form {
+    display: flex;
+    flex: 1;
+}
+
+.text-part {
+    padding: 40px;
+    flex: 1;
+}
+
+.image-part {
+    flex: 1;
+    /* background-size: cover; */
+    background-position: center;
+}
+
+.login-img{
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 65px 0px 0px 70px;
+}
+
+.login-img img{
+    height: 550px;
+    width: 400px;
+    border-radius: 15px;
+    object-fit: cover;         /*esle chai it helps keep image proportionate*/
+}
+
+.welcome-back {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.login-description {
+    color: #6E7781;
+    margin-bottom: 32px;
+}
+
+.form-input {
+    margin-bottom: 20px;
+}
+
+.input {
+    display: block;
+    color: #6E7781;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.form-input input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #30363D;
+    border-radius: 8px;
+    background-color: #E5E7EB;
+    color: #0D1117;
+    box-sizing: border-box;
+}
+
+.form-input input:focus {
+    outline: none;
+    border-color: #58A6FF;
+}
+
+.btn-primary {
+    background-color: #238636;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #2EA043;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #6E7781;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #30363D;
+    margin: 0 10px;
+}
+
+/* .social-login {
+    display: flex;
+    flex-direction: column;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border: 1px solid #30363D;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #0D1117;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.social-btn:hover {
+    background-color: #E5E7EB;
+}
+
+.social-btn img {
+    margin-right: 10px;
+    width: 20px;
+} */
+
+
+.footer {
+    text-align: center;
+    color: #6E7781;
+    margin-top: 30px;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.forgot-password a {
+    color: #58A6FF;
+    text-decoration: none;
+}
+
+.no-account {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.no-account a {
+    color: #58A6FF;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        max-width: 450px;
+    }
+
+    .image-part {
+        height: 300px;
+    }
+
+    .text-part {
+        padding: 20px;
+    }
+}

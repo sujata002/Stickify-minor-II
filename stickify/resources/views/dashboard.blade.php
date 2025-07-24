@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  
+
   <title>Stickify</title>
 
   <!-- Styles -->
   <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-  <!-- Font Awesome for Icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -22,7 +22,6 @@
       <div class="logo">
         <p>STICKIFY</p>
       </div>
-
       <nav>
         <a href="#"><i class="fa-solid fa-bars"></i> Dashboard</a>
         <a href="#"><i class="fa-solid fa-note-sticky"></i> My Notes</a>
@@ -30,7 +29,6 @@
         <a href="#"><i class="fa-solid fa-folder-plus"></i> Categories</a>
         <a href="#"><i class="fa-solid fa-trash"></i> Trash</a>
       </nav>
-
       <div class="projects">
         <a href="#" id="settingsLink"><i class="fa-solid fa-gear"></i> Settings</a>
         <a href="#"><i class="fa-solid fa-circle-question"></i> Help & Feedback</a>
@@ -40,24 +38,45 @@
 
     <!-- Main -->
     <main class="main">
-      <div class="topbar">
-        <div class="search">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Search your notes..." />
+      <!-- Top Toolbar -->
+      <div class="tabs" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+        <!-- First Row: Generate Token + Token Display -->
+        <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px;">
+        
+        <!-- NO form -->
+         <form id="tokenForm" method="POST" action="{{ route('generate.token') }}">
+          @csrf
+          <button type="submit" class="tab-btn" style="background-color: #28a745; color: white; padding: 8px 12px; border: none; border-radius: 4px;">
+            Generate Token
+          </button>
+        </form>
+
+          
+
+          <div id="generatedTokenContainer" style="align-items: center; gap: 8px;">
+            <!-- <label style="font-weight: bold;">Token Generated:</label> -->
+            <input value="{{ session('token') }}" type="text" id="generatedTokenValue" readonly style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px; background-color: #fff; cursor: pointer;">
+            <small style="color: #555;">Click the box to copy the token.</small>
+          </div>
         </div>
-        <div class="user-info" id="profileBtn" title="Profile">
-          <i class="fa-solid fa-user"></i>
+
+        <!-- Second Row: Search and Filters -->
+        <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div style="display: flex; align-items: center; background-color: white; border: 1px solid #ccc; padding: 6px 10px; border-radius: 4px;">
+            <i class="fa-solid fa-magnifying-glass" style="margin-right: 6px; color: #888;"></i>
+            <input type="text" placeholder="Search your notes..." style="border: none; outline: none; width: 200px;">
+          </div>
+
+          <button class="tab-btn" style="padding: 6px 12px; border: 1px solid #ccc; border-radius: 4px;">All</button>
+          <button class="tab-btn" style="padding: 6px 12px; border: 1px solid #ccc; border-radius: 4px;">Bookmarked</button>
+
+          <button class="add-note-btn" style="margin-left: auto; background-color: #28a745; color: white; padding: 8px 16px; border: none; border-radius: 4px;">
+            <i class="fa-solid fa-plus"></i> New Note
+          </button>
         </div>
       </div>
 
-      <div class="tabs">
-        <button>All</button>
-        <button>Bookmarked</button>
-        <button class="add-note-btn"><i class="fa-solid fa-plus"></i> New Note</button>
-        <button class="add-token-btn"><i class="fa-solid fa-plus"></i> Generate Token</button>
-      </div>
-
-      <!-- Notes grid -->
+      <!-- Notes Grid -->
       <div class="notes-grid">
         <div class="note-card">
           <div class="note-header">
@@ -71,9 +90,7 @@
           </div>
           <h3 class="note-title" contenteditable="true">Note Title</h3>
           <div class="note-content" contenteditable="true"></div>
-          <div class="note-link">
-            <a href="#" contenteditable="true">Add a link</a>
-          </div>
+          <div class="note-link"><a href="#" contenteditable="true">Add a link</a></div>
         </div>
       </div>
     </main>
@@ -93,9 +110,7 @@
         </div>
         <h3 class="note-modaltitle" contenteditable="true">Note Title</h3>
         <div class="note-modalcontent" contenteditable="true"></div>
-        <div class="note-link">
-          <a href="#" contenteditable="true">Add a link</a>
-        </div>
+        <div class="note-link"><a href="#" contenteditable="true">Add a link</a></div>
       </div>
     </div>
   </div>
@@ -146,15 +161,17 @@
         <h2>Extension Token</h2>
         <div id="tokenDisplay" class="token-display">Click below to generate</div>
         <div class="token-actions">
-          <button id="generateExtensionTokenBtn">Generate Token</button>
-          <button id="copyTokenBtn">Copy to Clipboard</button>
+         <form id="tokenForm" method="POST" action="{{ route('generate.token') }}">
+               <button id="generateExtensionTokenBtn" type="submit">Generate Token</button>
+          </form>
+         <button id="copy-btn">Copy to Clipboard</button>
         </div>
         <p class="token-note">Use this token to link your browser extension securely.</p>
       </div>
     </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- External JS -->
   <script src="{{ asset('js/dashboard.js') }}"></script>
 </body>
 </html>
