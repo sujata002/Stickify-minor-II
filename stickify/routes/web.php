@@ -40,13 +40,22 @@ Route::group(['prefix' => 'account'],function(){             // prefix example: 
 
 // for admin
 
-Route::get('admin/login',[AdminLoginController::class,'index'])->name('admin.login');
-// Route::get('admin/dashboard',[AdminDashboardController::class,'dashboard'])->middleware('auth:admin')->name('admin.dashboard');    
+Route::get('admin/login',[AdminLoginController::class,'index'])->name('admin.login');    
 Route::post('admin/authenticate',[AdminLoginController::class,'authenticate'])->name('admin.authenticate');
+
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/users', [AdminDashboardController::class, 'users'])->name('admin.users');                   // show users list
+    Route::delete('/users/{id}', [AdminDashboardController::class, 'deleteUser'])->name('admin.users.delete');     // delete user route (for delete form)
+    // added this promote route:
+    Route::patch('/users/{id}/promote', [AdminDashboardController::class, 'promoteUser'])->name('admin.users.promote');
+
+    // to edit and update user
+    Route::get('/users/{id}/edit', [AdminDashboardController::class, 'editUser'])->name('admin.users.edit');
+    Route::put('/users/{id}', [AdminDashboardController::class, 'updateUser'])->name('admin.users.update');
 
 });
+Route::patch('/users/{id}/update-role', [AdminDashboardController::class, 'updateUserRole'])->name('admin.users.updateRole');    // for updating user's role thru users list in admin dashboard
 Route::get('admin/logout',[AdminLoginController::class,'logout'])->name('admin.logout');    // this needs to be called in admin's dashboard blade file logout ko option ma
 
 
