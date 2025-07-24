@@ -27,23 +27,19 @@ class LoginController extends Controller
         if ($validator->passes()){
 
             // checks email and password in DB if admin exists or not. If exists and is valid, admin is authenticated, 
-            // and logs the admin in by creating a session and then redirected to dashboard. 
+            // and logs the admin in by creating a session and then red..   irected to dashboard. 
 
             if (Auth::guard('admin')->attempt(['email' => $request->email,'password' => $request->password])){
                
                 $user = Auth::guard('admin')->user();
 
                 // dd($user->role);   // debug to see which role is logged in
-
-                // if ($user->role === 'admin')
                     
-                if (Auth::guard('admin')->user()-> role === 'admin'){
+                if (Auth::guard('admin')->user()-> role === 'admin'){                  
                     // redirect admin to admin dashboard
                     return redirect()->route('admin.dashboard');
-
+                    
                 } else {
-                    // redirect regular user to user dashboard
-                    // return redirect()->route('user.dashboard');
 
                     Auth::guard('admin')->logout();    // to manually log out user if their role is not admin by clearning out their session
                     return redirect()->route('admin.login')->with('error', 'You are not authorized to access this page');

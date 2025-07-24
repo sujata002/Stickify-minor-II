@@ -1,0 +1,75 @@
+body{
+    display: flex;
+    min-height: 100vh;
+    background: #f8f9fa;
+}
+.sidebar{
+    width: 250px;
+    background: #95c596ab;
+    color: white;
+    min-height: 100vh;
+    padding-top: 20px;
+    position: fixed;
+}
+.sidebar h2 {
+    text-align:center;
+    padding-bottom: 20px;
+    color: black;
+    border-bottom-style: solid;
+}
+.sidebar a{
+    color: black;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    font-size: 16px;
+}
+.sidebar a:hover, .sidebar a.active{
+    background: #759b76ab
+}
+.content {
+    margin-left:260px;
+    padding: 20px;
+    width: 100%;     
+}
+.navbar{
+    background:#198754 ;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+.navbar a{
+    color: white;
+    text-decoration: none;
+    margin-left: auto;
+}
+.card{
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.btn-primary{
+    background: #198754;
+    border: none;
+}
+.btn-primary:hover{
+    background: #0b513f;
+}
+.table thead{
+    background: #16a085;
+    color: white;
+}
+.table img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+/* this is for fading out the updation message */
+#flash-message {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(0);
+}
