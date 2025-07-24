@@ -14,6 +14,13 @@
             <button type="submit" class="btn btn-primary">Generate Token</button>
         </form>
 
+        <!-- Show error message if exists -->
+        @if(session('error'))
+            <div class="alert alert-danger mt-4">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <!-- Show the Generated Token -->
         @if(session('token'))
             <div class="alert alert-success mt-4">

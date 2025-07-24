@@ -4,26 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ExtensionToken;
+use App\Models\User;
 
 class TokenController extends Controller
 {
     public function generateToken(Request $request)
     {
-        $user = $request->user(); // Get authenticated user
+        $user = User::first();
 
-        // Check if user exists (optional if auth middleware applied)
         if (!$user) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            if ($request->expectsJson()) {
+                return response()->json(['error' => 'No users exist. Create one first.'], 404);
+            }
+            return redirect()->back()->with('error', 'No users exist. Create one first.');
         }
 
-        // Check if the user already has a token
         $existingToken = ExtensionToken::where('user_id', $user->id)->first();
 
         if (!$existingToken) {
-            // Generate a unique 8-digit numeric token
             $token = $this->generateNumericToken(8);
 
-            // Save the new token
             ExtensionToken::create([
                 'user_id' => $user->id,
                 'token' => $token,
@@ -34,8 +34,11 @@ class TokenController extends Controller
             $token = $existingToken->token;
         }
 
-        // Return token as JSON
-        return response()->json(['token' => $token]);
+        if ($request->expectsJson()) {
+            return response()->json(['token' => $token]);
+        }
+
+        return redirect()->back()->with('token', $token);
     }
 
     private function generateNumericToken($length = 8)

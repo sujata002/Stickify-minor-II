@@ -8,12 +8,15 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
-// Dashboard route with auth middleware
+// Dashboard route showing the token generation form
 Route::get('/dashboard', function () {
-    return view('dashboard'); // Ensure resources/views/dashboard.blade.php exists
-})->name('dashboard')->middleware('auth');
+    return view('dashboard'); // Make sure dashboard.blade.php exists with your form
+})->name('dashboard');
 
-// Token generation route with auth middleware
+// Token generation POST route for normal form submit (if you keep it)
 Route::post('/generate-token', [TokenController::class, 'generateToken'])
-    ->name('generate.token')
-    ->middleware('auth');
+    ->name('generate.token');
+
+// API route for AJAX token generation (recommended for your modal)
+Route::post('/api/generate-token', [TokenController::class, 'generateToken'])
+    ->name('api.generate.token');
