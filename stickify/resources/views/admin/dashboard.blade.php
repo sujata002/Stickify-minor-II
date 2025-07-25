@@ -36,64 +36,77 @@
         </nav>
 
         <div class="container mt-4">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card p-4">
-                        <div class = "d-flex justify-content-between align-items-center mb-3">
-                            <h5 class="mb-0">Add New User</h5>
-                            <button class = "btn btn-success" onclick="document.getElementById('itemform').reset();">
-                                <i class = "fa fa-plus"></i>New Form
-                            </button>
+            <div class="row"> 
+
+                <!-- user count -->
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card card-custom-info text-white shadow"">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Users</h5>
+                                <p class="card-text fs-4">{{ $totalUsers }}</p>
+                            </div>
                         </div>
-                    
-                        <!-- for adding new user through admin dashboard-->
-                        <form action="" id="itemform">
-                            <div class="mb-3 row">
-                                <label for="name" class="col-md-3 col-form-label"> Name:</label>
-
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="name" placeholder="Enter name" required>
-                                </div>
-                        </div>   
-
-                            <div class="mb-3 row">
-                                <label for="email" class="col-md-3 col-form-label">Email:</label>
-
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="email" placeholder="Enter email" required>
-                                </div>
-                            </div>
-
-                            <div class="mb-3 row">
-                                <label for="role" class="col-md-3 col-form-label">Role:</label>
-
-                                <div class="col-md-9">
-                                    <select class="form-select" id="role">
-                                        <option selected>Choose...</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="user">User</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            {{-- <button type="submit" class="btn btn-primary w-50">Submit</button> --}}
-
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary w-50">Submit</button>
-                            </div>
-
-                        </form>
-
                     </div>
-                </div>  
 
-                <div class="col-md-12">
-                    <div class="card p-4">           <!-- this is for graph showing the number of users -->
-                        <h5 class="text-center mb-3">Total Users Overview</h5>
-                        <canvas id="userChart" height="210"></canvas>
+                    <div class="col-md-4">
+                        <div class="card card-custom-success text-white shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">Premium Users</h5>
+                                <p class="card-text fs-4">{{ $premiumUsers }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card card-custom-dark text-white shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">Admins</h5>
+                                <p class="card-text fs-4">{{ $adminCount }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- graph illustration -->
+                <div class="col-md-10 mt-4 mb-4 mx-auto">                    <!-- mx-auto for centering the graph horizontally -->
+                    <div class="card p-4">
+                        <h5 class="text-center mb-3">User Signups (Last 6 Months)</h5>
+                        <canvas id="signupChart" height="200"></canvas>
+                    </div>
+                </div>
+
             </div>
+
+            <!-- for recent activity feed -->
+
+            <!-- we will need a User field like updated_at or need to create a separate activities table for full logs later.
+            but for now, we'll use users sorted by updated_at (last profile update or promotion)-->
+            
+                <div class="card mb-4 shadow mt-4">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">Recent User Activity</h5>
+                    </div>
+
+                    <div class="card-body">
+                        @if($recentUsers->isEmpty())
+                            <p>No recent user activity.</p>
+                        @else
+                            <ul class="list-group">
+                                @foreach($recentUsers as $user)
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <strong>{{ $user->name }}</strong> ({{ $user->email }})
+                                            <div class="text-muted small">Last updated: {{ $user->updated_at->diffForHumans() }}</div>
+                                        </div>
+                                        <span class="badge bg-secondary">{{ ucfirst($user->role) }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+                </div>
+
         </div>
 
     </div>
@@ -118,38 +131,61 @@
             });
         });
 
-        // for user graph
+        // for user signups graph
+        const signupCtx = document.getElementById('signupChart').getContext('2d');
 
-        const ctx = document.getElementById('userChart').getContext('2d');
-
-        const userChart = new Chart(ctx, {
-            type: 'line', // this can be changed to 'line', 'pie', etc 
+        const signupChart = new Chart(signupCtx, {
+            type: 'bar',
             data: {
-                labels: ['Free Users', 'Premium Users', 'Admins'], // Example categories
+                labels: @json($months), // dynamic month labels from controller
                 datasets: [{
-                    label: 'User Count',
-                    data: [10, 5, 1], // this number is statis for now and can be replaced with dynamic values later
-                    backgroundColor: [
-                    '#198754',
-                    '#0dcaf0',
-                    '#ffc107'
-                    ],
-                    borderWidth: 4
+                    label: 'New Users',
+                    data: @json($userCounts), // user count for each month
+                    backgroundColor: '#8782E0',
+                    // borderColor: '#0d6efd',
+                    // borderWidth: 2,
+                    borderRadius: 5,
+                     // ✅ Slim bar settings
+                    barPercentage: 0.3,
+                    categoryPercentage: 0.4
                 }]
             },
-            // options: {
-            //     responsive: true,
-            //     scales: {
-            //         y: {
-            //             beginAtZero: true
-            //         }
-            //     }
-            // }
-
             options: {
+                responsive: true,
                 plugins: {
                     legend: {
-                        onClick: null // disables the toggle behavior when clicking on user count in graph 
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.parsed.y} new users`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'User Count'
+                        },
+                        ticks: {
+                            precision: 0
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        },
+                        ticks: {
+                            autoSkip: false
+                        },
+                        grid: {
+                            display: false
+                        },
                     }
                 }
             }
@@ -160,5 +196,3 @@
 </html>
 
    
-
-{{-- dashboard lai dynamic banauna baki cha!! first ma authenticate wala part garne aba--}}

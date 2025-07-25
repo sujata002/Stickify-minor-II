@@ -73,3 +73,26 @@ body{
     transition: opacity 0.5s ease, transform 0.5s ease;
     transform: translateY(0);
 }
+
+/* for user count cards color*/
+.card-custom-info {
+  background-color: #4AC6CF; /* similar to Bootstrap info but you can change */
+  color: white;
+}
+
+.card-custom-success {
+  background-color: #CF4A84; /* green */
+  color: white;
+}
+
+.card-custom-dark {
+  background-color: #CF954A; /* dark */
+  color: white;
+}
+
+/* Optional shadow and margin */
+.card-custom {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+

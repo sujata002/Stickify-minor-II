@@ -11,9 +11,40 @@ class DashboardController extends Controller
     // this method will show dashboard to admin if email and password is correct and matches with database. admin is redirected to admin dashboard after successful login
   // ** tyo tutorial ma chai dashboard lai index bhanera deko cha method ma naam** 
 
-  public function dashboard(){
-    return view('admin.dashboard');
-  }
+    // public function dashboard(){
+    //   return view('admin.dashboard');
+    // }
+
+    // this method shows total users, premium users, admin, signups count in admin dashboard
+    public function dashboard(){
+
+      // for displaying counts of total users, premium users, admin in admin dashboard
+      $totalUsers = \App\Models\User::count();  // total registered users
+      $premiumUsers = \App\Models\User::where('is_premium', true)->count();  // users with premium status
+      $adminCount = \App\Models\User::where('role', 'admin')->count();  // users with admin role
+
+      $recentUsers = \App\Models\User::latest('updated_at')->take(5)->get();  // recent users for activity feed
+
+      // for displaying graph that shows user signups per month for past 6 month
+      $monthlyUsers = \App\Models\User::selectRaw("COUNT(*) as count, DATE_FORMAT(created_at, '%b %Y') as month")
+        ->where('created_at', '>=', now()->subMonths(6))
+        ->groupBy('month')
+        ->orderByRaw("MIN(created_at)")
+        ->pluck('count', 'month');
+
+      $months = $monthlyUsers->keys();     // ['Mar 2025', 'Apr 2025', ...]
+      $userCounts = $monthlyUsers->values(); // [4, 8, 12, ...]
+
+      // sending everything to view
+      return view('admin.dashboard', compact(
+        'totalUsers',
+        'premiumUsers',
+        'adminCount',
+        'recentUsers',
+        'months',
+        'userCounts'
+      ));
+    }
 
   // show users list page
   public function users(){
@@ -80,4 +111,5 @@ class DashboardController extends Controller
 
     return redirect()->route('admin.users')->with('success', 'User role updated successfully.');
   }
+
 }
