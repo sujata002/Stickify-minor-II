@@ -5,10 +5,18 @@ use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\LoginController;            // importing this since we have used LoginController tala route ma
 use App\Http\Controllers\DashboardController;  
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TokenController;
+use App\Http\Controllers\NotesController;
 
+// Option A: Redirected to laravel home page 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Option B: Redirect to dashboard. this takes users to the login page before being able to access dashboard
 Route::get('/', function () {
-    return view('welcome');
-});
+    return redirect()->route('dashboard');
+});            
 
 // this is grouped for users, like what pages they can access. Users cant access dashboard without logging in
 
@@ -59,3 +67,24 @@ Route::patch('/users/{id}/update-role', [AdminDashboardController::class, 'updat
 Route::get('admin/logout',[AdminLoginController::class,'logout'])->name('admin.logout');    // this needs to be called in admin's dashboard blade file logout ko option ma
 
 
+/*** for token part -- copy-pasted from dg-work manually ***/
+
+// Dashboard route showing the token generation form
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('auth')->name('dashboard');
+
+// Token generation POST route for normal form submit (if you keep it)
+Route::post('/generate-token', [TokenController::class, 'generateToken'])->name('generate.token');
+
+// API route for AJAX token generation (recommended for your modal)
+Route::post('/api/generate-token', [TokenController::class, 'generateToken'])->name('api.generate.token');
+
+    // notes route
+Route::middleware('auth')->group(function () {
+    Route::get('/notes', [NotesController::class, 'index']);
+    Route::post('/notes', [NotesController::class, 'store']);
+    Route::get('/notes/{id}', [NotesController::class, 'show']);
+    Route::put('/notes/{id}', [NotesController::class, 'update']);
+    Route::delete('/notes/{id}', [NotesController::class, 'destroy']);
+});
