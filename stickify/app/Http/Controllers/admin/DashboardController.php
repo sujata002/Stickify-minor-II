@@ -8,14 +8,9 @@ use App\Models\User;
 
 class DashboardController extends Controller
 {
-    // this method will show dashboard to admin if email and password is correct and matches with database. admin is redirected to admin dashboard after successful login
-  // ** tyo tutorial ma chai dashboard lai index bhanera deko cha method ma naam** 
-
-    // public function dashboard(){
-    //   return view('admin.dashboard');
-    // }
-
-    // this method shows total users, premium users, admin, signups count in admin dashboard
+    // this method will show dashboard to admin if email and password is correct and matches with database. 
+    // admin is redirected to admin dashboard after successful login
+    
     public function dashboard(){
 
       // for displaying counts of total users, premium users, admin in admin dashboard

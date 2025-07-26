@@ -34,12 +34,12 @@ Route::group(['prefix' => 'account'],function(){             // prefix example: 
     });
 
 });
-
 // laravel’s built-in Auth system and middleware do all of this when Auth::attempt() is called and protect routes with auth middleware.
 
 
-// for admin
+/* for admin */
 
+// this is outside the prefix because we want to login admins only in admin login. users are displayed unauthorization message is tried to login
 Route::get('admin/login',[AdminLoginController::class,'index'])->name('admin.login');    
 Route::post('admin/authenticate',[AdminLoginController::class,'authenticate'])->name('admin.authenticate');
 
