@@ -1,0 +1,83 @@
+/* Body */
+.body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f9fafb;
+  color: #1f2937;
+}
+
+/* Navigation  */
+.navbar {
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+.navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand-icon {
+  font-size: 24px;
+  color: green;
+  margin-right: 8px;
+}
+
+.brand-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: green;
+  margin-right: 40rem;
+}
+
+.navbar-links .header {
+  display: none;
+  flex-wrap: wrap;
+  color: #374151;
+  flex-wrap: nowrap; /* Prevents breaking “How It Works” */
+  gap: 16px;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.nav-link {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+  white-space: nowrap; /* Prevents breaking “How It Works” */
+}
+
+.nav-link:hover {
+  background-color: #eff6ff;
+  color: green;
+}
+
+
+/* Responsive visibility */
+@media (min-width: 768px) {
+  .header {
+    display: flex;
+  }
+}
+
+
+
