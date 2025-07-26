@@ -35,9 +35,8 @@ Route::group(['prefix' => 'account'],function(){             // prefix example: 
     // this is Authenticated middleware for people who are logged in
     Route::group(['middleware' => 'auth'], function(){          
 
-        // Route::get('logout',[LoginController::class,'logout'])->name('logout');          this route is for logout. uncomment it after logout functionality is done
+        Route::get('logout',[LoginController::class,'logout'])->name('logout');          // this route is for logout
         Route::get('dashboard',[DashboardController::class,'dashboard'])->middleware('auth')->name('user.dashboard');    
-
 
     });
 

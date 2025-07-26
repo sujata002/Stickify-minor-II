@@ -14,7 +14,6 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #f4f4f4;
-  
 }
 
 /* CONTAINER  */
@@ -497,4 +496,48 @@ body {
 #generateTokenTab:hover {
   background-color: #006400; /* darker green on hover */
   transform: scale(1.05);
+}
+
+/* user topbar - added by sujata */
+
+.user-topbar {
+  display: flex;
+  justify-content: space-between;
+  /*Pushescontenttoleftandright*/align-items: center;
+  padding: 8px 15px;
+  background-color: #198754;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.dashboard-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info i {
+  background-color: rgb(144, 203, 134);
+  color: white;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 1.2rem;
+}
+
+.username-text {
+  font-weight: 600;
+  color: white;
+  font-size: 1rem;
 }

@@ -9,10 +9,11 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"> --}}
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
 </head>
 
 <body>
@@ -32,17 +33,27 @@
       <div class="projects">
         <a href="#" id="settingsLink"><i class="fa-solid fa-gear"></i> Settings</a>
         <a href="#"><i class="fa-solid fa-circle-question"></i> Help & Feedback</a>
-        <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        <a href="{{ route('logout')}}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
       </div>
     </aside>
 
     <!-- Main -->
     <main class="main">
+
+      <!-- TOPBAR: Username + Icon (top right corner) -->
+      <div class="user-topbar">
+        <div class="dashboard-title">Stickify User Dashboard</div>
+        <div class="user-info">
+          <i class="fa-solid fa-user"></i>
+          <span class="username-text">Hello, {{ Auth::user()->name }}</span>     <!-- used auth user name to display name of currently logged in user-->
+        </div>
+      </div>
+
       <!-- Top Toolbar -->
-      <div class="tabs" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+      <div class="tabs" style="display: flex; flex-direction: column; gap: 10px; margin:20px 20px;">
         <!-- First Row: Generate Token + Token Display -->
         <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px;">
-        
+   
         <!-- NO form -->
          <form id="tokenForm" method="POST" action="{{ route('generate.token') }}">
           @csrf
@@ -50,8 +61,6 @@
             Generate Token
           </button>
         </form>
-
-          
 
           <div id="generatedTokenContainer" style="align-items: center; gap: 8px;">
             <!-- <label style="font-weight: bold;">Token Generated:</label> -->

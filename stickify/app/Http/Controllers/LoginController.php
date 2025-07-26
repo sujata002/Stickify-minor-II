@@ -98,13 +98,13 @@ class LoginController extends Controller
                 ->withInput()                          // withInput kina deko bhani email ko value clear na hos if error aayera reload garda bhanera
                 ->withErrors($validator);              // yo chai form ma error lai pani display garnu parcha tesaile lekheko
             }
-        
     }
 
-    public function logout(){
+    // to log out from user dashboard
 
-        // esko baki cha logout ko functionality halna lai. 39:00 minute dekhi herne youtube video ko for logout functionlity
-        
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
     }
 
 }
