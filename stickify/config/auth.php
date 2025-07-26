@@ -38,7 +38,15 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
+<<<<<<< HEAD
             'provider' => 'users',
+=======
+            'provider' => 'users',                // default gaurd that works for users
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins'                // for admin
+>>>>>>> ba10887e86e6b75e02863bcefd021054b3acc54b
         ],
     ],
 
