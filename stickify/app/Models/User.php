@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'verification_token',     // for extension token generation..... this is just copied from dg-work ko user.php bata yo line matra
     ];
 
     /**
@@ -40,9 +41,6 @@ class User extends Authenticatable
      */
     protected function casts(): array
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(Note::class);
     }
 }
