@@ -39,7 +39,7 @@ window.addEventListener('click', event => {
 // FOR NOTE MODAL
 const noteModal = document.getElementById('noteModal');
 const closeNoteBtn = document.querySelector('.closeNoteBtn');
-const newNoteTrigger = document.querySelector('.add-note-btn'); // or any trigger
+const newNoteTrigger = document.querySelector('.add-note-btn');
 
 newNoteTrigger.addEventListener('click', () => {
   noteModal.style.display = 'block';
@@ -55,7 +55,7 @@ window.addEventListener('click', event => {
   }
 });
 
-//for token
+// FOR TOKEN MODAL
 const tokenModal = document.getElementById("modalToken");
 const generateBtn = document.getElementById("generateExtensionTokenBtn");
 const copyBtn = document.getElementById("copyTokenBtn");
@@ -63,28 +63,31 @@ const tokenDisplay = document.getElementById("tokenDisplay");
 const closeTokenBtn = document.querySelector(".closeTokenBtn");
 const triggerTokenBtn = document.querySelector(".add-token-btn");
 
-// Show modal when button is clicked
-triggerTokenBtn.addEventListener("click", () => {
-  tokenModal.style.display = "block";
-});
+// Only attach listener if the trigger exists
+if (triggerTokenBtn) {
+  triggerTokenBtn.addEventListener("click", () => {
+    tokenModal.style.display = "block";
+  });
+}
 
 // Close modal
-closeTokenBtn.addEventListener("click", () => {
-  tokenModal.style.display = "none";
-});
+if (closeTokenBtn) {
+  closeTokenBtn.addEventListener("click", () => {
+    tokenModal.style.display = "none";
+  });
+}
 
 // Copy token
-copyBtn.addEventListener("click", () => {
-  navigator.clipboard.writeText(tokenDisplay.textContent).then(() => {
-    copyBtn.textContent = "Copied!";
-    setTimeout(() => (copyBtn.textContent = "Copy to Clipboard"), 1500);
+if (copyBtn) {
+  copyBtn.addEventListener("click", () => {
+    navigator.clipboard.writeText(tokenDisplay.textContent).then(() => {
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => (copyBtn.textContent = "Copy to Clipboard"), 1500);
+    });
   });
-});
+}
 
-// Optional: click outside to close
+// Optional: click outside to close token modal
 window.addEventListener("click", (e) => {
   if (e.target === tokenModal) tokenModal.style.display = "none";
 });
-
-
-
