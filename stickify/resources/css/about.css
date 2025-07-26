@@ -130,7 +130,7 @@
   max-width: 500px;
   margin: 0 auto 10px;
   aspect-ratio: 2.5 / 1.5;
-  background: url('ourstory.png') center/cover no-repeat;
+  background: url(../images/ourstory.png) center/cover no-repeat;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
@@ -142,4 +142,10 @@
   line-height: 1.6;
   max-width: 680px;
   margin: 0 auto;
+}
+
+.test-bg {
+  background: url('../images/ourstory.png') center/cover no-repeat;
+  width: 200px;
+  height: 200px;
 }

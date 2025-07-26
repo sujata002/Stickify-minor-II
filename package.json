@@ -1,0 +1,28 @@
+{
+  "name": "stickify",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sujata002/Stickify-minor-II.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sujata002/Stickify-minor-II/issues"
+  },
+  "homepage": "https://github.com/sujata002/Stickify-minor-II#readme",
+  "description": "",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "laravel-vite-plugin": "^2.0.0",
+    "vite": "^7.0.6"
+  }
+}

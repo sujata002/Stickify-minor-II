@@ -8,12 +8,7 @@
     <title>Stickify</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @vite([
-    'resources/css/main.css',
-    'resources/css/home.css',
-    'resources/css/about.css',
-    'resources/css/howitworks.css',
-    'resources/css/contact.css',
-    'resources/css/login.css'
+    'resources/css/app.css',
     ])
 
 </head>
@@ -27,6 +22,7 @@
           <i class="bi bi-sticky brand-icon"></i>
           <span class="brand-title" id="home">Stickify</span>
         </div>
+        <!-- Navigation Links -->
         <div class="navbar-links header">
           <a href="#home" class="nav-link">Home</a>
           <a href="#about" class="nav-link">About</a>
@@ -41,6 +37,8 @@
     </div>
   </nav>
 
+<!--Home.css/Feature Section-->
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}">
   <section id="home" class="hero-section">
   <div class="hero-container">
     <div class="hero-grid">
@@ -51,10 +49,12 @@
         </h1>
         <p class="hero-description">
           The ultimate browser extension for capturing, organizing, and accessing your notes across all your favorite websites.
-          lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum ipsum dolorem quisquam, tempora quod quis iste doloribus perferendis aliquam, nisi porro eius sint earum voluptate exercitationem, quae similique hic deserunt!<br> <br>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum ipsum dolorem quisquam, tempora quod quis iste doloribus perferendis aliquam, nisi porro eius sint earum voluptate exercitationem, quae similique hic deserunt!    
-        </p>
+          Secure, flexible, and accessible
+          Stickify is your ultimate note-taking companion based in Kathmandu, NP. 
+          With user authentication, you can store and access your notes safely, giving you peace of mind. 
+          Manage your notes effortlessly from your dashboard, and easily trace the URLs where they were created. 
+          Our handy browser extension allows you to add and modify notes without leaving the page. 
+          Enjoy the freedom to create, read, update, and delete your notes, ensuring complete control over your data.        </p>
         <div class="buttons">
           <!-- Chrome Button -->
           <a class="btn-chrome">
