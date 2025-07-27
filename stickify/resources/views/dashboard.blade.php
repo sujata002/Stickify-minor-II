@@ -38,8 +38,17 @@
 
     <!-- Main -->
     <main class="main">
+    <!-- TOPBAR: Username + Icon (top right corner) -->
+      <div class="user-topbar">
+        <div class="dashboard-title">Stickify User Dashboard</div>
+        <div class="user-info">
+          <i class="fa-solid fa-user"></i>
+          <span class="username-text">Hello, {{ Auth::user()->name }}</span> <!-- used auth user name to display name of currently logged in user-->
+        </div>
+        </div>
+  
       <!-- Top Toolbar -->
-      <div class="tabs" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+      <div class="tabs" style="display: flex; flex-direction: column; gap: 10px; margin: 20px 20px;">
         <!-- First Row: Generate Token + Token Display -->
         <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px;">
         

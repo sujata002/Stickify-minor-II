@@ -105,69 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    //for crud operation
-
-    function fetchNotes() {
-    fetch('/notes')
-        .then(response => response.json())
-        .then(data => {
-            // Render notes to your notes grid
-            renderNotes(data);
-        })
-        .catch(error => console.error('Error fetching notes:', error));
-}
-//for creating notes
-function createNote(noteText, url = '') {
-    fetch('/notes', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        },
-        body: JSON.stringify({ note_text: noteText, url: url })
-    })
-    .then(response => response.json())
-    .then(note => {
-        // Add note to the UI
-        addNoteToUI(note);
-    })
-    .catch(error => console.error('Error creating note:', error));
-}
-//for updating notes
-function updateNote(noteId, noteText, url = '') {
-    fetch(`/notes/${noteId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        },
-        body: JSON.stringify({ note_text: noteText, url: url })
-    })
-    .then(response => response.json())
-    .then(updatedNote => {
-        // Update note in the UI
-        updateNoteInUI(updatedNote);
-    })
-    .catch(error => console.error('Error updating note:', error));
-}
-
-//for deletion 
-function deleteNote(noteId) {
-    fetch(`/notes/${noteId}`, {
-        method: 'DELETE',
-        headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-    })
-    .then(response => response.json())
-    .then(result => {
-        // Remove note from UI
-        removeNoteFromUI(noteId);
-    })
-    .catch(error => console.error('Error deleting note:', error));
-}
-
-
     tokenInput.addEventListener('click', () => {
       navigator.clipboard.writeText(tokenInput.value).then(() => {
         tokenInput.style.backgroundColor = '#d4edda';

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\TokenController;
 use Illuminate\Http\Request;
 use App\Models\ExtensionToken;
 use App\Models\User;
