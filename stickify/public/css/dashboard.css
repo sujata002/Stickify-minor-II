@@ -502,8 +502,8 @@ body {
 
 .user-topbar {
   display: flex;
-  justify-content: space-between;
-  /*Pushescontenttoleftandright*/align-items: center;
+  justify-content: space-between;           /*Pushes content to left and right*/
+  align-items: center;
   padding: 8px 15px;
   background-color: #198754;
   border-bottom: 1px solid #ddd;

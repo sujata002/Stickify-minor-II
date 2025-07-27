@@ -44,7 +44,7 @@
 
                             <div class="form-input">
                                 <label class="input">Username</label>
-                                <input type="text" id="user" class="form-control @error('user') is-invalid @enderror" name="user" placeholder="Jane Doe">
+                                <input type="text" value="{{old('user')}}" id="user" class="form-control @error('user') is-invalid @enderror" name="user" placeholder="Jane Doe">
 
                                 @error('user')
                                     <p class="invalid-feedback" style="color:red;">{{$message}}</p>  
@@ -63,7 +63,12 @@
 
                              <div class="form-input">
                                 <label class="input">Confirm Password</label>
-                                <input type="password" id="pass_confirmation" name="password_confirmation" placeholder="Confirm Password ">
+                                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="pass_confirmation" name="password_confirmation" placeholder="Confirm Password ">
+                                
+                                @error('password_confirmation')
+                                    <p class="invalid-feedback" style="color:red;">{{$message}}</p>  
+                                @enderror
+                            
                             </div>
 
                             <button type="submit" class="btn-primary">Sign Up</button>

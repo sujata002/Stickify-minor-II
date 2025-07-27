@@ -33,5 +33,9 @@ class Kernel extends HttpKernel
         // 'admin' => \App\Http\Middleware\CheckAdmin::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
+        'user-redirect' => \App\Http\Middleware\UserRedirect::class,
+        'admin-redirect' => \App\Http\Middleware\AdminRedirect::class, // already there
+
     ];
 }

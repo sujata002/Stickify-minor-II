@@ -27,13 +27,16 @@
                     <i class="fa fa-sign-out-alt"></i>Logout
                 </a>
             </li>
-        </ul>                 <!-- yo logout ko logic baki cha so route mileko chaina. DO IT -->
+        </ul>                
     </div>
 
     <div class="content">
         <nav class="navbar">
             <span>Stickify Admin Dashboard</span>
-            <a href="#"><i class="fa fa-user"></i>Profile</a>
+            <a href="#">
+                <i class="fa fa-user"></i> 
+                <span class="username-text">Hello, {{ auth()->user()->name }}</span>
+            </a>
         </nav>
 
         <div class="container mt-4">

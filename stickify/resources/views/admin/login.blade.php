@@ -39,7 +39,7 @@
 
 
                         <!-- jaba login form ko submission chai yo aunthenticate vanni route ma jancha-->
-                        <form action="{{ route('admin.authenticate')}}" method="post" onsubmit="return Login()">            <!-- yo onsubmit le it tells the browser “before submitting this form, run the Login() function ani if it returns false, don’t submit.-->
+                        <form action="{{ route('admin.authenticate')}}" method="post">            <!-- yo onsubmit le it tells the browser “before submitting this form, run the Login() function ani if it returns false, don’t submit.-->
                             @csrf
 
                             <div class="form-input">

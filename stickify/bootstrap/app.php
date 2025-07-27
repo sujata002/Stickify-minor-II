@@ -12,9 +12,14 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\AdminMiddleware::class,       // we'll use this alias in web.php
+            'user' => \App\Http\Middleware\UserMiddleware::class,       // we'll use this alias in web.php
+        ]);
+
         $middleware->redirectTo(
-            guests: '/account/login',             // if users try to access authenticated pages w/o logging in, they will be redirected to login page    
-            users: '/account/dashboard'          // if users r already logged in and they r still trying to access dashboard, they r redirected to dashboard again
+            guests: '/account/login',
+            users: '/account/dashboard'
         );
     })
     ->withExceptions(function (Exceptions $exceptions): void {

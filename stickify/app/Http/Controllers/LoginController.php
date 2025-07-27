@@ -7,14 +7,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 
 class LoginController extends Controller
 {
     //this method will show login page for users
-    public function index(){            // or keep login instead of index pachi herera milcha bhani
-        return view('login');          // uta maile make: view login garera login.blade.php banako thiye. tyo call gareko
+    public function index(){          
 
+        // to redirect users in dashboard if they try to access account/login while already being in dashboard
+        if (Auth::check() && Auth::user()->role === 'user') {           
+            return redirect()->route('user.dashboard');
+        } 
+
+        return view('login');          
     }
 
     // aba login page ma bhako user lai authenticate garnu parcha. so for authentication we r making this new method called authenticate. 
@@ -33,13 +39,14 @@ class LoginController extends Controller
             // and logs the user in by creating a session and then redirected to dashboard. 
 
             if (Auth::attempt(['email' => $request->email,'password' => $request->password])){
-                // return redirect()->route('user.dashboard');      
-                
+
                 $user = Auth::user();
 
                 if ($user->role === 'admin') {
                     // redirect admin to admin dashboard
-                    return redirect()->route('admin.dashboard');
+                    // return redirect()->route('admin.dashboard');        // yo admin/dashboard garda chai account/login ma admin le login garda user dashboard nai dekhaucha with Hello, Admin
+                    return redirect()->route('admin.login');                 // redirecting admin to admin/login page if they try to login from account/login page
+
                 } else {
                     // redirect regular user to user dashboard
                     return redirect()->route('user.dashboard');
@@ -62,6 +69,10 @@ class LoginController extends Controller
 
     public function register(){    // injecting request
 
+        // to redirect users in dashboard if they try to access account/register while already being in dashboard
+        if (Auth::check() && Auth::user()->role === 'user') {
+            return redirect()->route('user.dashboard');
+        }
         return view('register');      
 
     }
@@ -71,7 +82,8 @@ class LoginController extends Controller
         $validator = Validator::make($request->all(),[        // validating form    
             'email' => 'required|email|unique:users',       // yo users chai DB table ho user ko lagi. Email is required, must be in unique and in valid format, and not already in the users table.
             'user' => 'required|string|max:255',          // for user input field in sign up page
-            'password' => 'required|confirmed'           // Password is required, must match password_confirmation field, and be at least 8 characters long.
+            'password' => 'required|confirmed',          // Password is required, must match password_confirmation field, and be at least 8 characters long.
+            'password_confirmation' => 'required' 
         ]);
 
             if ($validator->passes()){         // checks if the form data is valid. if yes, user is created. if no, shows error in the else block
@@ -104,6 +116,7 @@ class LoginController extends Controller
 
     public function logout(){
         Auth::logout();
+        Session::flush();  
         return redirect()->route('login');
     }
 
@@ -114,10 +127,21 @@ class LoginController extends Controller
 
 
 
-// about auth::attempt
+/*     About auth::attempt
 
-// it finds the user by email
+it finds the user by email
 
-// then it automatically uses Hash::check() internally to compare & verify the plain password with the hashed one in the DB
+then it automatically uses Hash::check() internally to compare & verify the plain password with the hashed one in the DB
 
-// if the credentials match, Laravel logs in the user and sets the session. 
+if the credentials match, Laravel logs in the user and sets the session.  */
+
+
+
+/*   How if condition inside index and register method works
+
+if the user is already logged in and has the role user, they will be immediately redirected to /account/dashboard 
+if they try to access /account/login or /account/register
+
+if not logged in, they’ll see the login or registration page as usual
+
+this works even though we're not using the guest middleware or Laravel's default guards */
