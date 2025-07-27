@@ -50,7 +50,7 @@
   flex-wrap: wrap;
   color: #374151;
   flex-wrap: nowrap; /* Prevents breaking “How It Works” */
-  gap: 16px;
+  gap: 1px;
   margin-left: auto;
   margin-right: 20px;
 }

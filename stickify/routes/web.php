@@ -10,6 +10,7 @@ use App\Http\Controllers\NotesController;
 use App\Http\Controllers\ContactController;
 
 
+
 //Option A: Redirected to laravel home page 
 Route::get('/home', function () {
      return view('home');
@@ -92,9 +93,6 @@ Route::middleware('auth')->group(function () {
 });
 
 //email contact form route
-// This route displays the contact form
-// and handles the form submission to send an email
-// using the ContactController
 
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');

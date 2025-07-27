@@ -1,39 +1,20 @@
-<!DOCTYPE html>
+<!--DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stickify Signup</title>
 
-    <!-- (logo in tab) dui step bahira aaunu parcha to get the path -->
+    <!- (logo in tab) dui step bahira aaunu parcha to get the path ->
     <link rel="icon" type="image/png" href="{{ asset('logo/documentLogo.png') }}">
     <link rel="stylesheet" href="{{asset('css/register.css')}}">
-    <link rel="stylesheet" href="{{asset('css/main.css')}}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> <!-- for icons -->
+    <link rel="stylesheet" href="{{asset('css/homecss/main.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> <!- for icons ->
 </head>
-<body>
-    <nav class="navbar">
-    <div class="navbar-container">
-      <div class="navbar-inner">
-        <!-- Brand Logo and Title -->
-        <div class="navbar-brand">
-          <i class="bi bi-sticky brand-icon"></i>
-          <span class="brand-title" id="home">Stickify</span>
-        </div>
-        <!-- Navigation Links -->
-        <div class="navbar-links header">
-          <!--a href="#home" class="nav-link">Home</a-->    
-          <a href="{{ route('home') }}" class="nav-link">Home</a>
-          <a href="#about" class="nav-link">About</a>
-          <a href="#how-it-works" class="nav-link">How It Works</a>
-          <a href="#contact" class="nav-link">Contact</a>
-          <a href="{{ route('login') }}" class="nav-link">Log In</a>
-          <!--a href="{{ route('register') }}" class="nav-link">Sign Up</a-->
-        </div>
-        
-      </div>
-    </div>
-  </nav>
+<body-->
+@extends('layouts.app')
+@section('title', 'Stickify Register')
+@section('register')
 
     <main>
        <div class="outer-container">
@@ -105,10 +86,10 @@
         </div>
     </main>
 
-</body>
-</html>
+<!--/body>
+</html-->
 
-<script src="./signup.js"></script>
+<!--script src="./signup.js"></script-->
 
 
 

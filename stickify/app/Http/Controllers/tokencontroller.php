@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Controllers\TokenController;
 use Illuminate\Http\Request;
 use App\Models\ExtensionToken;
 use App\Models\User;
@@ -11,7 +9,7 @@ class TokenController extends Controller
 {
     public function generateToken(Request $request)
     {
-        // $user = User::first();
+         //$user = User::first();
 
         $user = auth()->user();
 

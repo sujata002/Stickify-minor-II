@@ -130,7 +130,10 @@
   max-width: 500px;
   margin: 0 auto 10px;
   aspect-ratio: 2.5 / 1.5;
-  background: url(../images/ourstory.png) center/cover no-repeat;
+  background-image: url('../../images/ourstory.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }

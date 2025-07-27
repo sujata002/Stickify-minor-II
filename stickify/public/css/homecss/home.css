@@ -1,12 +1,9 @@
-/* Hero Section Styles */
+/*------Hero Section Styles-------*/
 .hero-section {
   padding-top: 80px;
   padding-bottom: 80px;
-  background: rgb(243, 250, 243);
-  padding-top: 80px;
-  padding-bottom: 80px;
-  background: rgb(243, 250, 243);
-  background-image: url('../images/homebg.png');
+  background:#f3faf3;
+  background-image: url('../../images/homebg.png');
   background-repeat: no-repeat;
   background-position: right center;
   background-size: contain;
@@ -50,7 +47,7 @@
   color: #4b5563;
 }
 
-/*buttons*/
+/*------BUTTONS------*/
 .btn-chrome {
   display: inline-flex;
   align-items: center;
@@ -65,7 +62,7 @@
 }
 
 .btn-chrome i {
-  margin-right: 8px;
+  margin-right: 8px; /*gap between icon and text*/
 }
 
 .btn-chrome:hover {
@@ -88,7 +85,7 @@
 }
 
 .btn-learn-more i {
-  margin-right: 8px;
+  margin-right: 8px; /*gap between icon and text*/
 }
 
 .btn-learn-more:hover {
@@ -112,7 +109,6 @@
 
 .features-header {
   text-align: center;
-  margin-bottom: 64px;
 }
 
 /*.section-title {

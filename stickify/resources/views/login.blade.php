@@ -1,18 +1,21 @@
-<!DOCTYPE html>
+<!--DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stickify Login</title>
 
-    <!-- (logo in tab) dui step bahira aaunu parcha to get the path -->
+    <!- (logo in tab) dui step bahira aaunu parcha to get the path ->
     <link rel="icon" type="image/png" href="../logo/documentLogo.png">
     
-    <link rel="stylesheet" href="{{asset('css/login.css')}}">           <!-- connecting public->css->login.css file here to render css-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> <!-- for icons -->
-    <link rel="stylesheet" href="{{asset('main.css')}}"> <!-- connecting public->css->main.css file here to render css-->
+    <link rel="stylesheet" href="{{asset('css/login.css')}}">           <!- connecting public->css->login.css file here to render css->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> <!- for icons ->
+    <link rel="stylesheet" href="{{asset('main.css')}}"> <!- connecting public->css->main.css file here to render css->
 </head>
-<body>
+<body-->
+@extends('layouts.app')
+@section('title', 'Stickify Home')
+@section('login')
     <nav class="navbar">
     <div class="navbar-container">
       <div class="navbar-inner">
@@ -104,8 +107,8 @@
             </div>
         </div>
     </main>
+@endsection
+<!--/body>
+</html-->
 
-</body>
-</html>
-
-<script src="./login.js"></script>
+<!--script src="./login.js"></script>

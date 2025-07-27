@@ -1,46 +1,6 @@
-<!DOCTYPE html> <!--THIS IS THE HOME PAGE OF STICKIFY APP-->
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Stickify</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/howitworks.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
-</head>
-<body> 
- 
-     
-  <nav class="navbar">
-    <div class="navbar-container">
-      <div class="navbar-inner">
-        <!-- Brand Logo and Title -->
-        <div class="navbar-brand">
-          <i class="bi bi-sticky brand-icon"></i>
-          <span class="brand-title" id="home">Stickify</span>
-        </div>
-        <!-- Navigation Links -->
-        <div class="navbar-links header">
-          <!--a href="#home" class="nav-link">Home</a-->    
-          <a href="{{ route('home') }}" class="nav-link">Home</a>
-          <a href="#about" class="nav-link">About</a>
-          <a href="#how-it-works" class="nav-link">How It Works</a>
-          <a href="#contact" class="nav-link">Contact</a>
-          <a href="{{ route('login') }}" class="nav-link">Log In</a>
-          <!--a href="{{ route('register') }}" class="nav-link">Sign Up</a-->
-        </div>
-      </div>
-    </div>
-  </nav>
-
-<!--Home.css/Feature Section-->
-  <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+@extends('layouts.app')
+@section('title', 'Stickify Home')
+@section('content')
   <section id="home" class="hero-section">
   <div class="hero-container">
     <div class="hero-grid">
@@ -59,11 +19,11 @@
           Enjoy the freedom to create, read, update, and delete your notes, ensuring complete control over your data.        </p>
         <div class="buttons">
           <!-- Chrome Button -->
-          <a class="btn-chrome">
-            <i class="bi bi-browser-chrome" href="https://chromewebstore.google.com/">
+          <a class="btn-chrome" href="https://chromewebstore.google.com/" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-browser-chrome"></i>
             </i> <Span> Add Stickify to your Chrome now</Span>
           </a>
-          <a href="#about" class="btn-learn-more">
+          <a href="#feature-section" class="btn-learn-more">
             <i class="bi bi-info-circle"></i> Learn More
           </a>
         </div>
@@ -74,7 +34,7 @@
 
 
 <!--Home.css/Feature Section-->
-<section class="features-section">
+<section id="feature-section" class="features-section">
   <div class="features-container">
     <div class="features-header">
       <p class="section-heading">A better way to take notes</p>
@@ -292,8 +252,8 @@
           <label for="email">Your Email</label>
           <input type="email" id="email" name="email">
 
-          <!--label for="subject">Subject</label>
-          <input type="text" id="subject" name="subject"-->
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject"> 
 
           <label for="message">Your Message</label>
           <textarea id="message" name="message" rows="4"></textarea>
@@ -308,12 +268,12 @@
 
 <!--login section-->
 
-
+@endsection
 
 
 
 <!-- Footer -->
-<footer class="footer">
+<!--footer class="footer">
   <div class="footer-container">
     <div class="footer-inner">
       <div class="footer-logo">
@@ -327,15 +287,15 @@
         <a href="#how-it-works">How It Works</a>
         <a href="#contact">Contact</a>
         <a href="{{ route('login') }}">Log In</a>
-        <!--a href="{{ route('register') }}">Sign Up</a-->
+        <!-a href="{{ route('register') }}">Sign Up</a->
       </nav>
     </div>
+  </div>
   <div class="footer-container">
-    <p>&copy; 2023 Stickify. All rights reserved.</p>
+    <p>&copy; 2025 Stickify. All rights reserved.</p>
     <p>For Minor-II</p>
   </div>
-</footer> 
+</footer--> 
 
 
-</body>
-</html>
+
