@@ -1,19 +1,23 @@
 <?php
 
+use App\Http\Controllers\admin\LoginController as AdminLoginController;     // created alias of admin/logincontroller since arko pani logincontroller cha
+use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\LoginController;            // importing this since we have used LoginController tala route ma
+use App\Http\Controllers\DashboardController;  
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TokenController;
 use App\Http\Controllers\NotesController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ContactController;
 
-// Option A: Redirected to laravel home page 
-//Route::get('/', function () {
-  //   return view('welcome');
- //});
+
+//Option A: Redirected to laravel home page 
+Route::get('/home', function () {
+     return view('home');
+})->name('home'); // this is the home page of laravel app
+//added by samira
 
 // Option B: Redirect to dashboard. this takes users to the login page before being able to access dashboard
 Route::get('/', function () {
-    return view('home');
     return redirect()->route('dashboard');
 });            
 
@@ -34,9 +38,8 @@ Route::group(['prefix' => 'account'],function(){             // prefix example: 
     // this is Authenticated middleware for people who are logged in
     Route::group(['middleware' => 'auth'], function(){          
 
-        // Route::get('logout',[LoginController::class,'logout'])->name('logout');          this route is for logout. uncomment it after logout functionality is done
+        Route::get('logout',[LoginController::class,'logout'])->name('logout');          // this route is for logout
         Route::get('dashboard',[DashboardController::class,'dashboard'])->middleware('auth')->name('user.dashboard');    
-
 
     });
 
@@ -87,3 +90,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/notes/{id}', [NotesController::class, 'update']);
     Route::delete('/notes/{id}', [NotesController::class, 'destroy']);
 });
+
+//email contact form route
+// This route displays the contact form
+// and handles the form submission to send an email
+// using the ContactController
+
+Route::get('/contact', [ContactController::class, 'show'])->name('contact');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+

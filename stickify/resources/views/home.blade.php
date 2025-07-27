@@ -1,18 +1,21 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!--THIS IS THE HOME PAGE OF STICKIFY APP-->
 <html lang="en">
-    
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Stickify</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    @vite([
-    'resources/css/app.css',
-    ])
 
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/howitworks.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
 </head>
 <body> 
+ 
      
   <nav class="navbar">
     <div class="navbar-container">
@@ -24,15 +27,14 @@
         </div>
         <!-- Navigation Links -->
         <div class="navbar-links header">
-          <a href="#home" class="nav-link">Home</a>
+          <!--a href="#home" class="nav-link">Home</a-->    
+          <a href="{{ route('home') }}" class="nav-link">Home</a>
           <a href="#about" class="nav-link">About</a>
           <a href="#how-it-works" class="nav-link">How It Works</a>
           <a href="#contact" class="nav-link">Contact</a>
-          <a href="login.blade.php" class="nav-link">Log in</a>
+          <a href="{{ route('login') }}" class="nav-link">Log In</a>
+          <!--a href="{{ route('register') }}" class="nav-link">Sign Up</a-->
         </div>
-        <!--button id="mobile-menu-button" class="mobile-toggle">
-          <i class="fas fa-bars"></i>
-        </button-->
       </div>
     </div>
   </nav>
@@ -51,14 +53,18 @@
           The ultimate browser extension for capturing, organizing, and accessing your notes across all your favorite websites.
           Secure, flexible, and accessible
           Stickify is your ultimate note-taking companion based in Kathmandu, NP. 
-          With user authentication, you can store and access your notes safely, giving you peace of mind. 
+          With user authentication, you can store and access your notes safely, giving you peace of mind.<br><br> 
           Manage your notes effortlessly from your dashboard, and easily trace the URLs where they were created. 
           Our handy browser extension allows you to add and modify notes without leaving the page. 
           Enjoy the freedom to create, read, update, and delete your notes, ensuring complete control over your data.        </p>
         <div class="buttons">
           <!-- Chrome Button -->
           <a class="btn-chrome">
-            <i class="bi bi-browser-chrome"></i> <Span>Add Stickify to your Chrome now</Span>
+            <i class="bi bi-browser-chrome" href="https://chromewebstore.google.com/">
+            </i> <Span> Add Stickify to your Chrome now</Span>
+          </a>
+          <a href="#about" class="btn-learn-more">
+            <i class="bi bi-info-circle"></i> Learn More
           </a>
         </div>
     </div>
@@ -278,7 +284,8 @@
       <!-- Contact Form -->
       <div class="contact-form-card">
         <h3>Send us your feedback here:</h3>
-        <form class="contact-form">
+        <form class="contact-form" method="POST" action="{{ route('contact.send') }}">
+          @csrf
           <label for="name"> Your Name:</label>
           <input type="text" id="name" name="name">
 
@@ -298,6 +305,36 @@
     </div>
   </div>
 </section>
+
+<!--login section-->
+
+
+
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <i class="bi bi-sticky"></i>
+        <span>Stickify</span>
+        <p>Pin It, Keep It, Recall It</p>
+      </div>
+      <nav class="footer-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#contact">Contact</a>
+        <a href="{{ route('login') }}">Log In</a>
+        <!--a href="{{ route('register') }}">Sign Up</a-->
+      </nav>
+    </div>
+  <div class="footer-container">
+    <p>&copy; 2023 Stickify. All rights reserved.</p>
+    <p>For Minor-II</p>
+  </div>
+</footer> 
 
 
 </body>

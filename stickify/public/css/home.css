@@ -50,6 +50,7 @@
   color: #4b5563;
 }
 
+/*buttons*/
 .btn-chrome {
   display: inline-flex;
   align-items: center;
@@ -67,11 +68,35 @@
   margin-right: 8px;
 }
 
-.browser-note {
-  margin-top: 12px;
-  font-size: 14px;
-  color: #6b7280;
+.btn-chrome:hover {
+  background-color: #d1f7d1;
+  color: #065f46;
+  cursor: pointer;
 }
+
+.btn-learn-more{
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 10px;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 500%;
+  color: green;
+  background-color: rgb(228, 239, 228);
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+}
+
+.btn-learn-more i {
+  margin-right: 8px;
+}
+
+.btn-learn-more:hover {
+  background-color: #d1f7d1;
+  color: #065f46;
+  cursor: pointer;
+}
+
 
 /*Features*/
 .features-section {
