@@ -6,6 +6,9 @@ use App\Http\Controllers\LoginController;            // importing this since we 
 use App\Http\Controllers\DashboardController;  
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TokenController;
+use App\Http\Controllers\NotesController;
+use App\Models\Note;
+
 
 // this is my route
 
@@ -16,7 +19,8 @@ Route::get('/', function () {
 
 // Dashboard route showing the token generation form
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $notes = Note::where('user_id', auth()->id())->get();  // Fetch notes for logged-in user
+    return view('dashboard', compact('notes'));             // Pass notes to view
 })->middleware('auth')->name('dashboard');
 
 // Token generation POST route for normal form submit (if you keep it)
