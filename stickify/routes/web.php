@@ -12,15 +12,11 @@ use App\Http\Controllers\ContactController;
 
 
 //Option A: Redirected to laravel home page 
-Route::get('/home', function () {
+Route::get('/', function () {
      return view('home');
 })->name('home'); // this is the home page of laravel app
 //added by samira
-
-// Option B: Redirect to dashboard. this takes users to the login page before being able to access dashboard
-Route::get('/', function () {
-    return redirect()->route('dashboard');
-});            
+           
 
 // this is grouped for users, like what pages they can access. Users cant access dashboard without logging in
 

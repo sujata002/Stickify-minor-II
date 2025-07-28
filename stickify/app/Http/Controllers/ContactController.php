@@ -62,8 +62,8 @@ class ContactController extends Controller
 
             // Recipients
             $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME')); // Sender's email and name from .env
-            $mail->addAddress('sameera.ban0123@apexcollege.edu.np', 'stickify'); // Add a recipient (where the email will be sent)
-            $mail->addReplyTo($email, $name); // Add a reply-to address (the user's email)
+            $mail->addAddress('stikcifyapp@gmail.com', 'stickify'); // Add a recipient (where the email will be sent)
+            //$mail->addReplyTo($email, $name); // Add a reply-to address (the user's email)
 
             // Content
             $mail->isHTML(true); // Set email format to HTML

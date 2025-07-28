@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Stickify Home')
+@section('title', 'Stickify')
 @section('content')
   <section id="home" class="hero-section">
   <div class="hero-container">
@@ -252,8 +252,8 @@
           <label for="email">Your Email</label>
           <input type="email" id="email" name="email">
 
-          <label for="subject">Subject</label>
-          <input type="text" id="subject" name="subject"> 
+          <!--label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject"--> 
 
           <label for="message">Your Message</label>
           <textarea id="message" name="message" rows="4"></textarea>
