@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TokenController;
 use App\Http\Controllers\NotesController;
 use App\Models\Note;
+use App\Http\Controllers\NotesViewController;
 
 
 // this is my route
@@ -16,6 +17,10 @@ use App\Models\Note;
 Route::get('/', function () {
     return redirect()->route('dashboard');
 });
+
+//for mynotes
+Route::get('/mynotes', [NotesViewController::class, 'index'])->middleware('auth')->name('mynotes');
+
 
 // Dashboard route showing the token generation form
 Route::get('/dashboard', function () {

@@ -24,7 +24,7 @@
       </div>
       <nav>
         <a href="#"><i class="fa-solid fa-bars"></i> Dashboard</a>
-        <a href="#"><i class="fa-solid fa-note-sticky"></i> My Notes</a>
+        <a href="{{route('mynotes')}}"><i class="fa-solid fa-note-sticky"></i> My Notes</a>
         <a href="#"><i class="fa-solid fa-bookmark"></i> Bookmarks</a>
         <a href="#"><i class="fa-solid fa-folder-plus"></i> Categories</a>
         <a href="#"><i class="fa-solid fa-trash"></i> Trash</a>
@@ -141,7 +141,6 @@
           <button id="passwordBtn">Reset Password</button>
           <button id="deleteAccountBtn">Delete Account</button>
           <button id="installExtensionBtn">Install Browser Extension</button>
-          <button id="upgradePlanBtn">Upgrade Plan</button>
         </div>
       </div>
     </div>
