@@ -17,9 +17,8 @@ return new class extends Migration
         $table->unsignedBigInteger('user_id'); // FK to users table
 
         $table->text('note_text');
-        $table->text('note_title');
+        $table->string('note_title');
 
-        $table->string('url')->nullable(); // where note was created
 
         $table->timestamps();
         

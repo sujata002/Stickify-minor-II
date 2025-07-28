@@ -9,6 +9,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/mynotes.css') }}">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -22,7 +23,7 @@
       </div>
       <nav>
         <a href="{{ route('dashboard') }}"><i class="fa-solid fa-bars"></i> Dashboard</a>
-        <a href="{{ route('mynotes') }}"><i class="fa-solid fa-note-sticky"></i> My Notes</a>
+        <a href="{{ route('mynotes') }}" class="active"><i class="fa-solid fa-note-sticky"></i> My Notes</a>
         <a href="#"><i class="fa-solid fa-bookmark"></i> Bookmarks</a>
         <a href="#"><i class="fa-solid fa-folder-plus"></i> Categories</a>
         <a href="#"><i class="fa-solid fa-trash"></i> Trash</a>
@@ -34,51 +35,52 @@
       </div>
     </aside>
 
-    <!-- for settings pop up garchha-->
-  <div id="modalSettings" class="modal">
-    <div class="modal-content">
-      <span class="closeSettingsBtn">&times;</span>
-      <div class="settingsContent">
-        <div class="settings">
-          <h1>Settings</h1>
-
-          <div class="settings-option">
-            <label for="theme">Theme:</label><!--optional-->
-            <select id="theme">
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-            </select>
-          </div>
-
-          <div class="settings-option">
-            <button id="passwordBtn">Reset Password</button>
-            <button id="deleteAccountBtn">Delete Account</button>
-            <button id="installExtensionBtn">Install Browser Extension</button>
+    <!-- Settings Modal -->
+    <div id="modalSettings" class="modal">
+      <div class="modal-content">
+        <span class="closeSettingsBtn">&times;</span>
+        <div class="settingsContent">
+          <div class="settings">
+            <h1>Settings</h1>
+            <div class="settings-option">
+              <label for="theme">Theme:</label>
+              <select id="theme">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
+            </div>
+            <div class="settings-option">
+              <button id="passwordBtn">Reset Password</button>
+              <button id="deleteAccountBtn">Delete Account</button>
+              <button id="installExtensionBtn">Install Browser Extension</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Main content -->
+    <!-- Main Content -->
     <main class="main-content">
+      <div class="notes-container">
+        <div class="note-header">
+          <button id="createNoteBtn" class="create-note-btn">
+            <i class="fa-solid fa-plus"></i> Create Note
+          </button>
+        </div>
 
-      @if($notes->isEmpty())
-        <p>You don't have any notes yet.</p>
-      @else
-        <ul class="notes-list">
-          @foreach($notes as $note)
-            <li class="note-item">
-              <p>{{ $note->note_text }}</p>
-              @if($note->url)
-                <a href="{{ $note->url }}" target="_blank" rel="noopener noreferrer">Related Link</a>
-              @endif
-            </li>
-          @endforeach
+        <p class="no-notes" id="noNotesMessage">
+          You dont have any notes yet.
+        </p>
+
+        <ul class="notes-list" id="notesList">
+          <!-- Dynamic notes will be appended here by JavaScript -->
         </ul>
-      @endif
+      </div>
     </main>
   </div>
-  <!-- External JS -->
+
+  <!-- Scripts -->
   <script src="{{ asset('js/dashboard.js') }}"></script>
+  <script src="{{ asset('js/mynotes.js') }}"></script>
 </body>
 </html>

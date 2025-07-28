@@ -6,7 +6,6 @@ use App\Http\Controllers\LoginController;            // importing this since we 
 use App\Http\Controllers\DashboardController;  
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TokenController;
-use App\Http\Controllers\NotesController;
 use App\Models\Note;
 use App\Http\Controllers\NotesViewController;
 
@@ -17,9 +16,6 @@ use App\Http\Controllers\NotesViewController;
 Route::get('/', function () {
     return redirect()->route('dashboard');
 });
-
-//for mynotes
-Route::get('/mynotes', [NotesViewController::class, 'index'])->middleware('auth')->name('mynotes');
 
 
 // Dashboard route showing the token generation form
@@ -36,11 +32,15 @@ Route::post('/api/generate-token', [TokenController::class, 'generateToken'])
     ->name('api.generate.token');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/notes', [NotesController::class, 'index']);
-    Route::post('/notes', [NotesController::class, 'store']);
-    Route::get('/notes/{id}', [NotesController::class, 'show']);
-    Route::put('/notes/{id}', [NotesController::class, 'update']);
-    Route::delete('/notes/{id}', [NotesController::class, 'destroy']);
+    // My Notes Blade View
+    Route::get('/mynotes', [NotesViewController::class, 'index'])->name('mynotes');
+
+    // Note API Endpoints
+    Route::get('/notes', [NotesViewController::class, 'fetchNotes']);
+    Route::post('/notes', [NotesViewController::class, 'store']);
+    Route::get('/notes/{id}', [NotesViewController::class, 'show']);
+    Route::put('/notes/{id}', [NotesViewController::class, 'update']);
+    Route::delete('/notes/{id}', [NotesViewController::class, 'destroy']);
 });
 
 
