@@ -180,6 +180,9 @@
     </div>
   </div>
 
+  <!-- This is for backend of crud operation -->
+   
+
   <!-- External JS -->
   <script src="{{ asset('js/dashboard.js') }}"></script>
 </body>
