@@ -4,18 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
-
   <title>Stickify - My Notes</title>
 
   <!-- Styles -->
   <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
   <link rel="stylesheet" href="{{ asset('css/mynotes.css') }}">
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <div class="container">
+
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="logo">
@@ -63,24 +61,34 @@
     <main class="main-content">
       <div class="notes-container">
         <div class="note-header">
-          <button id="createNoteBtn" class="create-note-btn">
+          <a href="{{ route('mynotes.create') }}" class="create-note-btn">
             <i class="fa-solid fa-plus"></i> Create Note
-          </button>
+          </a>
         </div>
 
-        <p class="no-notes" id="noNotesMessage">
-          You dont have any notes yet.
-        </p>
-
-        <ul class="notes-list" id="notesList">
-          <!-- Dynamic notes will be appended here by JavaScript -->
-        </ul>
+       <table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Note</th>
+      <th colspan="2" style="text-align: center;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach($notes as $note)
+      <tr>
+        <td>{{ $note->title }}</td>
+        <td>{{ $note->note_text }}</td>
+        <td><a href="{{ route('mynotes.edit', $note->id) }}">Edit</a></td>
+        <td><a href="{{ route('mynotes.delete', $note->id) }}">Delete</a></td>
+      </tr>
+    @endforeach
+  </tbody>
+</table>
       </div>
     </main>
   </div>
 
-  <!-- Scripts -->
   <script src="{{ asset('js/dashboard.js') }}"></script>
-  <script src="{{ asset('js/mynotes.js') }}"></script>
 </body>
 </html>

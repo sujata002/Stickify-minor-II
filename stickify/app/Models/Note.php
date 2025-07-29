@@ -4,15 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Note extends Model
 {
+
+    use SoftDeletes;
     // fields that can be safely filled automatically when creating or updating afno record or notes
     protected $fillable = [
-        'note_text',
-        'url',
-        'user_id',
-    ];
+    'title',
+    'note_text',
+    'url',
+    'user_id',
+];
+
 
     // note ra user ko realtionship
     public function user()

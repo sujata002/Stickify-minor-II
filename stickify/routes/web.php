@@ -34,13 +34,16 @@ Route::post('/api/generate-token', [TokenController::class, 'generateToken'])
 Route::middleware('auth')->group(function () {
     // My Notes Blade View
     Route::get('/mynotes', [NotesViewController::class, 'index'])->name('mynotes');
+    Route::get('/mynotes/create', [NotesViewController::class, 'create'])->name('mynotes.create');
+    Route::post('/mynotes/store', [NotesViewController::class, 'store'])->name('mynotes.store');
+    Route::get('/mynotes/edit/{id}', [NotesViewController::class, 'edit'])->name('mynotes.edit');
+    Route::post('/mynotes/update/{id}', [NotesViewController::class, 'update'])->name('mynotes.update');
+    Route::get('/mynotes/delete/{id}', [NotesViewController::class, 'delete'])->name('mynotes.delete');
 
-    // Note API Endpoints
-    Route::get('/notes', [NotesViewController::class, 'fetchNotes']);
-    Route::post('/notes', [NotesViewController::class, 'store']);
-    Route::get('/notes/{id}', [NotesViewController::class, 'show']);
-    Route::put('/notes/{id}', [NotesViewController::class, 'update']);
-    Route::delete('/notes/{id}', [NotesViewController::class, 'destroy']);
+    Route::get('/mynotes/trash', [NotesViewController::class, 'trash'])->name('mynotes.trash');
+    Route::post('/mynotes/restore/{id}', [NotesViewController::class, 'restore'])->name('mynotes.restore');
+    Route::delete('/mynotes/destroy/{id}', [NotesViewController::class, 'destroy'])->name('mynotes.destroy');
+
 });
 
 

@@ -7,21 +7,17 @@ use App\Models\Note;
 
 class NotesViewController extends Controller
 {
-    // Show the "My Notes" Blade view (JS will load the notes)
     public function index()
     {
-        // You are not passing $notes to the Blade view
-        return view('mynotes');
+        $notes = Note::where('user_id', auth()->id())->get();
+        return view('note.index', compact('notes'));
     }
 
-    // Fetch all notes for the authenticated user (AJAX)
-    public function fetchNotes(Request $request)
+    public function create()
     {
-        $notes = $request->user()->notes()->latest()->get();
-        return response()->json($notes);
+        return view('note.create');
     }
 
-    // Store a new note
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -29,22 +25,21 @@ class NotesViewController extends Controller
             'note_text' => 'required|string',
         ]);
 
-        $note = $request->user()->notes()->create([
-            'note_title' => $validated['title'],
+        Note::create([
+            'title' => $validated['title'],
             'note_text' => $validated['note_text'],
+            'user_id' => auth()->id(),
         ]);
 
-        return response()->json($note, 201);
+        return redirect()->route('mynotes')->with('success', 'Note created successfully.');
     }
 
-    // Get a single note
-    public function show(Request $request, $id)
+    public function edit($id)
     {
-        $note = $request->user()->notes()->findOrFail($id);
-        return response()->json($note);
+        $note = Note::where('user_id', auth()->id())->findOrFail($id);
+        return view('note.edit', compact('note'));
     }
 
-    // Update an existing note
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
@@ -52,21 +47,40 @@ class NotesViewController extends Controller
             'note_text' => 'required|string',
         ]);
 
-        $note = $request->user()->notes()->findOrFail($id);
-        $note->update([
-            'note_title' => $validated['title'],
-            'note_text' => $validated['note_text'],
-        ]);
+        $note = Note::where('user_id', auth()->id())->findOrFail($id);
+        $note->update($validated);
 
-        return response()->json(['message' => 'Note updated']);
+        return redirect()->route('mynotes')->with('success', 'Note updated successfully.');
     }
 
-    // Delete a note
-    public function destroy(Request $request, $id)
+    public function delete($id)
     {
-        $note = $request->user()->notes()->findOrFail($id);
+        $note = Note::where('user_id', auth()->id())->findOrFail($id);
         $note->delete();
 
-        return response()->json(['message' => 'Note deleted']);
+        return redirect()->route('mynotes')->with('success', 'Note deleted successfully.');
     }
+
+    public function trash()
+    {
+        $notes = Note::onlyTrashed()
+                    ->where('user_id', auth()->id())
+                    ->get();
+        return view('note.trash', compact('notes'));
+    }
+
+    public function restore($id)
+    {
+        $note = Note::onlyTrashed()->findOrFail($id);
+        $note->restore();
+        return redirect()->route('mynotes.trash')->with('success', 'Note restored successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $note = Note::onlyTrashed()->findOrFail($id);
+        $note->forceDelete();
+        return redirect()->route('mynotes.trash')->with('success', 'Note permanently deleted.');
+    }
+
 }

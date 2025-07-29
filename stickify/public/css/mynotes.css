@@ -1,174 +1,121 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  color: #333;
-}
-
-.notes-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px 30px;
-  padding-top: 60px;
-  display: flex;
-  flex-direction: column;
-}
-
+/* --- Note Header + Buttons --- */
 .note-header {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.create-note-btn {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+  margin-left: 20px;
+  margin-top: 16px;
+
+}
+
+.create-note-btn:hover {
+  background-color: #218838;
+}
+
+/* --- Form Styles (Create/Edit) --- */
+form {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.04);
+  margin-bottom: 30px;
+}
+
+.form-group {
   margin-bottom: 20px;
 }
 
-#createNoteBtn {
-  padding: 10px 18px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 6px;
+.form-group label {
   font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  display: block;
+  margin-bottom: 6px;
+  color: #333;
 }
 
-#createNoteBtn:hover {
-  background-color: #218838;
-}
-
-.notes-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.note-form,
-.note-item {
-  background: linear-gradient(to right, #ffffff, #f9f9f9);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.2s ease;
-}
-
-.note-form:hover,
-.note-item:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-}
-
-.note-title,
-.note-text {
+.form-group input,
+.form-group textarea {
   width: 100%;
   padding: 10px;
-  margin-bottom: 12px;
-  border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 1rem;
-  background-color: #fff;
+  border: 1px solid #ccc;
+  font-size: 14px;
   resize: vertical;
 }
 
-.note-text {
-  min-height: 100px;
-}
-
-.note-title-display {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.note-text-display {
-  font-size: 1rem;
-  margin-bottom: 12px;
-  white-space: pre-wrap;
-}
-
-.note-form-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-/* Action buttons */
-.note-form-actions button {
-  padding: 8px 14px;
-  font-size: 0.9rem;
+#saveNoteBtn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  font-size: 14px;
 }
 
-/* Save */
-.save-note {
-  background-color: #28a745;
-  color: white;
-}
-
-.save-note:hover {
+#saveNoteBtn:hover {
   background-color: #218838;
-  transform: translateY(-1px);
 }
 
-/* Cancel */
-.cancel-note,
-.cancel-edit {
-  background-color: #6c757d;
-  color: white;
+/* --- Table Styles (Index/List View) --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-.cancel-note:hover,
-.cancel-edit:hover {
-  background-color: #5a6268;
-  transform: translateY(-1px);
+table tr {
+  border-bottom: 1px solid #ddd;
 }
 
-/* Edit */
-.edit-note {
-  background-color: #ffc107;
-  color: black;
+table td {
+  padding: 12px 10px;
+  font-size: 15px;
+  vertical-align: middle;
 }
 
-.edit-note:hover {
-  background-color: #e0a800;
-  transform: translateY(-1px);
+table td a {
+  display: inline-block;
+  background-color: #28a745;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  margin-right: 8px;
+  transition: background-color 0.3s ease;
 }
 
-/* Update */
-.update-note {
-  background-color: #007bff;
-  color: white;
+table td a:hover {
+  background-color: #218838;
 }
 
-.update-note:hover {
-  background-color: #0069d9;
-  transform: translateY(-1px);
+/* --- Notes List (if used in dynamic JS rendering) --- */
+.notes-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
 }
 
-/* Delete */
-.delete-note {
-  background-color: #dc3545;
-  color: white;
-}
-
-.delete-note:hover {
-  background-color: #c82333;
-  transform: translateY(-1px);
-}
-
-/* No Notes Message */
-.no-notes {
-  font-style: italic;
-  color: #777;
-  padding: 20px;
-  text-align: center;
-  font-size: 1.1rem;
+.notes-list li {
+  background: #e8f5e9;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 6px;
 }

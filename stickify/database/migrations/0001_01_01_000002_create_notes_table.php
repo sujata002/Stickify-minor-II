@@ -17,10 +17,11 @@ return new class extends Migration
         $table->unsignedBigInteger('user_id'); // FK to users table
 
         $table->text('note_text');
-        $table->string('note_title');
+        $table->string('title');
 
 
         $table->timestamps();
+        $table->softDeletes();
         
         // Foreign Key Constraint
         $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
