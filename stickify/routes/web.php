@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TokenController;
 use App\Http\Controllers\NotesController;
+use App\Http\Controllers\StripeController;
 
 
 // Option A: Redirected to laravel home page 
@@ -89,3 +90,11 @@ Route::middleware('auth')->group(function () {
     Route::put('/notes/{id}', [NotesController::class, 'update']);
     Route::delete('/notes/{id}', [NotesController::class, 'destroy']);
 });
+
+
+/* for payment gateway */
+
+// Route::post('stripe/checkout',[StripeController::class,'checkout'])->name('stripe.checkout');
+Route::post('stripe/checkout-session',[StripeController::class,'session'])->name('stripe.session');
+Route::get('stripe/checkout-success',[StripeController::class,'success'])->name('stripe.success');
+Route::get('stripe/checkout-cancel',[StripeController::class,'cancel'])->name('stripe.cancel');

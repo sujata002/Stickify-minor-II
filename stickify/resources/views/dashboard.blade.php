@@ -29,6 +29,17 @@
         <a href="#"><i class="fa-solid fa-bookmark"></i> Bookmarks</a>
         <a href="#"><i class="fa-solid fa-folder-plus"></i> Categories</a>
         <a href="#"><i class="fa-solid fa-trash"></i> Trash</a>
+        @unless(Auth::user()->is_premium)
+          <form action="{{ route('stripe.session') }}" method="POST" style="margin: 10px 0px;">
+            @csrf
+            <button type="submit" class="sidebar-upgrade-btn">
+              <i class="fa-solid fa-crown"></i> Upgrade to Premium
+            </button>
+          </form>
+        @endunless
+
+
+
       </nav>
       <div class="projects">
         <a href="#" id="settingsLink"><i class="fa-solid fa-gear"></i> Settings</a>
@@ -43,6 +54,15 @@
       <!-- TOPBAR: Username + Icon (top right corner) -->
       <div class="user-topbar">
         <div class="dashboard-title">Stickify User Dashboard</div>
+
+      <div class="center" style="flex: 1; text-align: center;">
+        @if(Auth::user()->is_premium)
+          <div class="premium-message" style="color: #ffffff; font-weight: bold;">
+              🌟 You are a Premium User!
+          </div>
+        @endif
+      </div>
+
         <div class="user-info">
           <i class="fa-solid fa-user"></i>
           <span class="username-text">Hello, {{ Auth::user()->name }}</span>     <!-- used auth user name to display name of currently logged in user-->
@@ -180,7 +200,55 @@
     </div>
   </div>
 
+  <!-- upgrade confirmation pop up -->
+  <div class="modal fade" id="upgradeModal" tabindex="-1" aria-labelledby="upgradeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="upgradeModalLabel">
+            <i class="fa-solid fa-crown text-warning me-2"></i> Confirm Premium Upgrade
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          You're about to upgrade to <strong>Stickify Premium</strong> for <span class="text-success">$2.52</span>.
+          <br><br>
+          Do you want to continue?
+        </div>
+        <div class="modal-footer">
+          <button id="confirmUpgradeBtn" type="button" class="btn btn-warning text-white">Yes, Upgrade Now</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS bundle (required for popup to work) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const upgradeForm = document.querySelector('form[action="{{ route('stripe.session') }}"]');
+      const upgradeModal = new bootstrap.Modal(document.getElementById('upgradeModal'));
+      const confirmBtn = document.getElementById('confirmUpgradeBtn');
+
+      // when user clicks the upgrade button (submit), prevent submission & show modal
+      upgradeForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        upgradeModal.show();
+      });
+
+      // when user clicks confirm inside modal, submit the form programmatically
+      confirmBtn.addEventListener('click', function() {
+        upgradeModal.hide();
+        upgradeForm.submit();
+      });
+    });
+  </script>
+
   <!-- External JS -->
   <script src="{{ asset('js/dashboard.js') }}"></script>
+
+
 </body>
 </html>

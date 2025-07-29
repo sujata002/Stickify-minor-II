@@ -15,12 +15,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,       // we'll use this alias in web.php
             'user' => \App\Http\Middleware\UserMiddleware::class,       // we'll use this alias in web.php
-        ]);
 
-        $middleware->redirectTo(
-            guests: '/account/login',
-            users: '/account/dashboard'
-        );
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
