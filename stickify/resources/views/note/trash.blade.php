@@ -25,6 +25,11 @@
         <a href="#"><i class="fa-solid fa-folder-plus"></i> Categories</a>
         <a href="{{ route('mynotes.trash') }}" class="active"><i class="fa-solid fa-trash"></i> Trash</a>
       </nav>
+      <div class="projects">
+        <a href="#" id="settingsLink"><i class="fa-solid fa-gear"></i> Settings</a>
+        <a href="#"><i class="fa-solid fa-circle-question"></i> Help & Feedback</a>
+        <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </div>
     </aside>
 
     <!-- Main Content -->

@@ -24,7 +24,8 @@
         <a href="{{ route('mynotes') }}" class="active"><i class="fa-solid fa-note-sticky"></i> My Notes</a>
         <a href="#"><i class="fa-solid fa-bookmark"></i> Bookmarks</a>
         <a href="#"><i class="fa-solid fa-folder-plus"></i> Categories</a>
-        <a href="#"><i class="fa-solid fa-trash"></i> Trash</a>
+        <a href="{{ route('mynotes.trash') }}"><i class="fa-solid fa-trash"></i> Trash<a>
+
       </nav>
       <div class="projects">
         <a href="#" id="settingsLink"><i class="fa-solid fa-gear"></i> Settings</a>

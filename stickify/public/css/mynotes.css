@@ -119,3 +119,94 @@ table td a:hover {
   padding: 15px;
   border-radius: 6px;
 }
+
+/* ===== Trash Page Styles ===== */
+.notes-container {
+  background: #f9f9f9;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  margin-top: 20px;
+}
+
+.note-header h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Trash Table */
+.notes-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.notes-container th,
+.notes-container td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+  font-size: 15px;
+}
+
+.notes-container th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  color: #444;
+}
+
+.notes-container td:last-child,
+.notes-container td:nth-last-child(2) {
+  text-align: center;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-restore {
+  background-color: #e0f8e5;
+  color: #15803d;
+  border: 1px solid #c4e4cf;
+}
+
+.btn-restore:hover {
+  background-color: #c8f0d3;
+}
+
+.btn-delete {
+  background-color: #ffe4e4;
+  color: #b91c1c;
+  border: 1px solid #f1bfbf;
+}
+
+.btn-delete:hover {
+  background-color: #f8cfcf;
+}
+
+/* Success Message */
+.alert-success {
+  background-color: #e6ffed;
+  border: 1px solid #b2f5ba;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: #256029;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
