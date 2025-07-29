@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ExtensionToken;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TokenController extends Controller
 {
     public function generateToken(Request $request)
     {
-         //$user = User::first();
+        // $user = User::first();
 
-        $user = auth()->user();
+        $user = Auth::user();
 
         if (!$user) {
             if ($request->expectsJson()) {

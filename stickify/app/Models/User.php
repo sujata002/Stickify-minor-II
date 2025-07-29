@@ -15,7 +15,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'verification_token',     // for extension token generation..... this is just copied from dg-work ko user.php bata yo line matra
+        'verification_token', // for extension token generation
     ];
 
     protected $hidden = [

@@ -45,7 +45,7 @@
   margin-right: 40rem;
 }
 
-.navbar-links .header {
+.navbar-links header {
   display: none;
   flex-wrap: wrap;
   color: #374151;

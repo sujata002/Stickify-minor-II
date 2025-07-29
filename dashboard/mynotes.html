@@ -9,10 +9,11 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"> --}}
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
 </head>
 
 <body>
@@ -23,35 +24,35 @@
         <p>STICKIFY</p>
       </div>
       <nav>
-        <a href="#"><i class="fa-solid fa-bars"></i> Dashboard</a>
-        <a href="{{route('mynotes')}}"><i class="fa-solid fa-note-sticky"></i> My Notes</a>
+        <a href="index.html"><i class="fa-solid fa-bars"></i> Dashboard</a>
+        <a href="mynotes.html"><i class="fa-solid fa-note-sticky"></i> My Notes</a>
         <a href="#"><i class="fa-solid fa-bookmark"></i> Bookmarks</a>
         <a href="#"><i class="fa-solid fa-folder-plus"></i> Categories</a>
         <a href="#"><i class="fa-solid fa-trash"></i> Trash</a>
       </nav>
       <div class="projects">
         <a href="#" id="settingsLink"><i class="fa-solid fa-gear"></i> Settings</a>
-        <a href="#"><i class="fa-solid fa-circle-question"></i> Help & Feedback</a>
-        <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        <a href="home.blade.php"><i class="fa-solid fa-circle-question"></i> Help & Feedback</a>
+        <a href="{{ route('logout')}}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
       </div>
     </aside>
 
     <!-- Main -->
     <main class="main">
-    <!-- TOPBAR: Username + Icon (top right corner) -->
+      <!-- TOPBAR: Username + Icon (top right corner) -->
       <div class="user-topbar">
         <div class="dashboard-title">Stickify User Dashboard</div>
         <div class="user-info">
           <i class="fa-solid fa-user"></i>
-          <span class="username-text">Hello, {{ Auth::user()->name }}</span> <!-- used auth user name to display name of currently logged in user-->
+          <span class="username-text">Hello, {{ Auth::user()->name }}</span>     <!-- used auth user name to display name of currently logged in user-->
         </div>
-        </div>
-  
+      </div>
+
       <!-- Top Toolbar -->
-      <div class="tabs" style="display: flex; flex-direction: column; gap: 10px; margin: 20px 20px;">
+      <div class="tabs" style="display: flex; flex-direction: column; gap: 10px; margin:20px 20px;">
         <!-- First Row: Generate Token + Token Display -->
         <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px;">
-        
+   
         <!-- NO form -->
          <form id="tokenForm" method="POST" action="{{ route('generate.token') }}">
           @csrf
@@ -59,8 +60,6 @@
             Generate Token
           </button>
         </form>
-
-          
 
           <div id="generatedTokenContainer" style="align-items: center; gap: 8px;">
             <!-- <label style="font-weight: bold;">Token Generated:</label> -->
@@ -85,8 +84,8 @@
         </div>
       </div>
 
-    <!-- Notes Grid -->
-    <div class="notes-grid">
+      <!-- Notes Grid -->
+      <div class="notes-grid">
         <div class="note-card">
           <div class="note-header">
             <span class="note-date"></span>
@@ -129,7 +128,7 @@
     <div class="modal-content">
       <span class="closeSettingsBtn">&times;</span>
       <div class="settingsContent">
-        <h2 style="text-align: center;">Settings</h2>
+        <h1>Settings</h1>
         <div class="settings-option">
           <label for="theme">Theme:</label>
           <select id="theme">
@@ -141,6 +140,7 @@
           <button id="passwordBtn">Reset Password</button>
           <button id="deleteAccountBtn">Delete Account</button>
           <button id="installExtensionBtn">Install Browser Extension</button>
+          <button id="upgradePlanBtn">Upgrade Plan</button>
         </div>
       </div>
     </div>
@@ -179,33 +179,6 @@
     </div>
   </div>
 
-  <!-- for settings pop up garchha-->
-  <div id="modalSettings" class="modal">
-    <div class="modal-content">
-      <span class="closeSettingsBtn">&times;</span>
-      <div class="settingsContent">
-        <div class="settings">
-          <h1>Settings</h1>
-
-          <div class="settings-option">
-            <label for="theme">Theme:</label><!--optional-->
-            <select id="theme">
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-            </select>
-          </div>
-
-          <div class="settings-option">
-            <button id="passwordBtn">Reset Password</button>
-            <button id="deleteAccountBtn">Delete Account</button>
-            <button id="installExtensionBtn">Install Browser Extension</button>
-            <button id="upgradePlanBtn">Upgrade Plan</button>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
-   
   <!-- External JS -->
   <script src="{{ asset('js/dashboard.js') }}"></script>
 </body>

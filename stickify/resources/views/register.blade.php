@@ -1,6 +1,33 @@
-@extends('layouts.app')
-@section('title', 'Stickify Register')
-@section('register')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stickify Signup</title>
+
+    <!-- (logo in tab) dui step bahira aaunu parcha to get the path -->
+    <link rel="icon" type="image/png" href="{{ asset('logo/documentLogo.png') }}">
+    <link rel="stylesheet" href="{{asset('css/register.css')}}">
+ <link rel="stylesheet" href="{{asset('css/homecss/main.css')}}">   <!-- connecting public->css->homecss->main.css file here to render css-->
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-inner">
+                <div class="navbar-brand">
+                    <i class="bi bi-sticky brand-icon"></i>
+                    <span class="brand-title" id="home">Stickify</span>
+                </div>
+                <div class="navbar-links header">
+                    <a href="{{ route('home') }}" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#how-it-works" class="nav-link">How It Works</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="{{ route('login') }}" class="nav-link">Log In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <main>
        <div class="outer-container">
@@ -72,3 +99,17 @@
         </div>
     </main>
 
+</body>
+</html>
+
+<script src="./signup.js"></script>
+
+
+
+<!-- about csrf
+    suppose: 
+    i am logged into Stickify.
+    i visit a fake website in another tab.
+    that fake site secretly tries to submit a request to my Stickify account, pretending to be me.
+    the csrf token prevents that fake request from working because the fake site doesn’t have my unique token.
+-->

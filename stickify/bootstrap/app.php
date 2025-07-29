@@ -11,11 +11,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        
-        $middleware->redirectTo(
-            guests: '/account/login',             // if users try to access authenticated pages w/o logging in, they will be redirected to login page    
-            users: '/account/dashboard'          // if users r already logged in and they r still trying to access dashboard, they r redirected to dashboard again
-        );
+        //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
