@@ -13,7 +13,6 @@
 </head>
 <body>
   <div class="container">
-
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="logo">
