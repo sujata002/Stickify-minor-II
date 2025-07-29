@@ -1,17 +1,3 @@
-<!--DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stickify Signup</title>
-
-    <!- (logo in tab) dui step bahira aaunu parcha to get the path ->
-    <link rel="icon" type="image/png" href="{{ asset('logo/documentLogo.png') }}">
-    <link rel="stylesheet" href="{{asset('css/register.css')}}">
-    <link rel="stylesheet" href="{{asset('css/homecss/main.css')}}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> <!- for icons ->
-</head>
-<body-->
 @extends('layouts.app')
 @section('title', 'Stickify Register')
 @section('register')
@@ -86,17 +72,3 @@
         </div>
     </main>
 
-<!--/body>
-</html-->
-
-<!--script src="./signup.js"></script-->
-
-
-
-<!-- about csrf
-    suppose: 
-    i am logged into Stickify.
-    i visit a fake website in another tab.
-    that fake site secretly tries to submit a request to my Stickify account, pretending to be me.
-    the csrf token prevents that fake request from working because the fake site doesn’t have my unique token.
--->
