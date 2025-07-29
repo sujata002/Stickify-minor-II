@@ -42,9 +42,11 @@
     <!-- TOPBAR: Username + Icon (top right corner) -->
       <div class="user-topbar">
         <div class="dashboard-title">Stickify User Dashboard</div>
-        <div class="user-info">
-          <i class="fa-solid fa-user"></i>
-          <span class="username-text">Hello, {{ Auth::user()->name }}</span> <!-- used auth user name to display name of currently logged in user-->
+        <div class="user-info" id="profileBtn"
+        data-name="{{ Auth::user()->name }}"
+        data-email="{{ Auth::user()->email }}">
+        <i class="fa-solid fa-user" style="cursor: pointer;"></i>
+        <span class="username-text" style="cursor: pointer;">Hello, {{ Auth::user()->name }}</span>
         </div>
         </div>
   
@@ -153,11 +155,9 @@
       <span class="closeProfileBtn">&times;</span>
       <div class="profileContent">
         <label for="profileName">Name:</label>
-        <input type="text" id="profileName" placeholder="Your Name">
+        <p id="profileName">{{ Auth::user()->name }}</p>
         <label for="profileEmail">Email:</label>
-        <input type="email" id="profileEmail" placeholder="Email">
-        <label for="profileLocation">Location:</label>
-        <input type="text" id="profileLocation" placeholder="Your Location">
+        <p id="profileEmail">{{ Auth::user()->email }}</p>
       </div>
     </div>
   </div>

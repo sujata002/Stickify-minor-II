@@ -333,31 +333,50 @@ body {
   background-color: #e1f3e2;
 }
 
-/*profile modal*/
-.profileContent {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* === Profile Modal Styling === */
+#modalProfile .modal-content {
+  max-width: 400px;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
 }
 
-.profileContent label {
+#modalProfile .profileContent label {
+  display: block;
   font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+  font-size: 15px;
+}
+
+#modalProfile .profileContent p {
+  margin: 0 0 15px 0;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #212529;
+  border: 1px solid #ddd;
+}
+
+.closeProfileBtn {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.closeProfileBtn:hover {
   color: #333;
 }
 
-.profileContent input[type="text"],
-.profileContent input[type="email"] {
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #bbb;
-  font-size: 14px;
-  width: 100%;
-}
-
-.profileContent input:focus {
-  border-color: #388E3C;
-  outline: none;
-}
 
 /* Note Modal */
 .modal {

@@ -128,4 +128,28 @@ closeSettingsBtn.addEventListener('click', () => {
       });
     });
   }
+  
+  // ==== Profile Modal ====
+  const profileBtn = document.getElementById('profileBtn');
+  const profileModal = document.getElementById('modalProfile');
+  const closeProfileBtn = document.querySelector('.closeProfileBtn');
+
+  profileBtn?.addEventListener('click', () => {
+    const name = profileBtn.getAttribute('data-name');
+    const email = profileBtn.getAttribute('data-email');
+
+    document.getElementById('profileName').value = name || '';
+    document.getElementById('profileEmail').value = email || '';
+    profileModal.style.display = 'block';
+  });
+
+  closeProfileBtn?.addEventListener('click', () => {
+    profileModal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === profileModal) {
+      profileModal.style.display = 'none';
+    }
+  });
 });
