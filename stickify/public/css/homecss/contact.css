@@ -1,0 +1,135 @@
+
+/*CONTACT SECTION*/
+/* ────────────── Section Layout ────────────── */
+.contact-section {
+  padding: 80px 0;
+  background-color: #f9fafb;
+}
+
+.contact-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+@media (max-width: 960px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ────────────── Contact Info Column ────────────── */
+.contact-details h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: green;
+}
+
+.contact-subtitle {
+  font-size: 18px;
+  color: #5b655f;
+  margin: 16px 0 32px;
+}
+
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.contact-icon {
+  background-color: rgb(236, 249, 236);
+  padding: 19px;
+  border-radius: 8px;
+  font-size: 20px;
+  color: green;
+  flex-shrink: 0;
+  margin: 9px;
+}
+
+.contact-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: green;
+  margin-bottom: 0;
+}
+.contact-info{
+  margin-bottom: 5px;
+}
+.contact-info p {
+  font-size: 16px;
+  color: #4b5563;
+  margin:1.5px;
+}
+
+/* ────────────── Contact Form ────────────── */
+.contact-form-card {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+
+.contact-form-card h3 {
+  font-size: 25px;
+  font-weight: 600;
+  color: green;
+  margin-bottom: 24px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-form label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: green;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.contact-form button {
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: green;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: background-color 0.2s ease;
+}
+
+.contact-form button:hover {
+  background-color: rgb(99, 216, 99);
+}
