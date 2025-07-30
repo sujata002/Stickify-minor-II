@@ -12,8 +12,13 @@ use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
     //this method will show login page for users
-    public function index(){            // or keep login instead of index pachi herera milcha bhani
-        return view('login');          // uta maile make: view login garera login.blade.php banako thiye. tyo call gareko
+    public function index(){  
+        
+        if (Auth::check() && Auth::user()->role === 'user') {           
+            return redirect()->route('user.dashboard');
+        }
+
+        return view('login');          
 
     }
 
@@ -61,9 +66,12 @@ class LoginController extends Controller
     // this method will show regsitration page 
 
     public function register(){    // injecting request
-
-        return view('register');      
-
+        
+        // to redirect users in dashboard if they try to access account/register while already being in dashboard
+        if (Auth::check() && Auth::user()->role === 'user') {
+            return redirect()->route('user.dashboard');
+    }
+    return view('register');      
     }
 
     public function processRegister(Request $request){

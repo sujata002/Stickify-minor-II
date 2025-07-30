@@ -13,5 +13,9 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/extension/save-note',         // this tells Laravel not to enforce CSRF on that route, which is required for Chrome extensions
+        //for verifying token
+        'api/verify-token',
+        //for saving note
+        'api/save-note',
     ];
 }

@@ -15,7 +15,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'verification_token', // for extension token generation
+        'token', // for extension token generation
     ];
 
     protected $hidden = [
@@ -27,5 +27,9 @@ class User extends Authenticatable
     public function notes()
     {
         return $this->hasMany(Note::class);
+    }
+
+    public function extensionTokens(){
+        return $this->hasOne(ExtensionTokens::class);
     }
 }

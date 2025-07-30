@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ExtensionToken;
+use App\Models\ExtensionTokens;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -21,12 +22,12 @@ class tokenController extends Controller
             return redirect()->back()->with('error', 'Please log in first to generate a token.');
         }
 
-        $existingToken = ExtensionToken::where('user_id', $user->id)->first();
+        $existingToken = ExtensionTokens::where('user_id', $user->id)->first();
 
         if (!$existingToken) {
             $token = $this->generateNumericToken(8);
 
-            ExtensionToken::create([
+            ExtensionTokens::create([
                 'user_id' => $user->id,
                 'token' => $token,
                 'expires_at' => null,
@@ -47,8 +48,45 @@ class tokenController extends Controller
     {
         do {
             $token = str_pad(mt_rand(0, pow(10, $length) - 1), $length, '0', STR_PAD_LEFT);
-        } while (ExtensionToken::where('token', $token)->exists());
+        } while (ExtensionTokens::where('token', $token)->exists());
 
         return $token;
     }
+    // verify the token submitted from the extension popup check
+    // if the token matches with the generated token or not
+    public function verifyToken(Request $request){
+        $request->validate([
+            'token'=>'required|string|size:8',
+        ]);
+        //get the token from the request 
+        $token = $request->input('token');
+
+        // Find the token database ma cha ki nai bhanera 
+
+        $extensionToken =ExtensionTokens::where('token',$token)->first();
+
+        // check if token exist garcha ki nai bhanera 
+        if(!$extensionToken){
+            return response()->json(['valid'=>false,'message'=>'Invalid token'],401);
+        }
+        if($extensionToken->expires_at && $extensionToken->expires_at->isPast()){
+            return response()->json(['valid'=>false,'message'=>'Token has expired'],401);
+        }
+
+        // check if the token is already used bhako cha ki nai 
+
+        if($extensionToken->is_used){
+            return response()->json(['valid'=>false,'message'=>'Token already used'],401);
+        }
+
+        // Return success response note saved huda 
+
+        return response()->json([
+            'valid'=>true,
+            'message'=>'Token verified successfully',
+            'user_id'=>$extensionToken->user_id
+        ],200);
+    
+    }
+
 }

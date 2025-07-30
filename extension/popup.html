@@ -4,23 +4,25 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stickify Extension</title>
+    <title>Popup</title>
     <link rel="stylesheet" href="popup.css" />
 </head>
 
 <body>
-    <!-- Message for not logged in user -->
-    <div id="loginMessage" style="color: red; margin-bottom: 10px;">
-        Checking login status...
+    <div class="token-box">
+        <input type="text" id="tokenInput" placeholder="Enter your token" />
+        <button id="verifyToken">Verify Token</button>
+
+        <!-- Message box -->
+        <div id="message" class="message-box"></div>
+
+        <!-- Note section -->
+        <div id="note-area">
+            <textarea id="note" placeholder="Write your note here"></textarea>
+            <button id="saveBtn">Save</button>
+        </div>
     </div>
 
-    <!-- Note Area (shown only if user is logged in) -->
-    <div id="note-area" style="display: none;">
-        <input type="text" id="noteTitle" placeholder="Note title" />
-        <textarea id="note" placeholder="Write your note here"></textarea>
-        <button id="saveBtn">Save</button>
-        <div id="saveMessage"></div>
-    </div>
     <script src="popup.js"></script>
 </body>
 
