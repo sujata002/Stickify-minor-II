@@ -6,10 +6,9 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>Stickify</title>
-
+  <link rel="icon" href="{{ asset('logo/documentlogo.png') }}" type="image/png">
   <!-- Styles -->
   <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-  {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"> --}}
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -28,6 +27,7 @@
         <a href="#"><i class="fa-solid fa-note-sticky"></i> My Notes</a>
         <a href="#"><i class="fa-solid fa-bookmark"></i> Bookmarks</a>
         <a href="#"><i class="fa-solid fa-folder-plus"></i> Categories</a>
+        <a href="{{ route('user.billing') }}"><i class="fa-solid fa-receipt"></i> Payment History</a>
         <a href="#"><i class="fa-solid fa-trash"></i> Trash</a>
         @unless(Auth::user()->is_premium)
           <form action="{{ route('stripe.session') }}" method="POST" style="margin: 10px 0px;">
@@ -37,10 +37,8 @@
             </button>
           </form>
         @endunless
-
-
-
       </nav>
+      
       <div class="projects">
         <a href="#" id="settingsLink"><i class="fa-solid fa-gear"></i> Settings</a>
         <a href="#"><i class="fa-solid fa-circle-question"></i> Help & Feedback</a>

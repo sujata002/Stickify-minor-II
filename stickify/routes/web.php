@@ -34,6 +34,9 @@ Route::group(['prefix' => 'account'],function(){
         Route::get('logout',[LoginController::class,'logout'])->name('logout');          // this route is for logout
         Route::get('dashboard',[DashboardController::class,'dashboard'])->name('user.dashboard');    
 
+        // billing history route for user
+        Route::get('billing-history', [DashboardController::class, 'billingHistory'])->name('user.billing');
+
     });
 
 });
@@ -44,9 +47,7 @@ Route::group(['prefix' => 'account'],function(){
 
 Route::group(['prefix' => 'admin'],function(){             
 
-    // this is guest middleware for admin who are not logged in
-               
-
+        // this is guest middleware for admin who are not logged in
         Route::get('login',[AdminLoginController::class,'index'])->name('admin.login');    
         Route::post('authenticate',[AdminLoginController::class,'authenticate'])->name('admin.authenticate');
 
@@ -66,15 +67,14 @@ Route::group(['prefix' => 'admin'],function(){
         Route::put('/users/{id}', [AdminDashboardController::class, 'updateUser'])->name('admin.users.update');
         Route::patch('/users/{id}/update-role', [AdminDashboardController::class, 'updateUserRole'])->name('admin.users.updateRole');    // for updating user's role thru users list in admin dashboard
 
+        // for billing history in admin dashboard
+        Route::get('/payments', [AdminDashboardController::class, 'allPayments'])->name('admin.payments');
     });
 
 });
 
 
 /*** for token part -- copy-pasted from dg-work manually ***/
-
-// Dashboard route showing the token generation form
-
 
 // Token generation POST route for normal form submit (if you keep it)
 Route::post('/generate-token', [TokenController::class, 'generateToken'])->name('generate.token');
@@ -98,3 +98,6 @@ Route::middleware('auth')->group(function () {
 Route::post('stripe/checkout-session',[StripeController::class,'session'])->name('stripe.session');
 Route::get('stripe/checkout-success',[StripeController::class,'success'])->name('stripe.success');
 Route::get('stripe/checkout-cancel',[StripeController::class,'cancel'])->name('stripe.cancel');
+
+
+

@@ -21,7 +21,7 @@ class StripeController extends Controller
                     'product_data' => [
                         'name' => 'Stickify Premium Upgrade',
                     ],
-                    'unit_amount' => 2.52 * 100, // 252 cents = $2.52
+                    'unit_amount' => 2.50 * 100, // 250 cents = $2.50
                 ],
                 'quantity' => 1,
             ]],

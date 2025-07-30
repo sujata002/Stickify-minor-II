@@ -22,6 +22,11 @@
                     <i class="fa fa-list"></i>Users List
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.payments') }}" class="nav-link">
+                    <i class="fa-solid fa-receipt"></i> Payment Records
+                </a>
+            </li>
             <li class = "nav-item">
                 <a href="{{ route('admin.logout') }}" class = "nav-link">
                     <i class="fa fa-sign-out-alt"></i>Logout

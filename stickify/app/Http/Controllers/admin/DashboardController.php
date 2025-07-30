@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Payment;
 
 class DashboardController extends Controller
 {
@@ -105,6 +106,12 @@ class DashboardController extends Controller
     $user->save();
 
     return redirect()->route('admin.users')->with('success', 'User role updated successfully.');
+  }
+
+  public function allPayments(){
+    // Load payments with user info using eager loading
+    $payments = Payment::with('user')->latest()->paginate(20);
+    return view('admin.payments', compact('payments'));
   }
 
 }
