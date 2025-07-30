@@ -1,18 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\TokenController;
 use Illuminate\Http\Request;
 use App\Models\ExtensionToken;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-class TokenController extends Controller
+class tokenController extends Controller
 {
     public function generateToken(Request $request)
     {
         // $user = User::first();
 
-        $user = auth()->user();
+        $user = Auth::user();
 
         if (!$user) {
             if ($request->expectsJson()) {

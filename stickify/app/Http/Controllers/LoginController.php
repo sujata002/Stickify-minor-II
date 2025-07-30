@@ -103,7 +103,8 @@ class LoginController extends Controller
 
     public function logout(){
 
-        // esko baki cha logout ko functionality halna lai. 39:00 minute dekhi herne youtube video ko for logout functionlity
+         Auth::logout();
+        return redirect()->route('login');
         
     }
 

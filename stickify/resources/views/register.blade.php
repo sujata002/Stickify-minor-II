@@ -8,18 +8,26 @@
     <!-- (logo in tab) dui step bahira aaunu parcha to get the path -->
     <link rel="icon" type="image/png" href="{{ asset('logo/documentLogo.png') }}">
     <link rel="stylesheet" href="{{asset('css/register.css')}}">
+ <link rel="stylesheet" href="{{asset('css/homecss/main.css')}}">   <!-- connecting public->css->homecss->main.css file here to render css-->
 </head>
 <body>
-    <header class="navbar">
-    <div class="logo">STICKIFY</div>
-        <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">How It Works</a>
-        <a href="#">Login</a>
-        <a href="#">Contact</a>
-        </nav>
-    </header>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-inner">
+                <div class="navbar-brand">
+                    <i class="bi bi-sticky brand-icon"></i>
+                    <span class="brand-title" id="home">Stickify</span>
+                </div>
+                <div class="navbar-links header">
+                    <a href="{{ route('home') }}" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#how-it-works" class="nav-link">How It Works</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="{{ route('login') }}" class="nav-link">Log In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <main>
        <div class="outer-container">

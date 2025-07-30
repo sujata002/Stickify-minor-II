@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,43 +28,59 @@
         <a href="{{route('mynotes')}}"><i class="fa-solid fa-note-sticky"></i> My Notes</a>
         <a href="#"><i class="fa-solid fa-bookmark"></i> Bookmarks</a>
         <a href="#"><i class="fa-solid fa-folder-plus"></i> Categories</a>
+        <a href="{{ route('user.billing') }}"><i class="fa-solid fa-receipt"></i> Payment History</a>
         <a href="{{ route('mynotes.trash') }}"><i class="fa-solid fa-trash"></i> Trash</a>
-
+        @unless(Auth::user()->is_premium)
+        <form action="{{ route('stripe.session') }}" method="POST" style="margin: 10px 0px;">
+          @csrf
+          <button type="submit" class="sidebar-upgrade-btn">
+            <i class="fa-solid fa-crown"></i> Upgrade to Premium
+          </button>
+        </form>
+        @endunless
       </nav>
       <div class="projects">
         <a href="#" id="settingsLink"><i class="fa-solid fa-gear"></i> Settings</a>
-        <a href="#"><i class="fa-solid fa-circle-question"></i> Help & Feedback</a>
-        <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        <a href="{{asset('contact-section')}}"><i class="fa-solid fa-circle-question"></i> Help & Feedback</a>
+        <a href="{{route('logout')}}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
       </div>
     </aside>
 
     <!-- Main -->
     <main class="main">
-    <!-- TOPBAR: Username + Icon (top right corner) -->
+      <!-- TOPBAR: Username + Icon (top right corner) -->
       <div class="user-topbar">
         <div class="dashboard-title">Stickify User Dashboard</div>
+        <div class="center" style="flex: 1; text-align: center;">
+        @if(Auth::user()->is_premium)
+          <div class="premium-message" style="color: #ffffff; font-weight: bold;">
+              🌟 You are a Premium User!
+          </div>
+        @endif
+        </div>
+
         <div class="user-info" id="profileBtn"
-        data-name="{{ Auth::user()->name }}"
-        data-email="{{ Auth::user()->email }}">
-        <i class="fa-solid fa-user" style="cursor: pointer;"></i>
-        <span class="username-text" style="cursor: pointer;">Hello, {{ Auth::user()->name }}</span>
+          data-name="{{ Auth::user()->name }}"
+          data-email="{{ Auth::user()->email }}">
+          <i class="fa-solid fa-user" style="cursor: pointer;"></i>
+          <span class="username-text" style="cursor: pointer;">Hello, {{ Auth::user()->name }}</span>
         </div>
-        </div>
-  
+      </div>
+
       <!-- Top Toolbar -->
       <div class="tabs" style="display: flex; flex-direction: column; gap: 10px; margin: 20px 20px;">
         <!-- First Row: Generate Token + Token Display -->
         <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px;">
-        
-        <!-- NO form -->
-         <form id="tokenForm" method="POST" action="{{ route('generate.token') }}">
-          @csrf
-          <button type="submit" class="tab-btn" style="background-color: #28a745; color: white; padding: 8px 12px; border: none; border-radius: 4px;">
-            Generate Token
-          </button>
-        </form>
 
-          
+          <!-- NO form -->
+          <form id="tokenForm" method="POST" action="{{ route('generate.token') }}">
+            @csrf
+            <button type="submit" class="tab-btn" style="background-color: #28a745; color: white; padding: 8px 12px; border: none; border-radius: 4px;">
+              Generate Token
+            </button>
+          </form>
+
+
 
           <div id="generatedTokenContainer" style="align-items: center; gap: 8px;">
             <!-- <label style="font-weight: bold;">Token Generated:</label> -->
@@ -88,8 +105,8 @@
         </div>
       </div>
 
-    <!-- Notes Grid -->
-    <div class="notes-grid">
+      <!-- Notes Grid -->
+      <div class="notes-grid">
         <div class="note-card">
           <div class="note-header">
             <span class="note-date"></span>
@@ -170,12 +187,34 @@
         <h2>Extension Token</h2>
         <div id="tokenDisplay" class="token-display">Click below to generate</div>
         <div class="token-actions">
-         <form id="tokenForm" method="POST" action="{{ route('generate.token') }}">
-               <button id="generateExtensionTokenBtn" type="submit">Generate Token</button>
+          <form id="tokenForm" method="POST" action="{{ route('generate.token') }}">
+            <button id="generateExtensionTokenBtn" type="submit">Generate Token</button>
           </form>
-         <button id="copy-btn">Copy to Clipboard</button>
+          <button id="copy-btn">Copy to Clipboard</button>
         </div>
         <p class="token-note">Use this token to link your browser extension securely.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="upgradeModal" tabindex="-1" aria-labelledby="upgradeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="upgradeModalLabel">
+            <i class="fa-solid fa-crown text-warning me-2"></i> Confirm Premium Upgrade
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          You're about to upgrade to <strong>Stickify Premium</strong> for <span class="text-success">$2.52</span>.
+          <br><br>
+          Do you want to continue?
+        </div>
+        <div class="modal-footer">
+          <button id="confirmUpgradeBtn" type="button" class="btn btn-warning text-white">Yes, Upgrade Now</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
       </div>
     </div>
   </div>
@@ -205,9 +244,33 @@
         </div>
       </div>
     </div>
-</div>
-   
+  </div>
+  
+  <!-- Bootstrap JS bundle (required for popup to work) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const upgradeForm = document.querySelector("form[action='{{ route('stripe.session') }}']");
+      const upgradeModal = new bootstrap.Modal(document.getElementById('upgradeModal'));
+      const confirmBtn = document.getElementById('confirmUpgradeBtn');
+
+      // when user clicks the upgrade button (submit), prevent submission & show modal
+      upgradeForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        upgradeModal.show();
+      });
+
+      // when user clicks confirm inside modal, submit the form programmatically
+      confirmBtn.addEventListener('click', function() {
+        upgradeModal.hide();
+        upgradeForm.submit();
+      });
+    });
+  </script>
+
   <!-- External JS -->
   <script src="{{ asset('js/dashboard.js') }}"></script>
 </body>
+
 </html>

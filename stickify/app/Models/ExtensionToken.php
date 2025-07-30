@@ -8,7 +8,7 @@ use App\Models\User;
 class ExtensionToken extends Model
 {
     // hamro table create extension wala use garcha instead of any other default table that laravel expects
-    protected $table = 'extension_tokens';
+    protected $table = 'extensions_tokens';
 
     // just yeti field chai can be automatically filled while creating or updating 
     protected $fillable = [

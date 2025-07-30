@@ -32,6 +32,30 @@
       </div>
     </aside>
 
+    <!-- Settings Modal -->
+    <div id="modalSettings" class="modal">
+      <div class="modal-content">
+        <span class="closeSettingsBtn">&times;</span>
+        <div class="settingsContent">
+          <div class="settings">
+            <h1>Settings</h1>
+            <div class="settings-option">
+              <label for="theme">Theme:</label>
+              <select id="theme">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
+            </div>
+            <div class="settings-option">
+              <button id="passwordBtn">Reset Password</button>
+              <button id="deleteAccountBtn">Delete Account</button>
+              <button id="installExtensionBtn">Install Browser Extension</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Main Content -->
     <main class="main-content">
       <div class="notes-container">
@@ -80,5 +104,6 @@
       </div>
     </main>
   </div>
+  <script src="{{ asset('js/dashboard.js') }}"></script>
 </body>
 </html>
