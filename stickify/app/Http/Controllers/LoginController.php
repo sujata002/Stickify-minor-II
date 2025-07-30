@@ -121,3 +121,5 @@ class LoginController extends Controller
 // then it automatically uses Hash::check() internally to compare & verify the plain password with the hashed one in the DB
 
 // if the credentials match, Laravel logs in the user and sets the session. 
+
+

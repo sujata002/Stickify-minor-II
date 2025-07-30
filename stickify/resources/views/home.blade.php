@@ -10,13 +10,15 @@
           <span class="line-2">With Stickify</span>
         </h1>
         <p class="hero-description">
-          The ultimate browser extension for capturing, organizing, and accessing your notes across all your favorite websites.
-          Secure, flexible, and accessible
-          Stickify is your ultimate note-taking companion based in Kathmandu, NP. 
-          With user authentication, you can store and access your notes safely, giving you peace of mind.<br><br> 
-          Manage your notes effortlessly from your dashboard, and easily trace the URLs where they were created. 
-          Our handy browser extension allows you to add and modify notes without leaving the page. 
-          Enjoy the freedom to create, read, update, and delete your notes, ensuring complete control over your data.        </p>
+                Stickify is a smart browser extension that lets you capture, organize, and access notes directly on your favorite websites.
+                It is secure, flexible, and easy to use. With safe user login, your notes stay protected and always accessible.
+                <br>
+                <br>
+                Stickify is designed to enhance your productivity by allowing you to take notes without leaving the page
+                Manage all your notes from a simple dashboard and see where each note was made. Add or edit notes without ever leaving the page
+                by giving you full control and a seamless browsing experience.
+
+          </p>
         <div class="buttons">
           <!-- Chrome Button -->
           <a class="btn-chrome" href="https://chromewebstore.google.com/" target="_blank" rel="noopener noreferrer">
