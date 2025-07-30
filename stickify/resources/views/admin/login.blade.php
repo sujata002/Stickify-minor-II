@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stickify Login</title>
+    <title>Stickify Admin Login</title>
 
     <!-- (logo in tab) dui step bahira aaunu parcha to get the path -->
     <link rel="icon" type="image/png" href="../logo/documentLogo.png">
     <link rel="stylesheet" href="{{asset('css/login.css')}}">           <!-- connecting public->css->login.css file here to render css-->
     <link rel="stylesheet" href="{{asset('css/homecss/main.css')}}">   <!-- connecting public->css->homecss->main.css file here to render css-->
+
 </head>
 <body>
     <nav class="navbar">
@@ -25,14 +26,13 @@
             </div>
         </div>
     </nav>
-    
 
     <main>
        <div class="outer-container">
             <div class="login-container">
                 <div class="login-form">
                     <div class="text-part">
-                        <h2 class="welcome-back">Welcome 👋</h2>
+                        <h2 class="welcome-back">Welcome Admin👋</h2>
                         <p class="login-description">Today is a new day. It's your day. You shape it.<br>Sign in to start managing your notes.</p>
 
                         @if (session('success'))          <!-- after saving user from register page it redirects the user to the login page. -->    
@@ -45,7 +45,7 @@
 
 
                         <!-- jaba login form ko submission chai yo aunthenticate vanni route ma jancha-->
-                        <form action="{{ route('authenticate')}}" method="post" onsubmit="return Login()">            <!-- yo onsubmit le it tells the browser “before submitting this form, run the Login() function ani if it returns false, don’t submit.-->
+                        <form action="{{ route('admin.authenticate')}}" method="post">            <!-- yo onsubmit le it tells the browser “before submitting this form, run the Login() function ani if it returns false, don’t submit.-->
                             @csrf
 
                             <div class="form-input">
@@ -94,9 +94,9 @@
                 </div>
             </div>
         </div>
-    </main>
+    </main>               
 
-</body>
+</body>           
 </html>
 
 <script src="./login.js"></script>

@@ -20,9 +20,6 @@
                 </div>
                 <div class="navbar-links header">
                     <a href="{{ route('home') }}" class="nav-link">Home</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#how-it-works" class="nav-link">How It Works</a>
-                    <a href="#contact" class="nav-link">Contact</a>
                     <a href="{{ route('login') }}" class="nav-link">Log In</a>
                 </div>
             </div>
