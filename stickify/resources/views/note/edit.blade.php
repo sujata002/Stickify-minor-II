@@ -20,7 +20,7 @@
         <p>STICKIFY</p>
       </div>
       <nav>
-        <a href="{{ route('dashboard') }}"><i class="fa-solid fa-bars"></i> Dashboard</a>
+        <a href="{{ route('user.dashboard') }}"><i class="fa-solid fa-bars"></i> Dashboard</a>
         <a href="{{ route('mynotes') }}" class="active"><i class="fa-solid fa-note-sticky"></i> My Notes</a>
         <a href="#"><i class="fa-solid fa-bookmark"></i> Bookmarks</a>
         <a href="#"><i class="fa-solid fa-folder-plus"></i> Categories</a>

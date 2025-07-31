@@ -41,7 +41,7 @@ Route::post('/extension/save-note', function (Request $request) {
 
 //samira ko ho yo 
 //Option A: Redirected to laravel home page 
-Route::get('home', function () {
+Route::get('/', function () {
      return view('home');
 })->name('home'); // this is the home page of laravel app
 
@@ -54,11 +54,6 @@ Route::post('/contact', [ContactController::class, 'send'])->name('contact.send'
 
 
 // this is my route
-
-// Redirect root to dashboard
-Route::get('/', function () {
-    return redirect()->route('dashboard');
-});
 
 
 // Dashboard route showing the token generation form

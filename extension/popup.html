@@ -9,18 +9,21 @@
 </head>
 
 <body>
+    <!-- For Token box -->
     <div class="token-box">
         <input type="text" id="tokenInput" placeholder="Enter your token" />
         <button id="verifyToken">Verify Token</button>
+        <!-- Token-specific message box -->
+        <div id="tokenMessage" class="message-box" style="display:none;"></div>
+    </div>
 
-        <!-- Message box -->
-        <div id="message" class="message-box"></div>
-
-        <!-- Note section -->
-        <div id="note-area">
-            <textarea id="note" placeholder="Write your note here"></textarea>
-            <button id="saveBtn">Save</button>
-        </div>
+    <!-- Note area (hidden by default) -->
+    <div id="note-area">
+        <input type="text" id="noteTitle" placeholder="Note Title" />
+        <textarea id="note" placeholder="Write your note here"></textarea>
+        <button id="saveBtn">Save</button>
+        <!--  Note-specific message box -->
+        <div id="noteMessage" class="message-box" style="display:none;"></div>
     </div>
 
     <script src="popup.js"></script>

@@ -37,9 +37,12 @@ body {
 }
 
 #note-area {
-    display: flex;
+    display: none; /* hide initially */
+    flex-direction: column;
+    gap: 8px;
     margin-top: 10px;
 }
+
 
 button {
     background-color: #238636;
@@ -75,4 +78,21 @@ button:hover {
     background-color: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
+}
+
+/* for note title */
+#noteTitle {
+    width: 100%;
+    padding: 6px 8px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#noteTitle:focus {
+    border-color: #1a73e8;
+    outline: none;
+    box-shadow: 0 0 3px rgba(26, 115, 232, 0.5);
 }

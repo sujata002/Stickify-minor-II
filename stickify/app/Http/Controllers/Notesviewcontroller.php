@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Models\Note;
@@ -9,7 +10,8 @@ class NotesViewController extends Controller
 {
     public function index()
     {
-        $notes = Note::where('user_id', auth()->id())->get();
+       $notes = Note::where('user_id', Auth::id())->get();
+
         return view('note.index', compact('notes'));
     }
 
@@ -28,7 +30,7 @@ class NotesViewController extends Controller
         Note::create([
             'title' => $validated['title'],
             'note_text' => $validated['note_text'],
-            'user_id' => auth()->id(),
+            'user_id' => Auth::id(),
         ]);
 
         return redirect()->route('mynotes')->with('success', 'Note created successfully.');
@@ -36,7 +38,7 @@ class NotesViewController extends Controller
 
     public function edit($id)
     {
-        $note = Note::where('user_id', auth()->id())->findOrFail($id);
+        $note = Note::where('user_id', Auth::id())->findOrFail($id);
         return view('note.edit', compact('note'));
     }
 
@@ -47,7 +49,7 @@ class NotesViewController extends Controller
             'note_text' => 'required|string',
         ]);
 
-        $note = Note::where('user_id', auth()->id())->findOrFail($id);
+        $note = Note::where('user_id', Auth::id())->findOrFail($id);
         $note->update($validated);
 
         return redirect()->route('mynotes')->with('success', 'Note updated successfully.');
@@ -55,7 +57,7 @@ class NotesViewController extends Controller
 
     public function delete($id)
     {
-        $note = Note::where('user_id', auth()->id())->findOrFail($id);
+        $note = Note::where('user_id', Auth::id())->findOrFail($id);
         $note->delete();
 
         return redirect()->route('mynotes')->with('success', 'Note deleted successfully.');
@@ -64,7 +66,7 @@ class NotesViewController extends Controller
     public function trash()
     {
         $notes = Note::onlyTrashed()
-                    ->where('user_id', auth()->id())
+                    ->where('user_id', Auth::id())
                     ->get();
         return view('note.trash', compact('notes'));
     }
