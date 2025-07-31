@@ -7,18 +7,41 @@ document.addEventListener("DOMContentLoaded", function () {
     const noteSection = document.getElementById("note-area");
     const tokenBox = document.querySelector(".token-box");
 
-    // Always hide note area on load
     noteSection.style.display = "none";
 
-    // Try loading previously saved token
-    chrome.storage.local.get(["userToken"], function (result) {
-        if (result.userToken) {
-            tokenInput.value = result.userToken;
-            validateToken(result.userToken);
+    // Secure token check on load
+    chrome.storage.local.get(["userToken", "userEmail"], function (result) {
+        if (result.userToken && result.userEmail) {
+            fetch("http://127.0.0.1:8000/api/verify-token", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ token: result.userToken }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.valid && data.user_email === result.userEmail) {
+                        tokenInput.value = result.userToken;
+                        tokenBox.style.display = "none";
+                        noteSection.style.display = "flex";
+                    } else {
+                        chrome.storage.local.remove(["userToken", "userEmail"]);
+                        tokenBox.style.display = "block";
+                        noteSection.style.display = "none";
+                    }
+                })
+                .catch(() => {
+                    chrome.storage.local.remove(["userToken", "userEmail"]);
+                    tokenBox.style.display = "block";
+                    noteSection.style.display = "none";
+                });
+        } else {
+            tokenBox.style.display = "block";
+            noteSection.style.display = "none";
         }
     });
 
-    // When Verify Token button is clicked
     verifyTokenBtn.addEventListener("click", function () {
         const token = tokenInput.value.trim();
 
@@ -35,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
         validateToken(token);
     });
 
-    // Validate the token with the server
     function validateToken(token) {
         fetch("http://127.0.0.1:8000/api/verify-token", {
             method: "POST",
@@ -48,13 +70,16 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((data) => {
                 if (data.valid) {
                     showMessage("Token is valid!", true, "tokenMessage");
-                    chrome.storage.local.set({ userToken: token });
 
-                    // Show note area, hide token input
+                    chrome.storage.local.set({
+                        userToken: token,
+                        userEmail: data.user_email
+                    });
+
                     tokenBox.style.display = "none";
                     noteSection.style.display = "flex";
                 } else {
-                    showMessage("Invalid token.", false, "tokenMessage");
+                    showMessage(data.message || "Invalid token.", false, "tokenMessage");
                 }
             })
             .catch((error) => {
@@ -63,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    // Save note button click
     saveButton.addEventListener("click", function () {
         const title = noteTitle.value.trim();
         const noteText = noteArea.value.trim();
@@ -77,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
             showMessage("Please enter your note.", false, "noteMessage");
             return;
         }
+
         chrome.storage.local.get(["userToken"], function (result) {
             const token = result.userToken;
 
@@ -85,6 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     showMessage("Unable to get tab URL. Please try again.", false, "noteMessage");
                     return;
                 }
+
                 const currentUrl = tabs[0].url;
 
                 fetch("http://127.0.0.1:8000/api/notes", {
@@ -117,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Reusable helper to show messages in the correct box
     function showMessage(message, isSuccess = false, elementId) {
         const msgDiv = document.getElementById(elementId);
 

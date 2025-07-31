@@ -54,39 +54,36 @@ class tokenController extends Controller
     }
     // verify the token submitted from the extension popup check
     // if the token matches with the generated token or not
-    public function verifyToken(Request $request){
-        $request->validate([
-            'token'=>'required|string|size:8',
-        ]);
-        //get the token from the request 
-        $token = $request->input('token');
+    public function verifyToken(Request $request)
+{
+    $request->validate([
+        'token' => 'required|string|size:8',
+    ]);
 
-        // Find the token database ma cha ki nai bhanera 
+    $token = $request->input('token');
 
-        $extensionToken =ExtensionTokens::where('token',$token)->first();
+    $extensionToken = ExtensionTokens::where('token', $token)->first();
 
-        // check if token exist garcha ki nai bhanera 
-        if(!$extensionToken){
-            return response()->json(['valid'=>false,'message'=>'Invalid token'],401);
-        }
-        if($extensionToken->expires_at && $extensionToken->expires_at->isPast()){
-            return response()->json(['valid'=>false,'message'=>'Token has expired'],401);
-        }
-
-        // check if the token is already used bhako cha ki nai 
-
-        if($extensionToken->is_used){
-            return response()->json(['valid'=>false,'message'=>'Token already used'],401);
-        }
-
-        // Return success response note saved huda 
-
-        return response()->json([
-            'valid'=>true,
-            'message'=>'Token verified successfully',
-            'user_id'=>$extensionToken->user_id
-        ],200);
-    
+    if (!$extensionToken) {
+        return response()->json(['valid' => false, 'message' => 'Invalid token'], 401);
     }
 
+    if ($extensionToken->expires_at && $extensionToken->expires_at->isPast()) {
+        return response()->json(['valid' => false, 'message' => 'Token has expired'], 401);
+    }
+
+    if ($extensionToken->is_used) {
+        return response()->json(['valid' => false, 'message' => 'Token already used'], 401);
+    }
+
+    // Get associated user
+    $user = $extensionToken->user;
+
+    return response()->json([
+        'valid' => true,
+        'message' => 'Token verified successfully',
+        'user_id' => $user->id,
+        'user_email' => $user->email,
+    ]);
+}
 }
